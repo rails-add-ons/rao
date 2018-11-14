@@ -1,0 +1,5 @@
+Execution of <%= @result.service.class.name %> <%= @result.ok? ? 'succeeded' : 'failed' %> in <%= @environment %>:
+
+<% @result.messages.each do |message| %>
+  <%= message %>
+<% end %>

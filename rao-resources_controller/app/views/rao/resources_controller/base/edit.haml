@@ -1,0 +1,6 @@
+%h1= t('.title', inflections)
+
+= bootstrap_form_for(@resource, url: resource_path(@resource)) do |f|
+  = render 'form_errors',  resource: f.object
+  = render 'form',         form: f
+  = render 'form_buttons', form: f

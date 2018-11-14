@@ -1,0 +1,14 @@
+= render 'create_before_service_output', result: @result
+
+%table.table.table-sm.table-striped.table-monospaced
+  %tbody
+    - @result.messages.each_with_index do |message, index|
+      %tr
+        %td= index + 1
+        %td= message
+
+= render 'create_after_service_output', result: @result
+
+= bootstrap_button(to: new_service_path, context: :success) do
+  = fa_icon :back
+  = t('.back')

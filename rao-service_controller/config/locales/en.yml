@@ -1,0 +1,23 @@
+en:
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} was successfully created."
+      update:
+        notice: "%{resource_name} was successfully updated."
+      destroy:
+        notice: "%{resource_name} was successfully destroyed."
+        alert: "%{resource_name} could not be destroyed."
+      perform:
+        notice: "%{resource_name} was executed."
+        alert: "%{resource_name} could not be executed. Errors: %{errors}"
+  rao:
+    service_controller:
+      base:
+        create:
+          back: "Back"
+        form_buttons:
+          submit: "Run %{service_name}"
+          submitted: "Running..."
+        new:
+          title: "Run %{service_name}"

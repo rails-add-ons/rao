@@ -1,0 +1,6 @@
+- if resource.errors.any?
+  = bootstrap_alert(context: :danger, class: 'error-explanation') do
+    .error-heading= t('errors.template.header', count: resource.errors.count, model: resource.class.model_name.human)
+    %ul
+      - resource.errors.full_messages.each do |msg|
+        %li= msg

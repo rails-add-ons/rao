@@ -1,0 +1,6 @@
+%h1= t('.title', inflections)
+
+= bootstrap_form_for(@service, url: create_service_path) do |f|
+  = render 'form_errors',  service: f.object
+  = render 'form',         form: f
+  = render 'form_buttons', form: f

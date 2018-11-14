@@ -1,0 +1,5 @@
+= form.button :submit, class: 'btn btn-success' do
+  = fa_icon :check
+  = t('.submit', model_name: form.object.model_name.human)
+= bootstrap_button(to: ((action_name == 'new' || form.object.new_record?) ? collection_path : resource_path(form.object)), context: :link) do
+  = t('.cancel')

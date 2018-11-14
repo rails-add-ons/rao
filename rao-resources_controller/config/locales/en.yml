@@ -1,0 +1,28 @@
+en:
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} was successfully created."
+      update:
+        notice: "%{resource_name} was successfully updated."
+      destroy:
+        notice: "%{resource_name} was successfully destroyed."
+        alert: "%{resource_name} could not be destroyed."
+      perform:
+        notice: "%{resource_name} was executed."
+        alert: "%{resource_name} could not be executed. Errors: %{errors}"
+  rao:
+    resources_controller:
+      base:
+        form_buttons:
+          cancel: "Cancel"
+        edit:
+          title: "Edit %{resource_name}"
+        index:
+          new: "New"
+        new:
+          title: "New %{resource_name}"
+        show_actions:
+          back: "Back"
+          delete: "Delete"
+          edit: "Edit"

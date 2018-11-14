@@ -1,0 +1,15 @@
+%h1
+  %span
+    = resource_class.model_name.human(count: :other)
+  .pull-right
+    = bootstrap_button(to: new_resource_path, context: :success) do
+      = fa_icon(:plus)
+      = t('.new')
+
+= render 'before_index_table', collection: @collection
+
+= collection_table(collection: @collection, resource_class: resource_class) do |t|
+  = render 'table',         table: t
+  = render 'table_actions', table: t
+
+= render 'pagination' if respond_to?(:paginate?) && paginate?
