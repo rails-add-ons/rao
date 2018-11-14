@@ -13,9 +13,7 @@ Gem::Specification.new do |s|
   s.description = "The missing bits."
   s.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-
-  # s.add_dependency "rails", ">= 3.2"
+  s.files = Dir["{lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'guard-rspec'
