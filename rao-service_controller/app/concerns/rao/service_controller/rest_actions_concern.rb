@@ -3,6 +3,10 @@ module Rao
     extend ActiveSupport::Concern
 
     included do
+      unless respond_to?(:respond_to)
+        raise "undefined method `respond_to' for #{self.name}: If you are running Rails > 4 you may need to add the responders gem to your Gemfile."
+      end
+
       respond_to :html
       responders :flash
 
