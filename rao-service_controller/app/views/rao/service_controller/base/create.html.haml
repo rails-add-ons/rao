@@ -10,5 +10,5 @@
 = render 'create_after_service_output', result: @result
 
 = bootstrap_button(to: new_service_path, context: :success) do
-  = fa_icon :back
+  = fa_icon :back if respond_to?(:fa_icon)
   = t('.back')
