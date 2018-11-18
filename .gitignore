@@ -8,3 +8,6 @@ spec/dummy/tmp/
 
 # Ignore backup files
 *~
+
+# Ignore gem builds
+*.gem
