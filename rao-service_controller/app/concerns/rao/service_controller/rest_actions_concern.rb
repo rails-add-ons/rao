@@ -32,9 +32,10 @@ module Rao
       if @result.success?
 
         if respond_to?(:after_success_location, true) && after_success_location.present?
-          redirect_to(after_success_location, notice: success_message)
+          flash.notice = success_message if success_message.present?
+          redirect_to(after_success_location)
         else
-          flash.now[:success] = success_message
+          flash.now[:notice] = success_message if success_message.present?
           render :create
         end
       else
