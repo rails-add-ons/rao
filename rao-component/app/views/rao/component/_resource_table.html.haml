@@ -1,0 +1,15 @@
+%table.table
+  - rows.each do |name, options|
+    %tr
+      - if resource_class.respond_to? :human_attribute_name
+        %th
+          = resource_class.human_attribute_name(name)
+      - else
+        %th
+          = name
+      - if options[:block].present?
+        %td
+          = options[:block].call(resource)
+      - else
+        %td
+          = render partial: "rao/component/table/body_cells/#{options[:render_as]}", locals: { resource: resource, name: name, options: options }

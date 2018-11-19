@@ -1,0 +1,21 @@
+en:
+  rao:
+    component:
+      collection_table:
+        column_titles:
+          acts_as_list: Sorting
+          acts_as_published: Publishing
+          awesome_nested_set: Sorting
+        delete: Delete
+        edit: Edit
+        show: Show
+        download: Download
+      table:
+        body_cells:
+          boolean:
+            'true': Yes
+            'false': No
+        header_cells:
+          batch_actions:
+            title: Batch actions
+            destroy: Delete

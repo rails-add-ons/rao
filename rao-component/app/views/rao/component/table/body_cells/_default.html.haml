@@ -1,0 +1,4 @@
+- if options[:label_method].present?
+  = resource.send(name).send(options[:label_method])
+- else
+  = resource.send(name)

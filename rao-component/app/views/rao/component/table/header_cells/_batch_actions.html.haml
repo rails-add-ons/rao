@@ -1,0 +1,42 @@
+:css
+  #batch-action-dropdown {
+    display: none;
+  }
+
+%form{ method: 'post', id: 'batch-action-form' }
+  = hidden_field_tag :authenticity_token, form_authenticity_token
+.dropdown.batch-action-dropdown
+  %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button", id: 'batch-action-dropdown' }
+    = t('.title')
+    %span.caret
+  %ul.dropdown-menu{"aria-labelledby" => 'batch-action-dropdown' }
+    - options[:actions].each do |action, target|
+      %li
+        %a{ href: target, class: 'batch-action-form-submit-link' }= t(".#{action}")
+
+:javascript
+  $(document).ready(function() {
+    $('.batch-action-checkbox').click(function() {
+      var check_count = $('.batch-action-checkbox:checked').size();
+      if( check_count > 0 ) {
+        $("#batch-action-dropdown").show();
+      } else {
+        $("#batch-action-dropdown").hide();
+      }
+    });
+
+    $('#batch-action-form').submit(function() {
+      $('#batch-action-form input:checked').remove();
+      var selected_items = $('.batch-action-checkbox:checked').clone();
+      selected_items.css('display', 'none');
+      $('#batch-action-form').append(selected_items);
+      return true;
+    });
+
+    $('.batch-action-form-submit-link').click(function(e) {
+        e.preventDefault();
+        var target = $(this).attr('href');
+        $("#batch-action-form").attr("action", target);
+        $('#batch-action-form').submit();
+    });
+  });

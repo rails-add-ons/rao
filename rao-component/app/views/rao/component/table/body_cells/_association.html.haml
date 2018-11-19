@@ -1,0 +1,18 @@
+- label = if options[:label_method].present?
+  - case options[:label_method]
+    - when Proc
+      - options[:label_method].call(resource.send(name))
+    - else
+      - resource.send(name).try(options[:label_method])
+- else
+  - resource.send(name)
+- link_to = options[:link_to]
+- case link_to
+  - when Proc
+    = link_to(label, link_to.call(resource))
+  - when String
+    = link_to(label, link_to)
+  - when Symbol
+    = link_to(label, send(link_to))
+  - when nil
+    = label

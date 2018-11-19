@@ -1,0 +1,9 @@
+- link_path = controller.url_for(action: :toggle_published, id: resource.to_param)
+- if resource.published?
+  = button_to(link_path, class: 'btn btn-xs btn-danger btn-responsive', method: :post) do
+    %span.glyphicon.glyphicon-eye-close
+    %span.btn-text= t('.unpublish', default: t('acts_as_published.actions.unpublish'))
+- else
+  = button_to(link_path, class: 'btn btn-xs btn-success btn-responsive', method: :post) do
+    %span.glyphicon.glyphicon-eye-open
+    %span.btn-text= t('.publish', default: t('acts_as_published.actions.publish'))

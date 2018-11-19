@@ -1,0 +1,7 @@
+- if options[:label_method].present?
+  = resource.send(name).send(options[:label_method])
+- else
+  - if (value = resource.send(name)).present? && options[:format].present?
+    = I18n.l(value, format: options[:format])
+  - else
+    = value
