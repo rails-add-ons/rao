@@ -1,51 +1,100 @@
 module Rao
   module Component
-      class ResourceTable < Base
-        include BooleanConcern
+    # Example:
+    #
+    #     = resource_table(resource: @post) do |t|
+    #       = t.id
+    #       = t.row :title
+    #       = t.row :body
+    #       = t.boolean :visible
+    #       = t.timestamps format: :short
+    #
+    class ResourceTable < Base
+      include BooleanConcern
 
-        attr_reader :resource
+      SIZE_MAP = {
+        default: nil,
+        small:   :sm
+      }
+      def size
+        SIZE_MAP[@options[:size] || :default]
+      end
 
-        def initialize(*args)
-          super
-          @rows           = {}
-          @resource       = @options.delete(:resource)
-          @resource_class = @resource.class
-        end
+      attr_reader :resource
 
-        def row(name, options = {}, &block)
-          options.reverse_merge!(render_as: :default)
-          options.reverse_merge!(block: block) if block_given?
-          @rows[name] = options
-        end
+      def initialize(*args)
+        super
+        @rows           = {}
+        @resource       = @options.delete(:resource)
+        @resource_class = @resource.class
+      end
 
-        def id(options = {}, &block)
-          row(:id, options, &block)
-        end
+      def row(name, options = {}, &block)
+        options.reverse_merge!(render_as: :default)
+        options.reverse_merge!(block: block) if block_given?
+        @rows[name] = options
+      end
 
-        def timestamp(name, options = {}, &block)
-          options.reverse_merge!(render_as: :timestamp, format: Rao::Component::Configuration.table_default_timestamp_format)
-          row(name, options, &block)
-        end
+      def id(options = {}, &block)
+        row(:id, options, &block)
+      end
 
-        def timestamps(options = {})
-          timestamp(:created_at, options)
-          timestamp(:updated_at, options)
-        end
+      def timestamp(name, options = {}, &block)
+        options.reverse_merge!(render_as: :timestamp, format: Rao::Component::Configuration.table_default_timestamp_format)
+        row(name, options, &block)
+      end
 
-        def association(name, options = {}, &block)
-          options.reverse_merge!(render_as: :association)
-          row(name, options, &block)
-        end
+      def timestamps(options = {})
+        timestamp(:created_at, options)
+        timestamp(:updated_at, options)
+      end
 
-        private
+      def association(name, options = {}, &block)
+        options.reverse_merge!(render_as: :association)
+        row(name, options, &block)
+      end
 
-        def view_locals
-          {
-            rows:           @rows,
-            resource:       @resource,
-            resource_class: @resource_class
-          }
-        end
+      private
+
+      def view_locals
+        {
+          rows:             @rows,
+          resource:         @resource,
+          resource_class:   @resource_class,
+          table_css_classes: table_css_classes
+        }
+      end
+
+      def table_css_classes
+        classes = ['table', 'resource-table', @resource_class.name.underscore.pluralize.gsub('/', '-')]
+        classes << 'table-bordered'   if bordered?
+        classes << 'table-hover'      if hover?
+        classes << 'table-inverse'    if inverse?
+        classes << 'table-striped'    if striped?
+        classes << 'table-responsive' if responsive?
+        classes << "table-#{size}"    if size.present?
+        classes
+      end
+
+      def striped?
+        !!@options[:striped]
+      end
+
+      def responsive?
+        !!@options[:responsive]
+      end
+
+      def inverse?
+        !!@options[:inverse]
+      end
+
+      def bordered?
+        !!@options[:bordered]
+      end
+
+      def hover?
+        !!@options[:hover]
       end
     end
   end
+end

@@ -1,4 +1,4 @@
-%table.table
+%table{ class: table_css_classes }
   - rows.each do |name, options|
     %tr
       - if resource_class.respond_to? :human_attribute_name
