@@ -17,8 +17,9 @@ module Rao
       include BooleanConcern
 
       SIZE_MAP = {
-        default: nil,
-        small:   :sm
+        default:    nil,
+        small:      :sm,
+        extrasmall: :xs
       }
 
       def initialize(*args)
