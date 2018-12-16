@@ -6,3 +6,6 @@ spec/dummy/db/*.sqlite3-journal
 spec/dummy/log/*.log
 spec/dummy/tmp/
 *.gem
+
+# Ignore test coverage report
+/coverage

@@ -3,7 +3,8 @@ require_relative 'boot'
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "rao-service"
+require "pry"
+require "rao-component"
 
 module Dummy
   class Application < Rails::Application
