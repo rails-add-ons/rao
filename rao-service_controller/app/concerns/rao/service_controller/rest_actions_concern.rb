@@ -30,7 +30,7 @@ module Rao
     def perform
       @result = execute_service
       if @result.success?
-
+        before_respond_on_success if respond_to?(:before_respond_on_success, true)
         if respond_to?(:after_success_location, true) && after_success_location.present?
           flash.notice = success_message if success_message.present?
           redirect_to(after_success_location)
