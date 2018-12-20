@@ -47,6 +47,12 @@ module Rao
             send("#{key}=", value)
           end
         end
+
+        def attributes
+          self.class.attribute_names.each_with_object({}) do |attr, m|
+            m[attr] = send(attr)
+          end
+        end
       end
 
       include Attributes
@@ -68,6 +74,7 @@ module Rao
             _perform
           end
           after_perform
+          save if autosave? && respond_to?(:save, true)
           perform_result
         end
       end
