@@ -11,7 +11,7 @@ module Rao
       @collection = load_collection_scope.where(id: params[:ids])
       @collection.destroy_all
 
-      respond_with @collection, location: after_destroy_many_location, notice: t('.success')
+      respond_with @collection, location: after_destroy_many_location, notice: t('.success', count: @collection.count)
     end
 
     private
