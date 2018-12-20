@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.1.pre)
+    rao (0.0.3.pre)
 
 PATH
   remote: .
   specs:
-    rao-resources_controller (0.0.1.pre)
+    rao-resources_controller (0.0.3.pre)
       rao
 
 GEM
@@ -79,4 +79,4 @@ DEPENDENCIES
   rspec
 
 BUNDLED WITH
-   1.16.2
+   1.17.1

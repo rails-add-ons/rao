@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.2.pre)
+    rao (0.0.3.pre)
 
 PATH
   remote: .
   specs:
-    rao-component (0.0.2.pre)
+    rao-component (0.0.3.pre)
       haml-rails
       rails
       rao
@@ -240,4 +240,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
