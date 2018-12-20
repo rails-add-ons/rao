@@ -1,4 +1,4 @@
-# require 'rails/add_ons/version'
+require 'rao/version'
 
 module Rao
   module ResourcesController
