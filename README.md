@@ -21,6 +21,11 @@ Or install it yourself as:
 $ gem install rao
 ```
 
+## Running all specs
+```bash
+$ bundle && ./rspec-all.sh
+```
+
 ## Contributing
 Contribution directions go here.
 
