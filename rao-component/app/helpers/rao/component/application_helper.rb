@@ -24,6 +24,16 @@ module Rao
         SortLink.new(self, column_name, title, options).perform
       end
 
+      # Basic usage:
+      #
+      #     = collection_table(collection: @pictures) do |table|
+      #       = table.column :title, sort: true
+      #
+      # Sorting by an attributes of an association (picture <-n---1-> gallery[name]):
+      #
+      #     = collection_table(collection: @pictures) do |table|
+      #       = table.column :gallery, as: :association, sort: { column_name: 'galleries.name'  }
+      #
       class SortLink
         ARROW_UP   = '&#9650;'
         ARROW_DOWN = '&#9660;'
