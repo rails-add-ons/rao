@@ -1,3 +1,3 @@
 module Rao
-  VERSION = '0.0.6.pre'.freeze
+  VERSION = '0.0.7.pre'.freeze
 end
