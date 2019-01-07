@@ -1,15 +1,21 @@
+:ruby
+  tr_prefix = if resource.respond_to?(:to_key)
+    dom_id(resource)
+  else
+    "#{resource.class.name.underscore.gsub('/', '-')}-#{resource.object_id}"
+  end
 %table{ class: table_css_classes }
   - rows.each do |name, options|
-    %tr
+    %tr{ class: "attribute-#{name}", id: "#{tr_prefix}-#{name}"}
       - if resource_class.respond_to? :human_attribute_name
-        %th
+        %th{ class: 'attribute-name' }
           = resource_class.human_attribute_name(name)
       - else
-        %th
+        %th{ class: 'attribute-name' }
           = name
       - if options[:block].present?
-        %td
+        %td{ class: 'attribute-value' }
           = options[:block].call(resource)
       - else
-        %td
+        %td{ class: 'attribute-value' }
           = render partial: "rao/component/table/body_cells/#{options[:render_as]}", locals: { resource: resource, name: name, options: options }
