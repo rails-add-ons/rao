@@ -6,7 +6,7 @@ en:
           acts_as_list: Sorting
           acts_as_published: Publishing
           awesome_nested_set: Sorting
-        delete: Delete
+        destroy: Delete
         edit: Edit
         show: Show
         download: Download
