@@ -148,7 +148,7 @@ module Rao
       end
 
       module Internationalization
-        def t(key, options)
+        def t(key, options = {})
           I18n.t("activemodel.#{self.class.name.underscore}#{key}", options)
         end
       end
