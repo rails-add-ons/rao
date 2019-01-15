@@ -4,7 +4,7 @@
   else
     "#{resource.class.name.underscore.gsub('/', '-')}-#{resource.object_id}"
   end
-%table{ class: table_css_classes }
+%table{ class: table_css_classes, id: "#{tr_prefix}-resource-table" }
   - rows.each do |name, options|
     %tr{ class: "attribute-#{name}", id: "#{tr_prefix}-#{name}"}
       - if resource_class.respond_to? :human_attribute_name
