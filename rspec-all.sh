@@ -1,4 +1,7 @@
 #!/bin/bash -l
+echo $PWD
+bundle exec rspec spec
+
 cd ./rao-api-service_controller
 echo $PWD
 bundle exec rspec spec

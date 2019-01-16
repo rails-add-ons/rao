@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.8.pre)
+    rao (0.0.9.pre)
 
 PATH
   remote: .
   specs:
-    rao-resources_controller (0.0.8.pre)
+    rao-resources_controller (0.0.9.pre)
       rao
 
 GEM

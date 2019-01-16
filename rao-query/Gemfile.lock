@@ -1,14 +1,14 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.8.pre)
-    rao-view_helper (0.0.8.pre)
+    rao (0.0.9.pre)
+    rao-view_helper (0.0.9.pre)
       rao
 
 PATH
   remote: .
   specs:
-    rao-query (0.0.8.pre)
+    rao-query (0.0.9.pre)
       rails
       rao
       rao-view_helper
