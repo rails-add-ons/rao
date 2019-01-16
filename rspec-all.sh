@@ -6,12 +6,12 @@ cd ..
 
 cd ./rao-component
 echo $PWD
-rspec spec
+bundle exec rspec spec
 cd ..
 
 cd ./rao-query
 echo $PWD
-rspec spec
+bundle exec rspec spec
 cd ..
 
 cd ./rao-resources_controller
