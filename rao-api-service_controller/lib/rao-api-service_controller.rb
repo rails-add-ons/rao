@@ -1,0 +1,1 @@
+require "rao/api/service_controller"

@@ -1,4 +1,9 @@
 #!/bin/bash -l
+cd ./rao-api-service_controller
+echo $PWD
+bundle exec rspec spec
+cd ..
+
 cd ./rao-component
 echo $PWD
 rspec spec
