@@ -115,8 +115,12 @@ module Rao
         end
 
         def add_error_and_say(attribute, message)
-          @errors.add(attribute, message)
+          add_error(attribute, message)
           say(message)
+        end
+
+        def add_error(attribute, message)
+          @errors.add(attribute, message)
         end
       end
 
