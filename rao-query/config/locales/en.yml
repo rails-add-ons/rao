@@ -1,0 +1,7 @@
+en:
+  rao:
+    query:
+      form_builder:
+        predicates:
+          cont: "%{attribute_name} contains"
+          eq: "%{attribute_name} equals"
