@@ -9,6 +9,8 @@
               - title = resource_class.human_attribute_name(name)
             - else
               - title = name
+          - elsif title === false
+            - title = nil
           - if options.has_key?(:sort)
             %td= sort_link(name, title, options[:sort])
           - else
