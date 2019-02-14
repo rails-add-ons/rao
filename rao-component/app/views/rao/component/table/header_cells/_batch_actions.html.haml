@@ -17,7 +17,7 @@
 :javascript
   $(document).ready(function() {
     $('.batch-action-checkbox').click(function() {
-      var check_count = $('.batch-action-checkbox:checked').size();
+      var check_count = $('.batch-action-checkbox:checked').length;
       if( check_count > 0 ) {
         $("#batch-action-dropdown").show();
       } else {
