@@ -1,7 +1,9 @@
 module Rao
   module ResourcesController::KaminariConcern
-    def self.included(base)
-      base.helper_method :paginate?
+    extend ActiveSupport::Concern
+
+    included do
+      helper_method :paginate?
     end
 
     def paginate?
