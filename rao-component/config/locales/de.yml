@@ -19,3 +19,6 @@ de:
           batch_actions:
             title: Stapelverarbeitung
             destroy: Löschen
+  time:
+    formats:
+      short_with_year: "%d.%m.%Y %H:%M:%S"
