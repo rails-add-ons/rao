@@ -15,6 +15,8 @@ module Rao
       include ActsAsListConcern
       include BatchActionsConcern
       include BooleanConcern
+      include EmailConcern
+      include DateConcern
 
       SIZE_MAP = {
         default:    nil,

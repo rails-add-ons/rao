@@ -19,6 +19,9 @@ en:
           batch_actions:
             title: Batch actions
             destroy: Delete
+  date:
+    formats:
+      short_with_year: "%Y-%m-%d"
   time:
     formats:
       short_with_year: "%Y-%m-%d %I:%M:%S %p"
