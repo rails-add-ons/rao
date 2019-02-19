@@ -21,4 +21,4 @@ en:
             destroy: Delete
   time:
     formats:
-      short_with_year: "%Y.%m.%d %I:%M:%S %p"
+      short_with_year: "%Y-%m-%d %I:%M:%S %p"
