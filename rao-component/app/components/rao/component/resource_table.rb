@@ -11,6 +11,8 @@ module Rao
     #
     class ResourceTable < Base
       include BooleanConcern
+      include DateConcern
+      include EmailConcern
 
       SIZE_MAP = {
         default:    nil,
