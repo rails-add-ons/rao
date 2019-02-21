@@ -20,8 +20,11 @@ module Rao
       private
 
       def load_count
-        base_scope = resource_class
-        scope = add_conditions_from_query(base_scope)
+        scope = if respond_to?(:with_conditions_from_query, true)
+          scope = with_conditions_from_query(resource_class)
+        else
+          resource_class
+        end
         @count = scope.count
       end
     end
