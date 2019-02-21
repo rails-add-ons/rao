@@ -18,6 +18,8 @@ module Rao
       include EmailConcern
       include DateConcern
 
+      attr_reader :collection
+
       SIZE_MAP = {
         default:    nil,
         small:      :sm,
