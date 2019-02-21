@@ -7,6 +7,11 @@ echo $PWD
 bundle exec rspec spec
 cd ..
 
+cd ./rao-api-resources_controller
+echo $PWD
+bundle exec rspec spec
+cd ..
+
 cd ./rao-component
 echo $PWD
 bundle exec rspec spec
