@@ -2,7 +2,46 @@
 Short description and motivation.
 
 ## Usage
-How to use my plugin.
+
+### Basic example
+
+We are going to add a REST api to a basic rails model.
+
+Assume you have a Post model:
+
+```ruby
+# app/models/post.rb
+class Post < ApplicationRecord
+end
+```
+
+To add an api endpoint at /api/posts we will need routes and an api controller.
+
+First the routes:
+
+```ruby
+# config/routes.rb
+Rails.application.routes.draw do
+  namespace :api do
+    resources :posts
+  end
+end
+```
+
+Then the controller:
+
+```ruby
+# app/controllers/api/posts_controller.rb
+module Api
+  class PostsController < Rao::Api::ResourcesController::Base
+    # Here we specify the model class this controller is for.
+    def self.resource_class
+      Post
+    end
+  end
+end
+```
+
 
 ## Installation
 Add this line to your application's Gemfile:
