@@ -3,6 +3,7 @@ require_relative 'boot'
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
+require "pry-rails"
 require "rao-api-resources_controller"
 
 module Dummy

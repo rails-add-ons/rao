@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  mount RailsAddOnsService::Engine => "/rails_add_ons_service"
+  namespace :api do
+    resources :posts
+  end
 end
