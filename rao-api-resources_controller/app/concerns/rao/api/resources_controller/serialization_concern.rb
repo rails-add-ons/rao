@@ -1,6 +1,8 @@
 module Rao
   module Api
     module ResourcesController::SerializationConcern
+      extend ActiveSupport::Concern
+
       private
 
       def serialize_collection(collection)
