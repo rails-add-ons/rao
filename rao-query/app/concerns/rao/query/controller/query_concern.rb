@@ -51,7 +51,7 @@ module Rao
         end
 
         def default_query_params_exceptions
-          %w(sort_by sort_direction utf8 commit page)
+          Rao::Query::Configuration.default_query_params_exceptions
         end
 
         def normalize_query_params(params)
