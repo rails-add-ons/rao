@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount RailsAddOnsService::Engine => "/rails_add_ons_service"
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

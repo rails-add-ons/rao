@@ -1,5 +1,5 @@
-require 'rao/service_controller/version'
+require 'rails_helper'
 
-RSpec.describe Rao::ServiceController::VERSION do
-  it { expect(Rao::ServiceController::VERSION).to be_a(String) }
+RSpec.describe Rao::Api::ServiceController::VERSION do
+  it { expect(Rao::Api::ServiceController::VERSION).to be_a(String) }
 end
