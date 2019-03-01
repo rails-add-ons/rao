@@ -2,42 +2,9 @@
 echo $PWD
 bundle exec rspec spec
 
-cd ./rao-api-service_controller
-echo $PWD
-bundle exec rspec spec
-cd ..
-
-cd ./rao-api-resources_controller
-echo $PWD
-bundle exec rspec spec
-cd ..
-
-cd ./rao-component
-echo $PWD
-bundle exec rspec spec
-cd ..
-
-cd ./rao-query
-echo $PWD
-bundle exec rspec spec
-cd ..
-
-cd ./rao-resources_controller
-echo $PWD
-bundle exec rspec spec
-cd ..
-
-cd ./rao-service
-echo $PWD
-bundle exec rspec spec
-cd ..
-
-cd ./rao-service_controller
-echo $PWD
-bundle exec rspec spec
-cd ..
-
-cd ./rao-view_helper
-echo $PWD
-bundle exec rspec spec
-cd ..
+for i in api-service_controller api-resources_controller component query resources_controller service service_controller shoulda_matchers view_helper; do
+  cd "rao-${i}"
+  echo $PWD
+  bundle exec rspec spec
+  cd ..
+done
