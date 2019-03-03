@@ -54,14 +54,10 @@ module Rao
           @spec.visit(@show_path)
 
           @before_delete_count = @block.call
-          @spec.click_link(delete_link_text)
+          @spec.find('a[data-method="delete"]').click
           @after_delete_count = @block.call
 
           has_correct_status_code && has_correct_current_path && has_reduced_resource_count
-        end
-
-        def delete_link_text
-          @delete_link_text ||= I18n.t('rao.component.collection_table.destroy')
         end
 
         def has_correct_status_code
