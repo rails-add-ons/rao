@@ -17,6 +17,7 @@ module Rao
       include BooleanConcern
       include EmailConcern
       include DateConcern
+      include ThumbnailConcern
 
       attr_reader :collection
 

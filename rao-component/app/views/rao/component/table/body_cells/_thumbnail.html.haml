@@ -1,0 +1,2 @@
+- image_html = options[:image_html] || { src: main_app.url_for(resource.send(name).variant(options[:variant_options])) }
+%img{ image_html }

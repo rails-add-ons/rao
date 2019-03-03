@@ -13,6 +13,7 @@ module Rao
       include BooleanConcern
       include DateConcern
       include EmailConcern
+      include ThumbnailConcern
 
       SIZE_MAP = {
         default:    nil,

@@ -10,4 +10,19 @@ Rao::Component.configure do |config|
   # Default: config.table_default_date_format = nil
   #
   config.table_default_date_format = nil
+
+
+  # Image variant options for images in tables
+  #
+  # default:
+  #
+  #     config.image_variant_options = {
+  #       collection: { resize: "160x120" },
+  #       resource:   { resize: "320x240" }
+  #     }
+  #
+  config.image_variant_options = {
+    collection: { resize: "160x120" },
+    resource:   { resize: "320x240" }
+  }
 end
