@@ -5,6 +5,7 @@ module Rao
     included do
       include ActionController::MimeResponds
 
+      ensure_responders_available!
       respond_to :html
       responders :flash
 
@@ -19,6 +20,14 @@ module Rao
         before_filter :load_resource, only: [:show, :edit, :destroy, :update]
         before_filter :initialize_resource, only: [:new]
         before_filter :initialize_resource_for_create, only: [:create]
+      end
+    end
+
+    class_methods do
+      def ensure_responders_available!
+        unless respond_to?(:respond_to)
+          raise NoMethodError.new("undefined method 'respond_to' for #{self.name}:Class. If you are running Rails >= 4.2 you have to add the responders gem to you Gemfile.")
+        end
       end
     end
 
