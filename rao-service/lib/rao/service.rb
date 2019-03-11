@@ -16,3 +16,5 @@ end
 
 require "rao/service/engine" if Object.const_defined?('::Rails')
 require "rao/service/base"
+
+Rao.configure { |c| c.register_configuration(:service, Rao::Service) }

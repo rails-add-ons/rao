@@ -7,3 +7,5 @@ module Rao
     extend Configuration
   end
 end
+
+Rao.configure { |c| c.register_configuration(:view_helper, Rao::ViewHelper) }

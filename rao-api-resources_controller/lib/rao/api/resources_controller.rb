@@ -9,3 +9,5 @@ module Rao
     end
   end
 end
+
+Rao.configure { |c| c.register_configuration(:api_resources_controller, Rao::Api::ResourcesController) }

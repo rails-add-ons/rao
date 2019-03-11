@@ -7,3 +7,5 @@ module Rao
     extend Configuration
   end
 end
+
+Rao.configure { |c| c.register_configuration(:resource_controller, Rao::ResourceController) }
