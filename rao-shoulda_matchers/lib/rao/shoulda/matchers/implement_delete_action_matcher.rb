@@ -54,7 +54,7 @@ module Rao
           @spec.visit(@show_path)
 
           @before_delete_count = @block.call
-          @spec.find('a[data-method="delete"]').click
+          @spec.find(delete_link_matcher).click
           @after_delete_count = @block.call
 
           has_correct_status_code && has_correct_current_path && has_reduced_resource_count
@@ -93,17 +93,21 @@ module Rao
         end
 
         def failure_message
-          "Should expose delete action on #{@base_path} [#{delete_link_text}], clicking on #{delete_link_text}. Error: #{@error}"
+          "Should expose delete action on #{@base_path} [#{delete_link_matcher}], clicking on #{delete_link_matcher}. Error: #{@error}"
         end
 
         def failure_message_when_negated
-          "Should not expose delete action on #{@base_path} [#{delete_link_text}], clicking on #{delete_link_text}. Error: #{@error}"
+          "Should not expose delete action on #{@base_path} [#{delete_link_matcher}], clicking on #{delete_link_matcher}. Error: #{@error}"
         end
 
         alias negative_failure_message failure_message_when_negated
 
         def description
-          "expose delete action on #{@base_path} [#{delete_link_text}]"
+          "expose delete action on #{@base_path} [#{delete_link_matcher}]"
+        end
+
+        def delete_link_matcher
+          'a[data-method="delete"]'
         end
       end
     end
