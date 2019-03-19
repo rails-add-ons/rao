@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.12.pre)
+    rao (0.0.13.pre)
 
 PATH
   remote: .
   specs:
-    rao-service (0.0.12.pre)
+    rao-service (0.0.13.pre)
       activemodel
       activesupport
       rao
@@ -44,7 +44,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    i18n (1.3.0)
+    i18n (1.5.3)
       concurrent-ruby (~> 1.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -97,4 +97,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

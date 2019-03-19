@@ -1,14 +1,14 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.12.pre)
-    rao-view_helper (0.0.12.pre)
+    rao (0.0.13.pre)
+    rao-view_helper (0.0.13.pre)
       rao
 
 PATH
   remote: .
   specs:
-    rao-query (0.0.12.pre)
+    rao-query (0.0.13.pre)
       rails
       rao
       rao-view_helper
@@ -66,7 +66,7 @@ GEM
     erubi (1.8.0)
     ffi (1.9.25)
     formatador (0.2.5)
-    globalid (0.4.1)
+    globalid (0.4.2)
       activesupport (>= 4.2.0)
     guard (2.14.2)
       formatador (>= 0.2.4)
@@ -198,4 +198,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
