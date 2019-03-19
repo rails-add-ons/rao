@@ -10,6 +10,7 @@ en:
         edit: Edit
         show: Show
         download: Download
+        visit: Open
       table:
         body_cells:
           boolean:
@@ -19,6 +20,8 @@ en:
           batch_actions:
             title: Batch actions
             destroy: Delete
+            publish: Publish
+            unpublish: Unpublish
   date:
     formats:
       short_with_year: "%Y-%m-%d"

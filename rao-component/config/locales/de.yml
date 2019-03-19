@@ -10,6 +10,7 @@ de:
         edit: Bearbeiten
         show: Anzeigen
         download: Download
+        visit: Öffnen
       table:
         body_cells:
           boolean:
@@ -19,6 +20,8 @@ de:
           batch_actions:
             title: Stapelverarbeitung
             destroy: Löschen
+            publish: Veröffentlichen
+            unpublish: Zurückziehen
   date:
     formats:
       short_with_year: "%d.%m.%Y"
