@@ -55,6 +55,7 @@ module Rao
         end
 
         def normalize_query_params(params)
+          return {} unless params['q'].respond_to?(:each_with_object)
           params['q'].each_with_object({}) { |(k, v), m| m[normalize_key(k)] = v }
         end
 
