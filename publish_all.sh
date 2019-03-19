@@ -3,6 +3,7 @@ shopt -s expand_aliases
 source ~/.bash_aliases
 
 echo $PWD
+publish_gem
 for i in api-service_controller api-resources_controller component query resources_controller service service_controller shoulda_matchers view_helper; do
   cd "rao-${i}"
   echo $PWD
