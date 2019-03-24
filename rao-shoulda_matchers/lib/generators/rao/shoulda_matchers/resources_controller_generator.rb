@@ -11,7 +11,7 @@ module Rao
     # /de/posts would guess the resource class to Post) you can specify the resource
     # name like this:
     #
-    #     RESOURCE_CLASS=Blog::Post rails g rails:add_ons:resources_controller_spec --uri /de/posts
+    #     rails g rao:shoulda_matchers:resources_controller --uri="/de/posts" --resource_class="Blog::Post"
     #       create  spec/features/de/posts_feature_spec.rb
     #
     class ResourcesControllerGenerator < Rails::Generators::Base
@@ -35,8 +35,7 @@ module Rao
       end
 
       def resource_class
-        # @resource_class ||= ENV.fetch('RESOURCE_CLASS') { @uri.split('/').last.camelize.singularize }
-        @resource_class ||= options['resource_class'] ||= @uri.split('/').last.camelize.singularize
+        @resource_class ||= options['resource_class'] || @uri.split('/').last.camelize.singularize
       end
 
       def factory_name
