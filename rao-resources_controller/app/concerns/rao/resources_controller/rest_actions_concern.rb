@@ -21,6 +21,8 @@ module Rao
         before_filter :initialize_resource, only: [:new]
         before_filter :initialize_resource_for_create, only: [:create]
       end
+
+      helper_method :resource_namespace
     end
 
     class_methods do
@@ -38,26 +40,26 @@ module Rao
 
     def update
       if @resource.send(update_method_name, permitted_params) && respond_to?(:after_update_location, true) && after_update_location.present?
-        respond_with(respond_with_namespace, @resource, location: after_update_location)
+        respond_with(resource_namespace, @resource, location: after_update_location)
       else
-        respond_with(respond_with_namespace, @resource)
+        respond_with(resource_namespace, @resource)
       end
     end
 
     def destroy
       @resource.destroy
       if respond_to?(:after_destroy_location, true) && after_destroy_location.present?
-        respond_with(respond_with_namespace, @resource, location: after_destroy_location)
+        respond_with(resource_namespace, @resource, location: after_destroy_location)
       else
-        respond_with(respond_with_namespace, @resource)
+        respond_with(resource_namespace, @resource)
       end
     end
 
     def create
       if @resource.save && respond_to?(:after_create_location, true) && after_create_location.present?
-        respond_with(respond_with_namespace, @resource, location: after_create_location)
+        respond_with(resource_namespace, @resource, location: after_create_location)
       else
-        respond_with(respond_with_namespace, @resource)
+        respond_with(resource_namespace, @resource)
       end
     end
 
@@ -67,7 +69,7 @@ module Rao
       Rails::VERSION::MAJOR < 4 ? :update_attributes : :update
     end
 
-    def respond_with_namespace
+    def resource_namespace
       nil
     end
 
