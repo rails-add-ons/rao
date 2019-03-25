@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.14.pre)
+    rao (0.0.15.pre)
 
 PATH
   remote: .
   specs:
-    rao-service (0.0.14.pre)
+    rao-service (0.0.15.pre)
       activemodel
       activesupport
       rao

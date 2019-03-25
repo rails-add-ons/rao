@@ -1,14 +1,14 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.14.pre)
-    rao-view_helper (0.0.14.pre)
+    rao (0.0.15.pre)
+    rao-view_helper (0.0.15.pre)
       rao
 
 PATH
   remote: .
   specs:
-    rao-query (0.0.14.pre)
+    rao-query (0.0.15.pre)
       rails
       rao
       rao-view_helper
@@ -107,7 +107,7 @@ GEM
     minitest (5.11.3)
     nenv (0.3.0)
     nio4r (2.3.1)
-    nokogiri (1.10.1)
+    nokogiri (1.10.2)
       mini_portile2 (~> 2.4.0)
     notiffany (0.1.1)
       nenv (~> 0.1)

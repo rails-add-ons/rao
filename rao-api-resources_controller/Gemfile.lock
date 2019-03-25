@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.14.pre)
+    rao (0.0.15.pre)
 
 PATH
   remote: .
   specs:
-    rao-api-resources_controller (0.0.14.pre)
+    rao-api-resources_controller (0.0.15.pre)
       rails
       rao
 
@@ -106,7 +106,7 @@ GEM
     minitest (5.11.3)
     nenv (0.3.0)
     nio4r (2.3.1)
-    nokogiri (1.10.1)
+    nokogiri (1.10.2)
       mini_portile2 (~> 2.4.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
