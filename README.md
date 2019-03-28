@@ -1,3 +1,5 @@
+[![Travis CI](https://travis-ci.org/rails-add-ons/rao.svg?branch=master)](https://travis-ci.org/rails-add-ons/rao)
+
 # RAO
 Short description and motivation.
 
