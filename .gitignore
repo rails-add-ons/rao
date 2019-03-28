@@ -13,3 +13,6 @@ spec/dummy
 
 # Ignore coverage files.
 coverage/
+
+# Ignore wwtd files
+vendor/

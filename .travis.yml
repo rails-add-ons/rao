@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+  - 2.3.7
+env:
+  - GEM=rao-api-resources_controller
+  - GEM=rao-api-service_controller
+  - GEM=rao-component
+  - GEM=rao-query
+  - GEM=rao-resource_controller
+  - GEM=rao-resources_controller
+  - GEM=rao-service
+  - GEM=rao-service_controller
+  - GEM=rao-shoulda_matchers
+  - GEM=rao-view-helper
+script: ./rspec.sh
