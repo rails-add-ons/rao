@@ -1,11 +1,16 @@
 module Rao
   module Component
-    # Basic usage:
+    # Usage:
     #
-    #     # app/views/pictures/index.html.haml
-    #     = collection_table(collection: @pictures) do |table|
-    #       = table.acts_as_published_actions
+    # Setup the model with acts_as_published:
     #
+    #     # app/models/picture.rb
+    #     class Picture < ActiveRecord::Base
+    #       include ActsAsPublished::ActiveRecord
+    #       acts_as_published
+    #       # ...
+    #     end
+
     # You will have to add a publishing route to your resource:
     #
     #     # config/routes.rb:
@@ -25,6 +30,12 @@ module Rao
     #       include Rao::ResourcesController::ActsAsPublishedConcern
     #       # ...
     #     end
+    #
+    # Use the acts_as_published_actions macro in your collection table:
+    #
+    #     # app/views/pictures/index.html.haml
+    #     = collection_table(collection: @pictures) do |table|
+    #       = table.acts_as_published_actions
     #
     module CollectionTable::ActsAsPublishedConcern
       extend ActiveSupport::Concern
