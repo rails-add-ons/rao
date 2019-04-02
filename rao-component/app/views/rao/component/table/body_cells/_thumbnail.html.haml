@@ -1,2 +1,6 @@
-- image_html = options[:image_html] || { src: main_app.url_for(resource.send(name).variant(options[:variant_options])) }
-%img{ image_html }
+- if resource.send(name).present?
+  - begin
+    - image_html = options[:image_html] || { src: main_app.url_for(resource.send(name).variant(options[:variant_options])) }
+  - rescue ActiveStorage::InvariableError => e
+    - image_html = { src: main_app.url_for(resource.send(name)) }
+  %img{ image_html }
