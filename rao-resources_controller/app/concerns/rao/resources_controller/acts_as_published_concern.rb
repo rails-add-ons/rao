@@ -1,4 +1,18 @@
 module Rao
+  # Usage:
+  #
+  #     # app/controllers/posts_controller.rb
+  #     class PostsController < ApplicationController
+  #       include Rao::ResourcesController::ActsAsPublishedConcern
+  #     end
+  #
+  #     # config/routes.rb
+  #     Rails.application.routes.draw do
+  #       resources :posts do
+  #         post :toggle_published, on: :member
+  #       end
+  #     end
+  #
   module ResourcesController::ActsAsPublishedConcern
     extend ActiveSupport::Concern
 

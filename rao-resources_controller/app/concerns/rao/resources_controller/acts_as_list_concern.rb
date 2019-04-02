@@ -1,4 +1,18 @@
 module Rao
+  # Usage:
+  #
+  #     # app/controllers/posts_controller.rb
+  #     class PostsController < ApplicationController
+  #       include Rao::ResourcesController::ActsAsListConcern
+  #     end
+  #
+  #     # config/routes.rb
+  #     Rails.application.routes.draw do
+  #       resources :posts do
+  #         post :reposition, on: :member
+  #       end
+  #     end
+  #
   module ResourcesController::ActsAsListConcern
     extend ActiveSupport::Concern
 
