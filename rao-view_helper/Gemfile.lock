@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.18.pre)
+    rao (0.0.19.pre)
 
 PATH
   remote: .
   specs:
-    rao-view_helper (0.0.18.pre)
+    rao-view_helper (0.0.19.pre)
       rao
 
 GEM
