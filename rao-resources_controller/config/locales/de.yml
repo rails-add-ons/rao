@@ -1,4 +1,23 @@
 de:
+  acts_as_list:
+    flash:
+      actions:
+        reposition:
+          inserted_after: "%{inserted_resource} nach %{target_resource} eingefügt."
+          inserted_before: "%{inserted_resource} vor %{target_resource} eingefügt."
+  acts_as_published:
+    flash:
+      actions:
+        toggle_published:
+          published:
+            notice: "%{resource_name} veröffentlicht."
+          unpublished:
+            notice: "%{resource_name} zurückgezogen."
+  awesome_nested_set:
+    flash:
+      actions:
+        reposition:
+          notice: "%{inserted_resource} nach %{target_resource} eingefügt."
   flash:
     actions:
       create:
