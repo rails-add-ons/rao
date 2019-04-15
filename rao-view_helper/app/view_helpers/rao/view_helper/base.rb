@@ -28,6 +28,10 @@ module Rao
       def c
         @context
       end
+
+      def render(locals = {})
+        c.render partial: "/#{self.class.name.underscore}/#{caller_locations(1,1)[0].label}", locals: locals
+      end
     end
   end
 end
