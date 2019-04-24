@@ -14,7 +14,7 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
-require "rao/shoulda_matchers"
+require "rao-shoulda_matchers"
 
 module Dummy
   class Application < Rails::Application

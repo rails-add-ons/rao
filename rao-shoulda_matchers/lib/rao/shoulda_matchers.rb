@@ -1,4 +1,5 @@
 require 'rao'
+require 'rao/shoulda_matchers/version'
 
 module Rao
   # Adding the matchers to rspec:
