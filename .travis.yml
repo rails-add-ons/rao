@@ -11,7 +11,7 @@ env:
   - GEM=rao-service
   - GEM=rao-service_controller
   - GEM=rao-shoulda_matchers
-  - GEM=rao-view-helper
+  - GEM=rao-view_helper
 before_script:
   - gem update --system
   - gem install bundler
