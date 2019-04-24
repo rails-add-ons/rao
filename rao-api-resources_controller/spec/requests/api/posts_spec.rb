@@ -6,24 +6,14 @@ RSpec.describe "Post REST API", type: :request do
   let(:headers) { { "Content-Type" => "application/json" } }
   
   describe "GET list" do
-    before(:each) { get(base_path, params: params, headers: headers) }
-    it { expect(response).to eq("Foo") }
+    let(:posts) { create_list(:post, 3) }
+
+    before(:each) do
+      posts
+      get(base_path, params: params, headers: headers) 
+    end
+
+    it { expect(JSON.parse(response.body)).to be_a(Array) }
+    it { expect(JSON.parse(response.body).size).to eq(posts.size) }
   end
-  # it "creates a Widget and redirects to the Widget's page" do
-  #   get "/widgets/new"
-  #   expect(response).to render_template(:new)
-
-  #   post "/widgets", :widget => {:name => "My Widget"}
-
-  #   expect(response).to redirect_to(assigns(:widget))
-  #   follow_redirect!
-
-  #   expect(response).to render_template(:show)
-  #   expect(response.body).to include("Widget was successfully created.")
-  # end
-
-  # it "does not render a different template" do
-  #   get "/widgets/new"
-  #   expect(response).to_not render_template(:show)
-  # end
 end

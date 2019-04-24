@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_01_23_094152) do
   create_table "posts", force: :cascade do |t|
     t.integer "author_id"
     t.string "firstname"
-    t.string "lastename"
+    t.string "lastname"
     t.boolean "visible"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

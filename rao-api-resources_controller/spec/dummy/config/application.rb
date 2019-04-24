@@ -4,6 +4,7 @@ require 'rails/all'
 
 Bundler.require(*Rails.groups)
 require "pry-rails"
+require "responders"
 require "rao-api-resources_controller"
 
 module Dummy
