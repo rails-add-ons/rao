@@ -5,7 +5,7 @@ pkg/
 # Ignore built gems.
 *.gem
 
-# Initialize the dummy app with ./initialize_dummy.sh.
+# Ignore dummy app.
 spec/dummy
 
 # Ignore backup files.
@@ -13,6 +13,7 @@ spec/dummy
 
 # Ignore coverage files.
 coverage/
+
 
 # Ignore wwtd files
 vendor/
