@@ -1,5 +1,4 @@
-require 'spec_helper'
-require 'rao/resource_controller/version'
+require 'rails_helper'
 
 RSpec.describe Rao::ResourceController::VERSION do
   it { expect(Rao::ResourceController::VERSION).to be_a(String) }
