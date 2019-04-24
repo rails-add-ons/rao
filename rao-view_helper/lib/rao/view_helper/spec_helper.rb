@@ -46,13 +46,14 @@ module Rao
         mod.let(:default_url_options) { { host: 'localhost:3000' } }
         mod.let(:rendered) {
           if respond_to?(:options)
-            Capybara::Node::Simple.new(subject.send(method_name, options))
+            subject.send(method_name, options)
           elsif respond_to?(:args)
-            Capybara::Node::Simple.new(subject.send(method_name, *args))
+            subject.send(method_name, *args)
           else
-            Capybara::Node::Simple.new(subject.send(method_name))
+            subject.send(method_name)
           end
         }
+        mod.let(:html) { Capybara::Node::Simple.new(rendered) }
 
         mod.before(:each) { view.class.send(:define_method, :main_app, -> { Rails.application.class.routes.url_helpers }) }
         mod.around(:each) do |example|
