@@ -5,3 +5,5 @@ de:
         predicates:
           cont: "%{attribute_name} enthält"
           eq: "%{attribute_name} ist"
+        reset: "Zurücksetzen"
+        submit: "Suchen"

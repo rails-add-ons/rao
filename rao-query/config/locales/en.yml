@@ -5,3 +5,5 @@ en:
         predicates:
           cont: "%{attribute_name} contains"
           eq: "%{attribute_name} equals"
+        reset: "Reset"
+        submit: "Search"
