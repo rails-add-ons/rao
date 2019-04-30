@@ -13,7 +13,15 @@ module Rao
     private
 
     def load_collection
-      @collection = load_collection_scope.page(params[:page])
+      @collection = load_collection_scope.page(params[:page]).per(per_page)
+    end
+
+    def per_page
+      if [nil, 'all'].include?(params[:per_page])
+        nil
+      else
+        Rao::ResourcesController::Configuration.pagination_per_page_default
+      end
     end
   end
 end
