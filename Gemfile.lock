@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rao (0.0.21.pre)
+    rao (0.0.22.pre)
 
 GEM
   remote: https://rubygems.org/
