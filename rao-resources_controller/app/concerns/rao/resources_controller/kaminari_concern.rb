@@ -18,7 +18,7 @@ module Rao
 
     def per_page
       if [nil, 'all'].include?(params[:per_page])
-        nil
+        load_collection_scope.count
       else
         Rao::ResourcesController::Configuration.pagination_per_page_default
       end
