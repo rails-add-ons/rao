@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.23.pre)
+    rao (0.0.24.pre)
 
 PATH
   remote: .
   specs:
-    rao-service_controller (0.0.23.pre)
+    rao-service_controller (0.0.24.pre)
       font-awesome-rails
       rails (>= 3.2.0)
       rao
