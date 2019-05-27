@@ -6,7 +6,7 @@ module Rao
       private
 
       def serialize_result(result)
-        result.as_json
+        result.as_json(except: ['service'])
       end
 
       def serialize_errors(errors)
