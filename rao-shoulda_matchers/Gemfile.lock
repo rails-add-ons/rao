@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.25.pre)
+    rao (0.0.26.pre)
 
 PATH
   remote: .
   specs:
-    rao-shoulda_matchers (0.0.25.pre)
+    rao-shoulda_matchers (0.0.26.pre)
       rao
 
 GEM
