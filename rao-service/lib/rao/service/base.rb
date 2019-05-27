@@ -65,10 +65,14 @@ module Rao
         def after_validation; end
         def after_perform; end
 
-        def perform
-          before_validation
-          return perform_result unless valid?
-          after_validation
+        def perform(options)
+          options.reverse_merge!(validate: true)
+          validate = options.delete(:validate)
+          if validate
+            before_validation
+            return perform_result unless valid?
+            after_validation
+          end
           before_perform
           say "Performing" do
             _perform
