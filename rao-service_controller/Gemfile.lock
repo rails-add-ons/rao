@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.24.pre)
+    rao (0.0.25.pre)
 
 PATH
   remote: .
   specs:
-    rao-service_controller (0.0.24.pre)
+    rao-service_controller (0.0.25.pre)
       font-awesome-rails
       rails (>= 3.2.0)
       rao
@@ -65,7 +65,7 @@ GEM
     diff-lcs (1.3)
     erubi (1.8.0)
     erubis (2.7.0)
-    ffi (1.10.0)
+    ffi (1.11.1)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
     formatador (0.2.5)
@@ -89,10 +89,10 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    haml (5.0.4)
+    haml (5.1.1)
       temple (>= 0.8.0)
       tilt
-    haml-rails (2.0.0)
+    haml-rails (2.0.1)
       actionpack (>= 5.1)
       activesupport (>= 5.1)
       haml (>= 4.0.6, < 6.0)
