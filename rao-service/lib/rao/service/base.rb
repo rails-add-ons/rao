@@ -65,7 +65,7 @@ module Rao
         def after_validation; end
         def after_perform; end
 
-        def perform(options)
+        def perform(options = {})
           options.reverse_merge!(validate: true)
           validate = options.delete(:validate)
           if validate
