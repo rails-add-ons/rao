@@ -6,7 +6,7 @@ module Rao
         include RestActionsConcern
         include SerializationConcern
         include ExceptionHandlingConcern
-        end
       end
     end
   end
+end
