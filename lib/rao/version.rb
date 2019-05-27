@@ -1,3 +1,3 @@
 module Rao
-  VERSION = '0.0.24.pre'.freeze unless const_defined?(:VERSION)
+  VERSION = '0.0.25.pre'.freeze unless const_defined?(:VERSION)
 end
