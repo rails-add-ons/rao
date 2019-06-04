@@ -3,7 +3,7 @@ module Rao
     module ControllerConcern
       extend ActiveSupport::Concern
 
-      class_methods do
+      module ClassMethods
         def view_helper(klass, options = {})
           method_name = options.delete(:as) || klass.name.underscore.gsub('/', '_')
           define_method method_name do |context|
