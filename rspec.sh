@@ -12,4 +12,4 @@ echo "RAILS VERSION"
 rails -v
 
 # ./initialize_dummy.sh
-rspec -f d
+bundle exec rspec -f d
