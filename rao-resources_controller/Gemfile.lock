@@ -132,8 +132,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-dummy (0.0.7)
-      rails
+    rails-dummy (0.1.0)
+      railties
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
     railties (5.2.3)
