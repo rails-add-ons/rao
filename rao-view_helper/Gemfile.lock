@@ -7,7 +7,7 @@ PATH
   remote: .
   specs:
     rao-view_helper (0.0.26.pre)
-      rails (>= 4.2.0)
+      rails (>= 3.2.0)
       rao
 
 GEM
