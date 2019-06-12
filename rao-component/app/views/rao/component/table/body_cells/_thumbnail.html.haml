@@ -1,4 +1,4 @@
-- if resource.send(name).present?
+- if resource.send(name).present? && resource.send(name).respond_to?(:variant)
   - begin
     - image_html = options[:image_html] || { src: main_app.url_for(resource.send(name).variant(options[:variant_options])) }
   - rescue ActiveStorage::InvariableError => e
