@@ -1,6 +1,12 @@
-- if resource.send(name).present? && resource.send(name).respond_to?(:variant)
-  - begin
-    - image_html = options[:image_html] || { src: main_app.url_for(resource.send(name).variant(options[:variant_options])) }
-  - rescue ActiveStorage::InvariableError => e
-    - image_html = { src: main_app.url_for(resource.send(name)) }
+:ruby
+  image_html = if options[:image_html].present?
+    options[:image_html]
+  elsif resource.send(name).try(:variable?)
+    { src: main_app.url_for(resource.send(name).variant(options[:variant_options])) }
+  elsif resource.send(name).try(:previewable?)
+   { src: main_app.url_for(resource.send(name).preview(options[:variant_options])) }
+  else
+    nil
+  end
+- if image_html.present?
   %img{ image_html }
