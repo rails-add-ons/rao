@@ -55,6 +55,7 @@ module Rao
         }
         mod.let(:html) { Capybara::Node::Simple.new(rendered) }
 
+        mod.before(:each) { view.class.include Rails.application.routes.url_helpers }
         mod.before(:each) { view.class.send(:define_method, :main_app, -> { Rails.application.class.routes.url_helpers }) }
         mod.around(:each) do |example|
           original_default_url_options =  Rails.application.routes.default_url_options
