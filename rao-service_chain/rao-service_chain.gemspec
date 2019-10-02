@@ -18,10 +18,12 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", ">= 3.2.0"
   s.add_dependency "rao-service"
   s.add_dependency "rao-view_helper"
+  s.add_dependency "haml-rails"
 
   s.add_development_dependency "sqlite3", "~> 1.3.6"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "guard-bundler"
   s.add_development_dependency "pry"
+  s.add_development_dependency "capybara"
 end

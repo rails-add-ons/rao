@@ -31,6 +31,7 @@ module Rao
 				end
 
 				def actual?
+					return false if @chain.actual_step.nil?
 					@chain.actual_step.service == @service
 				end
 

@@ -1,3 +1,5 @@
+require "haml-rails"
+
 require "rao"
 require "rao-view_helper"
 require "rao-service"
