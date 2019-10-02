@@ -1,0 +1,34 @@
+.wizard {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: relative;
+  display: flex;
+}
+
+.wizard .wizard-track {
+  position: absolute;
+  top: 1.8rem;
+  width: 100%;
+  height: 5px;
+}
+
+.wizard .wizard-step {
+  position: relative;
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+}
+
+.wizard .wizard-step:last-child:after {
+  display: none;
+}
+
+.wizard .wizard-step-marker {
+  width: 2rem;
+  height: 2rem;
+  display: flex;      
+  margin: 0 auto;
+  margin-bottom: 0.25rem;
+  justify-content: center; /* center items vertically, in this case */
+  align-items: center;     /* center items horizontally, in this case */
+}

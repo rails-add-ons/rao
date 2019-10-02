@@ -1,0 +1,17 @@
+.service-chain
+  .wizard
+    .wizard-track.bg-light
+    - service_chain.steps.each_with_index do |step, index|
+      .wizard-step{ class: [step.completion_status, (step.actual? ? :actual : nil)].compact.join(" "), id: "step#{index + 1}" }
+        - if step.actual?
+          %span.wizard-step-marker.rounded-circle.bg-primary.text-white
+            %i.fas.fa-play
+          = step.label
+        - else
+          - if step.completed?
+            %span.wizard-step-marker.rounded-circle.bg-success.text-white
+              %i.fas.fa-check
+          - else
+            %span.wizard-step-marker.rounded-circle.bg-secondary.text-white
+              %i.fas.fa-circle
+          = link_to(step.label, [:new, step.service])

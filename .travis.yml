@@ -9,6 +9,7 @@ env:
   - GEM=rao-resource_controller
   - GEM=rao-resources_controller
   - GEM=rao-service
+  - GEM=rao-service_chain
   - GEM=rao-service_controller
   - GEM=rao-shoulda_matchers
   - GEM=rao-view_helper
