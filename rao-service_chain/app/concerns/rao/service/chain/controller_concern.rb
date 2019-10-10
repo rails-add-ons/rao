@@ -37,7 +37,7 @@ module Rao
         extend ActiveSupport::Concern
 
         included do
-          before_action :load_service_chain#
+          before_action :load_service_chain
           helper_method :service_chain
         end
 
