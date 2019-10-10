@@ -14,4 +14,4 @@
           - else
             %span.wizard-step-marker.rounded-circle.bg-secondary.text-white
               %i.fas.fa-circle
-          = link_to(step.label, [:new, step.service])
+          = link_to(step.label, step.url(self))

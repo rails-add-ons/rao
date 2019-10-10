@@ -10,10 +10,12 @@ module Rao
           @completed_if = options.delete(:completed_if)
           @service_name = @service.try(:name)
           @label = service.try(:model_name).try(:human)
+          @url = options.delete(:url)
         end
 
         def url(context = nil)
           return nil if context.nil?
+          return context.instance_exec(&@url) if @url.respond_to?(:call)
           @url ||= context.url_for([:new, @service, only_path: true])
         end
 
