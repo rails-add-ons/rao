@@ -1,18 +1,6 @@
 module Rao
   module Query
     class ConditionParser
-      OPERATOR_MAP = {
-        gt:       :>,
-        gt_or_eq: :>=,
-        eq:       :'=',
-        not_eq:   :'<>',
-        lt_or_eq: :<=,
-        lt:       :<,
-        null:     :is_null,
-        not_null: :is_not_null,
-        cont:     :like
-      }
-
       def initialize(scope, field, condition)
         @scope, @field, @condition = scope, field, condition
       end
@@ -26,18 +14,12 @@ module Rao
       def build_condition_statement(parent_key, condition, nested = false)
         if is_a_condition?(parent_key) && !nested
           table, column, operator = extract_table_column_and_operator(parent_key)
-          return handle_null_condition(column, operator) if is_null_operator?(operator)
-          # binding.pry
+          return handle_null_condition(column, operator, condition) if is_null_operator?(operator)
           if operator == 'cont'
             return ["#{table}.#{column} LIKE ?", "%#{normalized_condition(table, column, condition)}%"]
           else
             return ["#{table}.#{column} = ?", normalized_condition(table, column, condition)]
           end
-          # if column_is_boolean?(column)
-          #   ["#{column} = ?", to_boolean(condition)]
-          # else
-          #   ["#{column} = ?", condition]
-          # end
         else
           if nested
             column = extract_column(parent_key)
@@ -52,11 +34,18 @@ module Rao
         %w(null not_null).include?(operator)
       end
 
-      def handle_null_condition(column, operator)
-        case operator.to_sym
-        when :null
+      # We build the condition for booleans here.
+      #
+      # | operator   | condition | result        |
+      # | 'null'     | true      | 'IS NULL'     |
+      # | 'null'     | false     | 'IS NOT NULL' |
+      # | 'not_null' | true      | 'IS NOT NULL' |
+      # | 'not_null' | false     | 'IS NULL'     |
+      #
+      def handle_null_condition(column, operator, condition)
+        if (operator == "null" && to_boolean(condition) == true) || (operator == "not_null" && to_boolean(condition) == false)
           "#{column} IS NULL"
-        when :not_null
+        else
           "#{column} IS NOT NULL"
         end
       end
@@ -98,7 +87,7 @@ module Rao
       end
 
       def operator_map
-        OPERATOR_MAP
+        Rao::Query::Operators::MAP
       end
 
       def column_is_boolean?(table_name, column_name)
@@ -126,7 +115,7 @@ module Rao
       end
 
       def to_boolean(string)
-        result = case
+        case
         when Rails.version < '4.2'
           ::ActiveRecord::ConnectionAdapters::Column.value_to_boolean(string)
         when Rails.version < '5.0'
@@ -134,7 +123,6 @@ module Rao
         else
           ::ActiveRecord::Type::Boolean.new.cast(string)
         end
-        result.gsub('"', '')
       end
 
       def normalized_condition(table, column, condition)

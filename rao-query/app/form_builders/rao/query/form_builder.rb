@@ -2,7 +2,7 @@ module Rao
   module Query
     class FormBuilder < SimpleForm::FormBuilder
       def boolean(name, options = {})
-        translated_label = translate_label_for_boolean(name)
+        translated_label = translate_label_for_boolean(name, options.delete(:association))
         options.reverse_merge!(collection: [[I18n.t("rao.query.form_builder.yes"), 1], [I18n.t("rao.query.form_builder.no"), 0]], include_blank: true, label: translated_label)
         input name, options
       end
@@ -32,9 +32,7 @@ module Rao
       private
 
       def translate_label(name, association = nil)
-        splitted_name = name.to_s.split('_')
-        attribute_name = splitted_name[0..-2].join('_')
-        predicate = splitted_name.last
+        attribute_name, predicate = extract_attribute_name_and_predicate_from_name(name)
         translated_attribute_name = if association.nil?
           klass_name = object.original_model_class_name
           klass_name.constantize.human_attribute_name(attribute_name)
@@ -46,10 +44,8 @@ module Rao
         I18n.t("rao.query.form_builder.predicates.#{predicate}", attribute_name: translated_attribute_name)
       end
 
-      def translate_label_for_boolean(name)
-        splitted_name = name.to_s.split('_')
-        attribute_name = splitted_name[0..-2].join('_')
-        predicate = splitted_name.last
+      def translate_label_for_boolean(name, association = nil)
+        attribute_name, predicate = extract_attribute_name_and_predicate_from_name(name)
         if association.nil?
           klass_name = object.original_model_class_name
         else
@@ -57,6 +53,10 @@ module Rao
         end
         translated_attribute_name = klass_name.constantize.human_attribute_name(attribute_name)
         I18n.t("rao.query.form_builder.boolean_label", attribute_name: translated_attribute_name)
+      end
+
+      def extract_attribute_name_and_predicate_from_name(name)
+        Rao::Query::Operators.extract_attribute_name_and_predicate_from_name(name)
       end
     end
   end

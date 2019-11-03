@@ -60,10 +60,8 @@ module Rao
         end
 
         def normalize_key(key)
-          splitted_key = key.split('_')
-          predicate = splitted_key.last
-          attribute = splitted_key[0..-2].join('_')
-          "#{attribute}(#{predicate})"
+          attribute_name, predicate = Rao::Query::Operators.extract_attribute_name_and_predicate_from_name(key)
+          "#{attribute_name}(#{predicate})"
         end
       end
     end

@@ -2,8 +2,13 @@ de:
   rao:
     query:
       form_builder:
+        boolean_label: "%{attribute_name}?"
         predicates:
           cont: "%{attribute_name} enthält"
           eq: "%{attribute_name} ist"
+          'null': "%{attribute_name} ist leer"
+          not_null: "%{attribute_name} ist nicht leer"
         reset: "Zurücksetzen"
         submit: "Suchen"
+        'yes': Ja
+        'no': nein

@@ -24,4 +24,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "guard-bundler"
   s.add_development_dependency "pry"
+  s.add_development_dependency "pry-coolline"
+  s.add_development_dependency "rails-dummy"
+  s.add_development_dependency "bootsnap"
+  s.add_development_dependency "factory_bot_rails"
 end

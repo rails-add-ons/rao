@@ -59,12 +59,21 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
+    bootsnap (1.4.5)
+      msgpack (~> 1.0)
     builder (3.2.3)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
+    coolline (0.5.0)
+      unicode_utils (~> 1.4)
     crass (1.0.4)
     diff-lcs (1.3)
     erubi (1.8.0)
+    factory_bot (5.1.1)
+      activesupport (>= 4.2.0)
+    factory_bot_rails (5.1.1)
+      factory_bot (~> 5.1.0)
+      railties (>= 4.2.0)
     ffi (1.11.1)
     formatador (0.2.5)
     globalid (0.4.2)
@@ -106,6 +115,7 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
+    msgpack (1.3.1)
     nenv (0.3.0)
     nio4r (2.5.2)
     nokogiri (1.10.3)
@@ -116,6 +126,8 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    pry-coolline (0.2.5)
+      coolline (~> 0.5)
     rack (2.0.7)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -135,6 +147,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
+    rails-dummy (0.1.0)
+      railties
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
     railties (5.2.3)
@@ -182,6 +196,7 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    unicode_utils (1.4.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -190,9 +205,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootsnap
+  factory_bot_rails
   guard-bundler
   guard-rspec
   pry
+  pry-coolline
+  rails-dummy
   rao!
   rao-query!
   rspec-rails
