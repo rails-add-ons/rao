@@ -28,6 +28,16 @@ module Rao
     #         register_view_helper Cmor::Core::MarkupViewHelper, as: :markup_helper
     #       end
     #
+    #       # if you need to set things like a request on your context you can
+    #       # do it as follows:
+    #       let(:request) { ActionDispatch::Request.new({ "SCRIPT_NAME" => "", "PATH_INFO" => "/de" }) }
+    #
+    #       before(:each) do
+    #         view.request = request
+    #       end
+    #
+    #       # this is useful when your view helper makes call like c.request.path
+    #
     #       # if you need to change the default_url_options you may do so like this
     #       let(:default_url_options) { { host: 'example.org' } }
     #
