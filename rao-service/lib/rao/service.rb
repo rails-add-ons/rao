@@ -7,8 +7,10 @@ module Rao
     
     class_eval do
       def self.rails_present?
-        # Gem.loaded_specs["rails"].present?
         Object.const_defined?('::Rails')
+      end
+      def self.active_job_present?
+        Object.const_defined?('::ActiveJob')
       end
     end
   end

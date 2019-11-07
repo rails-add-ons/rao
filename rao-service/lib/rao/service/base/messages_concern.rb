@@ -2,7 +2,9 @@ require "rao/service/message/base"
 
 module Rao
   module Service
-      module Messages
+    module Base::MessagesConcern
+      extend ActiveSupport::Concern
+
       private
 
       def initialize_messages
@@ -10,25 +12,25 @@ module Rao
       end
 
       def say(what, &block)
-        @indent ||= 0
+        @indent_level ||= 0
         if block_given?
-          @indent += 1
-          output(_message("#{output_prefix}#{("  " * @indent)}#{what}...", level: @indent))
+          output(_message(what, indent_level: @indent_level, prefix: prefix, suffix: "..."))
+          @indent_level += 1
           block_result = yield
+          @indent_level -= 1
           say_done
-          @indent -= 1
           block_result
         else
-          output(_message("#{output_prefix}#{("  " * @indent)}#{what}", level: @indent))
+          output(_message(what, indent_level: @indent_level, prefix: prefix))
         end
       end
 
       def say_done
-        say "  => Done"
+        say "=> Done"
       end
 
-      def output_prefix
-        "[#{self.class.name}] "
+      def prefix
+        self.class.name
       end
 
       def output(what)
@@ -45,7 +47,7 @@ module Rao
       end
 
       def _message(content, options = {})
-        Rao::Service::Message::Base.new(content, level: options[:level])
+        Rao::Service::Message::Base.new(content, indent_level: options[:indent_level], prefix: options[:prefix], suffix: options[:suffix])
       end
     end
   end

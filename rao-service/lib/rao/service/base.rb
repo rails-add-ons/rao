@@ -1,11 +1,34 @@
 require 'active_support/concern'
+require 'active_support/core_ext/hash/reverse_merge'
 require "rao/service/result/base"
-require "rao/service/messages"
 require 'active_model'
 
 module Rao
   module Service
     class Base
+      if Rao::Service.active_job_present?
+        require 'rao/service/base/active_job_concern'
+        include ActiveJobConcern
+      end
+
+      require 'rao/service/base/i18n_concern'
+      include I18nConcern
+
+      require 'rao/service/base/autosave_concern'
+      include AutosaveConcern
+
+      require 'rao/service/base/callbacks_concern'
+      include CallbacksConcern
+
+      require 'rao/service/base/messages_concern'
+      include MessagesConcern
+
+      require 'rao/service/base/errors_concern'
+      include ErrorsConcern
+
+      require 'rao/service/base/result_concern'
+      include ResultConcern
+
       include ActiveModel::Model
       extend ActiveModel::Naming
 
@@ -56,117 +79,6 @@ module Rao
       end
 
       include Attributes
-
-      module Callbacks
-        def after_initialize; end
-        def before_perform; end
-        def after_perform; end
-        def before_validation; end
-        def after_validation; end
-        def after_perform; end
-
-        def perform(options = {})
-          options.reverse_merge!(validate: true)
-          validate = options.delete(:validate)
-          if validate
-            before_validation
-            return perform_result unless valid?
-            after_validation
-          end
-          before_perform
-          say "Performing" do
-            _perform
-          end
-          after_perform
-          save if autosave? && respond_to?(:save, true)
-          perform_result
-        end
-      end
-
-      module Resultable
-        private
-
-        def initialize_result
-          @result = result_class.new(self)
-        end
-
-        def perform_result
-          copy_messages_to_result
-          copy_errors_to_result
-          @result
-        end
-
-        def result_class
-          "#{self.class.name}::Result".constantize
-        end
-      end
-
-      module Errors
-        private
-
-        def initialize_errors
-          @errors = ActiveModel::Errors.new(self)
-        end
-
-        def copy_errors_to_result
-          @result.instance_variable_set(:@errors, @errors)
-        end
-
-        def copy_errors_from_to(obj, key_prefix)
-          obj.errors.each do |key, message|
-            @errors.add(key_prefix, message)
-          end
-        end
-
-        def add_error_and_say(attribute, message)
-          add_error(attribute, message)
-          say(message)
-        end
-
-        def add_error(attribute, message)
-          @errors.add(attribute, message)
-        end
-      end
-
-      module Autosave
-        extend ActiveSupport::Concern
-
-        if respond_to?(:class_methods)
-          class_methods do
-            def call!(*args)
-              new(*args).autosave!.perform
-            end
-          end
-        else
-          module ClassMethods
-            def call!(*args)
-              new(*args).autosave!.perform
-            end
-          end
-        end
-
-        def autosave?
-          !!@options[:autosave]
-        end
-
-        def autosave!
-          @options[:autosave] = true
-          self
-        end
-      end
-
-      module Internationalization
-        def t(key, options = {})
-          I18n.t("activemodel.#{self.class.name.underscore}#{key}", options)
-        end
-      end
-
-      include Errors
-      include Resultable
-      include Callbacks
-      include Rao::Service::Messages
-      include Autosave
-      include Internationalization
     end
   end
 end

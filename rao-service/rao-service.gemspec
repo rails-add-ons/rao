@@ -20,9 +20,12 @@ Gem::Specification.new do |s|
   s.add_dependency "activemodel"
   s.add_dependency "rao"
 
+  s.add_development_dependency 'rails-dummy'
   s.add_development_dependency "sqlite3", "~> 1.3.6"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "guard-bundler"
   s.add_development_dependency "pry"
+  s.add_development_dependency "rb-readline"
+  s.add_development_dependency "bootsnap"
 end
