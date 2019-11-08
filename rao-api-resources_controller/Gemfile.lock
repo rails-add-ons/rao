@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.33.pre)
+    rao (0.0.34.pre)
 
 PATH
   remote: .
   specs:
-    rao-api-resources_controller (0.0.33.pre)
+    rao-api-resources_controller (0.0.34.pre)
       rails
       rao
 
