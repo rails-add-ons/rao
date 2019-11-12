@@ -90,6 +90,14 @@ RSpec.describe Rao::ServiceChain::Step::Base do
 		it { expect(subject.pending?).to eq(false) }
   end
 
+  describe '#display?' do
+    let(:service) { CastSpellService }
+    let(:display_proc) { ->() { false } }
+    subject { described_class.new(service: service, display: display_proc) }
+
+    it { expect(subject.display?).to eq(false) }
+  end
+
   describe '#completion_status' do
   	describe 'when completed' do
 			let(:service) { CastSpellService }
