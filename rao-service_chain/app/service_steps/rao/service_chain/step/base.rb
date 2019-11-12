@@ -8,6 +8,7 @@ module Rao
           @service = options.delete(:service)
           @chain = options.delete(:chain)
           @completed_if = options.delete(:completed_if)
+          @display = options.delete(:display) || ->() { true }
           @service_name = @service.try(:name)
           @label = service.try(:model_name).try(:human)
           @url = options.delete(:url)
@@ -48,6 +49,10 @@ module Rao
             actual: actual?,
             url: url(context)
           }
+        end
+
+        def display?
+          !!@display.call
         end
       end
     end
