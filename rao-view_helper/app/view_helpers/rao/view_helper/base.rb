@@ -55,7 +55,11 @@ module Rao
       #
       module I18nConcern
         def t(key, options = {})
-          I18n.t("view_helpers.#{self.class.name.underscore}#{key}", options)
+          if key.start_with?('.')
+            I18n.t("view_helpers.#{self.class.name.underscore}.#{key}", options)
+          else
+            I18n.t(key, options)
+          end
         end
       end
 
