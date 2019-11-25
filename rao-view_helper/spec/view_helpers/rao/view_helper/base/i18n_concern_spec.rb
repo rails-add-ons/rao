@@ -2,8 +2,10 @@ require 'rails_helper'
 
 I18n.backend.store_translations("en",
   {
-    view_helper_with_i18n_concern: {
-      foo: "Foo (en)"
+    view_helpers: {
+      view_helper_with_i18n_concern: {
+        foo: "Foo (en)"
+      }
     }
   }
 )

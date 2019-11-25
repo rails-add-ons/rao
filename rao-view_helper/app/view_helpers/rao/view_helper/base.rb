@@ -46,15 +46,16 @@ module Rao
       #
       #     # config/locales/en.yml
       #     en:
-      #       blog_view_helper:
-      #         title: 'Posts'
+      #       view_helpers:
+      #         blog_view_helper:
+      #           title: 'Posts'
       #
       #     blog_view_helper(self).title
       #       => "Posts"
       #
       module I18nConcern
         def t(key, options = {})
-          I18n.t("#{self.class.name.underscore}#{key}", options)
+          I18n.t("view_helpers.#{self.class.name.underscore}#{key}", options)
         end
       end
 
