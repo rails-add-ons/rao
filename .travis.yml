@@ -15,5 +15,5 @@ env:
   - GEM=rao-view_helper
 before_script:
   - gem update --system
-  - gem install bundler
+  - gem install bundler --version="~> 2"
 script: ./rspec.sh
