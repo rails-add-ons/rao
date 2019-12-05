@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rao (0.0.35.pre)
+    rao (0.0.36.pre)
 
 GEM
   remote: https://rubygems.org/
@@ -75,4 +75,4 @@ DEPENDENCIES
   wwtd
 
 BUNDLED WITH
-   2.0.1
+   2.0.2
