@@ -7,7 +7,11 @@
           - if step.actual?
             %span.wizard-step-marker.rounded-circle.bg-primary.text-white
               %i.fas.fa-play
-            = step.label
+            %span.wizard-step-label
+              - if options[:link_actual_step]
+                = link_to(step.label, step.url(self))
+              - else
+                = step.label
           - else
             - if step.completed?
               %span.wizard-step-marker.rounded-circle.bg-success.text-white
@@ -15,4 +19,8 @@
             - else
               %span.wizard-step-marker.rounded-circle.bg-secondary.text-white
                 %i.fas.fa-circle
-            = link_to(step.label, step.url(self))
+            %span.wizard-step-label
+              - if (service_chain.before_actual?(step) && options[:link_previous_steps]) || (service_chain.after_actual?(step) && options[:link_next_steps])
+                = link_to(step.label, step.url(self))
+              - else
+                = step.label

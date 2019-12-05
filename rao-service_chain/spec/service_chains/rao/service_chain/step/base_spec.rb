@@ -125,5 +125,4 @@ RSpec.describe Rao::ServiceChain::Step::Base do
 
 		it { expect(subject.actual?).to eq(true) }
   end
-
 end

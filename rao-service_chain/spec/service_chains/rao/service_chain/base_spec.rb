@@ -128,4 +128,92 @@ RSpec.describe Rao::ServiceChain::Base do
 
   	it { expect(subject.completed_steps.map(&:service)).to eq([GetWandService, PrepareSpellService]) }
   end
+
+  describe '#previous_steps' do
+    describe 'when no steps given' do
+      subject { WizardChainWithoutSteps.new }
+
+      it { expect(subject.previous_steps).to eq([]) }
+    end
+
+    describe 'when no actual step given' do
+      subject { WizardChainWithSteps.new }
+
+      it { expect(subject.previous_steps).to eq([]) }
+    end
+
+    describe 'when steps and actual step given' do
+      let(:actual_step) { PrepareSpellService }
+      subject { WizardChainWithSteps.new(actual_step: actual_step) }
+
+      it { expect(subject.previous_steps.map(&:service)).to eq([GetWandService]) }
+    end
+  end
+
+  describe '#next_steps' do
+    describe 'when no steps given' do
+      subject { WizardChainWithoutSteps.new }
+
+      it { expect(subject.previous_steps).to eq([]) }
+    end
+
+    describe 'when no actual step given' do
+      subject { WizardChainWithSteps.new }
+
+      it { expect(subject.previous_steps).to eq([]) }
+    end
+
+    describe 'when steps and actual step given' do
+      let(:actual_step) { PrepareSpellService }
+      subject { WizardChainWithSteps.new(actual_step: actual_step) }
+
+      it { expect(subject.next_steps.map(&:service)).to eq([CastSpellService]) }
+    end
+  end
+
+  describe '#before_actual?' do
+    describe 'when no steps given' do
+      subject { WizardChainWithoutSteps.new }
+
+      it { expect(subject.before_actual?(GetWandService)).to eq(false) }
+    end
+
+    describe 'when no actual step given' do
+      subject { WizardChainWithSteps.new }
+
+      it { expect(subject.before_actual?(GetWandService)).to eq(false) }
+    end
+
+    describe 'when steps and actual step given' do
+      let(:chain) { WizardChainWithSteps.new(actual_step: actual_step) }
+      let(:actual_step) { PrepareSpellService }
+      let(:previous_step) { GetWandService }
+      subject { chain }
+
+      it { expect(subject.before_actual?(GetWandService)).to eq(true) }
+    end
+  end
+
+  describe '#after_actual?' do
+    describe 'when no steps given' do
+      subject { WizardChainWithoutSteps.new }
+
+      it { expect(subject.before_actual?(CastSpellService)).to eq(false) }
+    end
+
+    describe 'when no actual step given' do
+      subject { WizardChainWithSteps.new }
+
+      it { expect(subject.before_actual?(CastSpellService)).to eq(false) }
+    end
+
+    describe 'when steps and actual step given' do
+      let(:chain) { WizardChainWithSteps.new(actual_step: actual_step) }
+      let(:actual_step) { PrepareSpellService }
+      let(:previous_step) { GetWandService }
+      subject { chain }
+
+      it { expect(subject.after_actual?(CastSpellService)).to eq(true) }
+    end
+  end
 end

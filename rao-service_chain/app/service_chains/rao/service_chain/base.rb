@@ -23,7 +23,11 @@ module Rao
   			raise "Child class responsiblity"
   		end
 
-  		def actual_step_index
+  		def step_index(step)
+        self.steps.map(&:service).index(step.try(:service))
+      end
+
+      def actual_step_index
         self.steps.map(&:service).index(self.actual_step.try(:service))
       end
 
@@ -45,10 +49,21 @@ module Rao
       	self.steps[self.actual_step_index - 1]
       end
 
+      def previous_steps
+        return [] if self.actual_step_index.nil?
+        return [] if self.actual_step_index == 0
+        self.steps[0..(self.actual_step_index - 1)]
+      end
+
       def next_step
         return nil if self.actual_step_index.nil?
       	return nil if self.actual_step_index + 1 >= self.step_count
       	self.steps[self.actual_step_index + 1]
+      end
+
+      def next_steps
+        return [] if self.actual_step_index.nil?
+        self.steps[(self.actual_step_index + 1)..-1]
       end
 
       def next_step?
@@ -69,10 +84,10 @@ module Rao
       end
 
       def to_hash(context = nil)
-      	{
-      		actual_step: self.actual_step.to_hash(context),
-      		steps: self.steps.map { |s| s.to_hash(context) }
-      	}
+        {
+          actual_step: self.actual_step.to_hash(context),
+          steps: self.steps.map { |s| s.to_hash(context) }
+        }
       end
 
       def completed_steps
@@ -81,6 +96,18 @@ module Rao
 
       def pending_steps
         self.steps.collect { |s| s.pending? ? s : nil }.compact
+      end
+
+      def before_actual?(step)
+        return false if self.actual_step.nil?
+        return false if (si = step_index(wrap(step))).nil?
+        self.actual_step_index > si
+      end
+
+      def after_actual?(step)
+        return false if self.actual_step.nil?
+        return false if (si = step_index(wrap(step))).nil?
+        self.actual_step_index < si
       end
 
       private

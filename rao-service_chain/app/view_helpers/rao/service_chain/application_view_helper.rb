@@ -19,9 +19,17 @@ module Rao
       #         = service_chain_helper(self).render_progress(@service_chain)
       #
       def render_progress(service_chain, options = {})
-        options.reverse_merge!(theme: :bootstrap4)
+        return if service_chain.nil?
+
+        options.reverse_merge!(
+          theme: :bootstrap4,
+          link_next_steps: true,
+          link_actual_step: false,
+          link_previous_steps: true
+        )
         theme = options.delete(:theme)
-        c.render partial: "rao/service_chain/application_view_helper/render_progress/#{theme}", locals: { service_chain: service_chain }
+
+        c.render partial: "rao/service_chain/application_view_helper/render_progress/#{theme}", locals: { service_chain: service_chain, options: options }
       end
     end
   end
