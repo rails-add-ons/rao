@@ -115,7 +115,7 @@ module Rao
       def wrap(service, options = {})
         wrapper_class = Rao::ServiceChain::Step::Base
         if service.is_a?(wrapper_class)
-           ervice
+           service
         else
           wrapper_class.new(options.merge(service: service, chain: self))
         end
