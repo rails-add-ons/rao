@@ -1,29 +1,29 @@
 module Rao
   module ServiceChain
-    	class Base
-  		attr_accessor :steps
-  		attr_accessor :actual_step
+      class Base
+      attr_accessor :steps
+      attr_accessor :actual_step
 
-  		def initialize(options = {})
-  			options.each do |key, value|
-  				self.send("#{key}=", value)
-  			end
+      def initialize(options = {})
+        options.each do |key, value|
+          self.send("#{key}=", value)
+        end
         wrap_actual_step! if @actual_step.present?
-  		end
+      end
 
       def wrap_actual_step!
         @actual_step = wrap(@actual_step)
       end
 
-  		def steps=(steps)
-  			@steps = steps.map { |s| wrap(s) }
-			end
+      def steps=(steps)
+        @steps = steps.map { |s| wrap(s) }
+      end
 
-  		def steps
-  			raise "Child class responsiblity"
-  		end
+      def steps
+        raise "Child class responsiblity"
+      end
 
-  		def step_index(step)
+      def step_index(step)
         self.steps.map(&:service).index(step.try(:service))
       end
 
@@ -36,17 +36,17 @@ module Rao
       end
 
       def previous_step_index
-      	self.steps.map(&:service).index(self.previous_step.try(:service))
+        self.steps.map(&:service).index(self.previous_step.try(:service))
       end
 
       def next_step_index
-      	self.steps.map(&:service).index(self.next_step.try(:service))
+        self.steps.map(&:service).index(self.next_step.try(:service))
       end
 
       def previous_step
         return nil if self.actual_step_index.nil?
-      	return nil if self.actual_step_index - 1 < 0
-      	self.steps[self.actual_step_index - 1]
+        return nil if self.actual_step_index - 1 < 0
+        self.steps[self.actual_step_index - 1]
       end
 
       def previous_steps
@@ -57,8 +57,8 @@ module Rao
 
       def next_step
         return nil if self.actual_step_index.nil?
-      	return nil if self.actual_step_index + 1 >= self.step_count
-      	self.steps[self.actual_step_index + 1]
+        return nil if self.actual_step_index + 1 >= self.step_count
+        self.steps[self.actual_step_index + 1]
       end
 
       def next_steps
@@ -67,16 +67,16 @@ module Rao
       end
 
       def next_step?
-      	!!next_step
+        !!next_step
       end
 
       def previous_step?
-      	!!previous_step
+        !!previous_step
       end
 
       def next_step_url(options = {})
-      	context = options.delete(:context)
-      	self.next_step.url(context)
+        context = options.delete(:context)
+        self.next_step.url(context)
       end
 
       def steps_with_urls(context)
@@ -113,8 +113,13 @@ module Rao
       private
 
       def wrap(service, options = {})
-      	Rao::ServiceChain::Step::Base.new(options.merge(service: service, chain: self))
+        wrapper_class = Rao::ServiceChain::Step::Base
+        if service.is_a?(wrapper_class)
+           ervice
+        else
+          wrapper_class.new(options.merge(service: service, chain: self))
+        end
       end
-  	end
+    end
   end
 end
