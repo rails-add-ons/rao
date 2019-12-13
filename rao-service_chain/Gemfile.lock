@@ -1,20 +1,20 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.36.pre)
-    rao-service (0.0.36.pre)
+    rao (0.0.37.pre)
+    rao-service (0.0.37.pre)
       activemodel
       activesupport
       rails (>= 3.2.0)
       rao
-    rao-view_helper (0.0.36.pre)
+    rao-view_helper (0.0.37.pre)
       rails (>= 3.2.0)
       rao
 
 PATH
   remote: .
   specs:
-    rao-service_chain (0.0.36.pre)
+    rao-service_chain (0.0.37.pre)
       haml-rails
       rails (>= 3.2.0)
       rao-service
