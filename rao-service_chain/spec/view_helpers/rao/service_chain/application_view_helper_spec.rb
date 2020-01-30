@@ -106,6 +106,7 @@ RSpec.describe Rao::ServiceChain::ApplicationViewHelper, type: :view_helper do
 
       it 'renders link' do
         expect(html).to have_xpath('//*[@id="step3"]/span[2]/a[contains(@href,"cast_spell_services/new")]')
+        expect(html).to have_xpath('//*[@id="step4"]/span[2]/a[contains(@href,"recover_mana_services/new")]')
       end
     end
   end
