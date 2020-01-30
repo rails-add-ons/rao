@@ -46,6 +46,28 @@ module Rao
     #       end
     #     end
     #
+    # Make sure to use the method name as description for your describe block.
+    # For example if you want to test the Blorgh::ApplicationViewHelper#render
+    # method in a specific context your describe block should look like this:
+    #
+    #     RSpec.describe Blorgh::ApplicationViewHelper, type: :view_helper do
+    #       # ...
+    #
+    #       # correct
+    #       context 'basic usage' do
+    #         describe 'render' do
+    #           it { expect(rendered).to have_xpath("//div[@id='blorgh-posts']") }
+    #         end
+    #       end
+    #
+    #       # wrong
+    #       describe 'render' do
+    #         context 'basic usage' do
+    #           it { expect(rendered).to have_xpath("//div[@id='blorgh-posts']") }
+    #         end
+    #       end
+    #     end
+    #
     module SpecHelper
       def self.included(mod)
         mod.let(:view_paths) { ActionController::Base.view_paths }
