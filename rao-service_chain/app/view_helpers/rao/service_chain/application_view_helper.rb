@@ -20,16 +20,22 @@ module Rao
       #
       def render_progress(service_chain, options = {})
         return if service_chain.nil?
-
-        options.reverse_merge!(
-          theme: :bootstrap4,
-          link_next_steps: true,
-          link_actual_step: false,
-          link_previous_steps: true
-        )
+        
+        options = default_options.deep_merge(options)
         theme = options.delete(:theme)
 
         c.render partial: "rao/service_chain/application_view_helper/render_progress/#{theme}", locals: { service_chain: service_chain, options: options }
+      end
+
+      private
+
+      def default_options
+        {
+          theme: :bootstrap4,
+          next_steps: { render_as_pending: false, link: true },
+          actual_step: { link: false },
+          previous_steps: { render_as_pending: true, link: true }
+        }
       end
     end
   end

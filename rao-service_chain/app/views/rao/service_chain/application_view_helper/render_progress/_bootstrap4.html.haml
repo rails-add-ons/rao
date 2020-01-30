@@ -8,19 +8,19 @@
             %span.wizard-step-marker.rounded-circle.bg-primary.text-white
               %i.fas.fa-play
             %span.wizard-step-label
-              - if options[:link_actual_step]
+              - if options.dig(:actual_step, :link)
                 = link_to(step.label, step.url(self))
               - else
                 = step.label
           - else
-            - if step.completed?
-              %span.wizard-step-marker.rounded-circle.bg-success.text-white
+            - if step.render_as_completed?(options)
+              %span.wizard-step-marker.rounded-circle.bg-success.text-white.render-completed
                 %i.fas.fa-check
             - else
-              %span.wizard-step-marker.rounded-circle.bg-secondary.text-white
+              %span.wizard-step-marker.rounded-circle.bg-secondary.text-white.render-pending
                 %i.fas.fa-circle
             %span.wizard-step-label
-              - if (service_chain.before_actual?(step) && options[:link_previous_steps]) || (service_chain.after_actual?(step) && options[:link_next_steps])
+              - if (service_chain.before_actual?(step) && options.dig(:previous_steps, :link)) || (service_chain.after_actual?(step) && options.dig(:next_steps, :link))
                 = link_to(step.label, step.url(self))
               - else
                 = step.label

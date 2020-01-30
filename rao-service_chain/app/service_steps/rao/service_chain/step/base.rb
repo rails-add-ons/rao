@@ -25,6 +25,25 @@ module Rao
           @chain.instance_exec(@service, &@completed_if)
         end
 
+        def render_as_completed?(options = {})
+          render_previous_steps_as_pending = options.dig(:previous_steps, :render_as_pending)
+          render_next_step_as_pending = options.dig(:next_steps, :render_as_pending)
+
+          if @chain.before_actual?(self)
+            if render_previous_steps_as_pending
+              completed?
+            else
+              true
+            end
+          else
+            if render_next_step_as_pending
+              false
+            else
+              completed?
+            end
+          end
+        end
+        
         def pending?
           !completed?
         end
