@@ -37,7 +37,11 @@ module Rao
               false
             end
           rescue Capybara::NotSupportedByDriverError => e
-            puts "[Warning] Skipping status code check as it is not supported by your driver [#{@spec.driver.instance_variable_get(:@name)}]."
+            if @spec.respond_to?(:driver)
+              puts "[Warning] Skipping status code check as it is not supported by your driver [#{@spec.driver.instance_variable_get(:@name)}]."
+            else
+              puts "[Warning] Skipping status code check as it is not supported by your driver [#{@spec.page.driver.class.name}]."
+            end
             return true
           end
         end
