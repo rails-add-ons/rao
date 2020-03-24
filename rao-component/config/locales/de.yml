@@ -7,10 +7,13 @@ de:
           acts_as_published: Veröffentlichung
           awesome_nested_set: Sortierung
         destroy: Löschen
+        destroy_confirmation: Sind Sie sicher?
         edit: Bearbeiten
         show: Anzeigen
         download: Download
         visit: Öffnen
+      resource_table:
+        download: Download
       table:
         body_cells:
           boolean:
