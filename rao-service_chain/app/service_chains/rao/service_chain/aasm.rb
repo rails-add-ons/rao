@@ -1,6 +1,6 @@
 module Rao
   module ServiceChain
-    module AASM
+    module Aasm
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Rao::ServiceChain::AASM::Base do
+RSpec.describe Rao::ServiceChain::Aasm::Base do
   before(:all) do
     class GetWandService < Rao::Service::Base
       class Result < Rao::Service::Result::Base
@@ -17,7 +17,7 @@ RSpec.describe Rao::ServiceChain::AASM::Base do
       end
     end
 
-    class WizardChainWithSteps < Rao::ServiceChain::AASM::Base
+    class WizardChainWithSteps < Rao::ServiceChain::Aasm::Base
       # def steps
       #   [
       #     wrap(GetWandService, completed_if: ->(service_class) { true } ),
@@ -33,14 +33,22 @@ RSpec.describe Rao::ServiceChain::AASM::Base do
         state :finished
 
         event :previous do
+          transitions from: :finished, to: :cast_spell_service
+          transitions from: :cast_spell_service, to: :prepare_spell_service
+          transitions from: :prepare_spell_service, to: :get_wand_service
+          transitions from: :get_wand_service, to: :started
         end
 
         event :next do
+          transitions from: :started , to: :get_wand_service
+          transitions from: :get_wand_service , to: :prepare_spell_service
+          transitions from: :prepare_spell_service , to: :cast_spell_service
+          transitions from: :cast_spell_service , to: :finished
         end
       end
     end
 
-    class WizardChainWithoutSteps < Rao::ServiceChain::AASM::Base
+    class WizardChainWithoutSteps < Rao::ServiceChain::Aasm::Base
       aasm do
         state :started, initial: true
         state :finished
@@ -64,7 +72,7 @@ RSpec.describe Rao::ServiceChain::AASM::Base do
     ].map { |c| Object.send(:remove_const, c) }
   end
 
-  it { expect(described_class).to eq(Rao::ServiceChain::AASM::Base) }
+  it { expect(described_class).to eq(Rao::ServiceChain::Aasm::Base) }
 
   describe '#actual_step' do
   	describe 'when none given' do
@@ -113,7 +121,12 @@ RSpec.describe Rao::ServiceChain::AASM::Base do
   	describe 'when no actual step given' do
   	  subject { WizardChainWithSteps.new }
 
-  	  it { expect(subject.next_step).to be_nil }
+      # This is a different behaviour than in simple service chains
+      # without aasm.
+      # When no actual step is given the actual step is nil. But the current state
+      # is :started. So the next step is the step that corresponds to the next state.
+      #
+  	  it { expect(subject.next_step.service).to eq(GetWandService) }
   	end
 
   	describe 'when steps and actual step given' do

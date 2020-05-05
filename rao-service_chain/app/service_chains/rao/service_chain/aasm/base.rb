@@ -1,7 +1,7 @@
 
 module Rao
   module ServiceChain
-    module AASM
+    module Aasm
       class Base
         include ::AASM
 
@@ -39,6 +39,7 @@ module Rao
           end
 
           def actual_step
+            return nil if %i(started finished).include?(aasm.current_state)
             wrap(state_to_service_class(aasm.current_state))
           end
 
@@ -47,7 +48,9 @@ module Rao
             o = []
             i = 0
             while(i < 1000) do
-              targets = aasm.events.select{ |e| e.name == :previous }.first.transitions.select{ |t|
+              previous_event = aasm.events.select{ |e| e.name == :previous }.first
+              return [] unless previous_event.respond_to?(:transitions)
+              targets = previous_event.transitions.select{ |t|
               # targets = aasm.events(permitted: true).select{ |e| e.name == :next }.first.transitions.select{ |t|
                 t.from == current_state
               }.select{ |t|
@@ -57,13 +60,20 @@ module Rao
                 else
                   guards.map { |g| send(g) }.all?
                 end
-              }.map { |t| {t.to => { display: (t.options[:display].presence || -> { true }) } } }
-              break if targets.empty? || targets.first.first[0] == :started
+              }.map { |t|
+                {
+                  t.to => {
+                    display: (t.options[:display].presence || -> { true }),
+                    completed_if: aasm.states.select { |s| s.name == t.to }.first.options[:completed_if]
+                  } 
+                }
+              }
+              break if targets.empty? || %i(started finished).include?(targets.first.first[0])
               o << wrap(state_to_service_class(targets.first.first[0]), targets.first.first[1])
               current_state = targets.first.first[0]
               i = i + 1
             end
-            o.reverse
+            o.reverse.compact
           end
 
           def next_steps
@@ -71,7 +81,9 @@ module Rao
             o = []
             i = 0
             while(i < 1000) do
-              targets = aasm.events.select{ |e| e.name == :next }.first.transitions.select{ |t|
+              previous_event = aasm.events.select{ |e| e.name == :next }.first
+              return [] unless previous_event.respond_to?(:transitions)
+              targets = previous_event.transitions.select{ |t|
               # targets = aasm.events(permitted: true).select{ |e| e.name == :next }.first.transitions.select{ |t|
                 t.from == current_state
               }.select{ |t|
@@ -81,13 +93,20 @@ module Rao
                 else
                   guards.map { |g| send(g) }.all?
                 end
-              }.map { |t| {t.to => { display: (t.options[:display].presence || -> { true }) } } }
-              break if targets.empty? || targets.first.first[0] == :finished
+              }.map { |t|
+                {
+                  t.to => {
+                    display: (t.options[:display].presence || -> { true }),
+                    completed_if: aasm.states.select { |s| s.name == t.to }.first.options[:completed_if]
+                  } 
+                }
+              }
+              break if targets.empty? || %i(started finished).include?(targets.first.first[0])
               o << wrap(state_to_service_class(targets.first.first[0]), targets.first.first[1])
               current_state = targets.first.first[0]
               i = i + 1
             end
-            o
+            o.compact
           end
 
           def steps
@@ -120,7 +139,7 @@ module Rao
             o << self.previous_steps
 
             # add actual state
-            o << self.actual_step
+            o << self.actual_step unless self.actual_step.nil?
             # o << wrap(state_to_service_class(aasm.current_state))
 
             # walk forward
@@ -149,6 +168,14 @@ module Rao
 
           def step_count
             steps.size
+          end
+
+          def completed_steps
+            self.steps.collect { |s| s.completed? ? s : nil }.compact
+          end
+    
+          def pending_steps
+            self.steps.collect { |s| s.pending? ? s : nil }.compact
           end
 
           private
@@ -189,9 +216,17 @@ module Rao
           end
 
           def next_step
-            return nil if self.actual_step_index.nil?
-            return nil if self.actual_step_index + 1 >= self.step_count
-            self.steps[self.actual_step_index + 1]
+            self.next_steps.first
+            # return nil if self.actual_step_index.nil?
+            # return nil if self.actual_step_index + 1 >= self.step_count
+            # self.steps[self.actual_step_index + 1]
+          end
+
+          def previous_step
+            self.previous_steps.last
+            # return nil if self.actual_step_index.nil?
+            # return nil if self.actual_step_index - 1 < 0
+            # self.steps[self.actual_step_index - 1]
           end
 
           def next_step_url(options = {})
