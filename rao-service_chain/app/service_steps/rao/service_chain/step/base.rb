@@ -2,7 +2,7 @@ module Rao
   module ServiceChain
     module Step
       class Base
-        attr_accessor :service, :service_name, :label, :chain
+        attr_accessor :service, :service_name, :label, :chain, :router
 
         def initialize(options = {})
           @service = options.delete(:service)
@@ -12,12 +12,13 @@ module Rao
           @service_name = @service.try(:name)
           @label = service.try(:model_name).try(:human)
           @url = options.delete(:url)
+          @router = options.delete(:router) || :main_app
         end
 
         def url(context = nil)
           return nil if context.nil?
           return context.instance_exec(@service, &@url) if @url.respond_to?(:call)
-          @url ||= context.url_for([:new, @service, only_path: true])
+          @url ||= context.send(router).url_for([:new, @service, only_path: true])
         end
 
         def completed?

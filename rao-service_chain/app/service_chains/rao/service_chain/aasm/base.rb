@@ -40,7 +40,12 @@ module Rao
 
           def actual_step
             return nil if %i(started finished).include?(aasm.current_state)
-            wrap(state_to_service_class(aasm.current_state))
+            wrap(
+              state_to_service_class(aasm.current_state),
+              completed_if: aasm.states.find { |s| s.name == aasm.current_state }.options[:completed_if],
+              router: aasm.states.find { |s| s.name == aasm.current_state }.options[:router],
+              url: aasm.states.find { |s| s.name == aasm.current_state }.options[:url],
+            )
           end
 
           def previous_steps 
@@ -64,7 +69,9 @@ module Rao
                 {
                   t.to => {
                     display: (t.options[:display].presence || -> { true }),
-                    completed_if: aasm.states.select { |s| s.name == t.to }.first.options[:completed_if]
+                    completed_if: aasm.states.find { |s| s.name == t.to }.options[:completed_if],
+                    router: aasm.states.find { |s| s.name == t.to }.options[:router],
+                    url: aasm.states.find { |s| s.name == t.to }.options[:url],
                   } 
                 }
               }
@@ -97,7 +104,9 @@ module Rao
                 {
                   t.to => {
                     display: (t.options[:display].presence || -> { true }),
-                    completed_if: aasm.states.select { |s| s.name == t.to }.first.options[:completed_if]
+                    completed_if: aasm.states.find { |s| s.name == t.to }.options[:completed_if],
+                    router: aasm.states.find { |s| s.name == t.to }.options[:router],
+                    url: aasm.states.find { |s| s.name == t.to }.options[:url],
                   } 
                 }
               }
