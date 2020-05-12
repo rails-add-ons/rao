@@ -30,13 +30,12 @@ module Rao
     #
     #       # if you need to set things like a request on your context you can
     #       # do it as follows:
-    #       let(:request) { ActionDispatch::Request.new({ "SCRIPT_NAME" => "", "PATH_INFO" => "/de" }) }
-    #
-    #       before(:each) do
-    #         view.request = request
-    #       end
+    #       let(:request) { ActionDispatch::Request.new({ 'rack.input' => StringIO.new, "SCRIPT_NAME" => "", "PATH_INFO" => "/de" }) }
     #
     #       # this is useful when your view helper makes call like c.request.path
+    #
+    #       # You can add get params to the request:
+    #       let(:request) { ActionDispatch::Request.new({ 'rack.input' => StringIO.new, 'QUERY_STRING' => "foo=bar" }) }
     #
     #       # if you need to change the default_url_options you may do so like this
     #       let(:default_url_options) { { host: 'example.org' } }
@@ -72,7 +71,9 @@ module Rao
       def self.included(mod)
         mod.let(:view_paths) { ActionController::Base.view_paths }
         mod.let(:assigns) { {} }
-        mod.let(:view) { ActionView::Base.new(view_paths, assigns) }
+        mod.let(:request) { ActionDispatch::Request.new({ 'rack.input' => StringIO.new }) }
+        mod.let(:controller) { ActionController::Base.new.tap { |c| c.request = request; c } }
+        mod.let(:view) { ActionView::Base.new(view_paths, assigns, controller) }
         mod.let(:view_helper) { described_class.new(view) }
         mod.let(:method_name) { |e| e.metadata[:example_group][:description].to_sym }
         mod.let(:default_url_options) { { host: 'localhost:3000' } }
