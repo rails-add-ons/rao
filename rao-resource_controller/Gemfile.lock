@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.41.pre)
+    rao (0.0.42.pre)
 
 PATH
   remote: .
   specs:
-    rao-resource_controller (0.0.41.pre)
+    rao-resource_controller (0.0.42.pre)
       rails (>= 4.2.0)
       rao
       responders
@@ -99,7 +99,7 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
-    mimemagic (0.3.4)
+    mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.11.3)

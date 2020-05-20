@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.41.pre)
+    rao (0.0.42.pre)
 
 PATH
   remote: .
   specs:
-    rao-component (0.0.41.pre)
+    rao-component (0.0.42.pre)
       haml-rails
       rails
       rao
