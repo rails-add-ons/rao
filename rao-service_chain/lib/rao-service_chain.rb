@@ -1,3 +1,4 @@
+require "aasm"
 require "haml-rails"
 
 require "rao"
