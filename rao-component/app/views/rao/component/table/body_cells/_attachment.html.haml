@@ -1,0 +1,5 @@
+- if resource.send(name).attached?
+  - capture_haml do
+    = link_to(main_app.url_for(resource.send(name)), class: 'btn btn-primary btn-responsive') do
+      %i.fas.fa-download
+      %span.btn-text= "#{t('.download')} (#{resource.send(name).blob.content_type.split('/').last}, #{number_to_human_size(resource.send(name).blob.byte_size)})"

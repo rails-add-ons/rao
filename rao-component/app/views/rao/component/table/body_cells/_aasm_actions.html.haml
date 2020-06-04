@@ -1,0 +1,2 @@
+- resource.aasm(options[:state_machine_name]).events(permitted: true).each do |event|
+  = link_to(resource.class.aasm(options[:state_machine_name]).human_event_name(event.name), { action: 'trigger_event', id: resource.to_param, machine_name: options[:state_machine_name], event_name: event.name }, class: 'btn btn-xs btn-primary', method: :post)
