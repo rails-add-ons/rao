@@ -1,15 +1,15 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.42.pre)
-    rao-view_helper (0.0.42.pre)
+    rao (0.0.43.pre)
+    rao-view_helper (0.0.43.pre)
       rails (>= 3.2.0)
       rao
 
 PATH
   remote: .
   specs:
-    rao-query (0.0.42.pre)
+    rao-query (0.0.43.pre)
       rails
       rao
       rao-view_helper
@@ -197,9 +197,9 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode_utils (1.4.0)
-    websocket-driver (0.7.1)
+    websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
 
 PLATFORMS
   ruby
