@@ -10,6 +10,8 @@ module Rao
     #       = t.timestamps format: :short
     #
     class ResourceTable < Base
+      include AasmConcern
+      include ActiveStorageConcern
       include BooleanConcern
       include DateConcern
       include EmailConcern

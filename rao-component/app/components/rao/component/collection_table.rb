@@ -10,6 +10,8 @@ module Rao
     #       = t.timestamps format: :short
     #
     class CollectionTable < Base
+      include AasmConcern
+      include ActiveStorageConcern
       include AwesomeNestedSetConcern
       include ActsAsPublishedConcern
       include ActsAsListConcern
