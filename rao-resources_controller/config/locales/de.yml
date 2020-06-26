@@ -45,3 +45,6 @@ de:
           back: "Zurück"
           delete: "Löschen"
           edit: "Bearbeiten"
+      batch_actions_concern:
+        destroy_many:
+          success: "%{count} %{collection_name} wurden gelöscht."

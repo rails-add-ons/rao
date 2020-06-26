@@ -9,9 +9,13 @@ module Rao
   module ResourcesController::BatchActionsConcern
     def destroy_many
       @collection = load_collection_scope.where(id: params[:ids])
+      count = @collection.count
       @collection.destroy_all
 
-      respond_with @collection, location: after_destroy_many_location, notice: t('.success', count: @collection.count)
+      default_message = t('.success', inflections.merge(count: count))
+      respond_with @collection,
+        location: after_destroy_many_location,
+        notice: t('rao.resources_controller.batch_actions_concern.destroy_many.success', inflections.merge(count: count, default: default_message))
     end
 
     private
