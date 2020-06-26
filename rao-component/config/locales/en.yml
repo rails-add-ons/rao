@@ -23,6 +23,7 @@ en:
           batch_actions:
             title: Batch actions
             destroy: Delete
+            destroy_many: Delete
             publish: Publish
             unpublish: Unpublish
   date:

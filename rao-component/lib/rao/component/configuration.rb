@@ -13,6 +13,11 @@ module Rao
           resource:   { resize: "320x240" }
         }
       }
+      mattr_accessor(:batch_actions_default_actions) do
+        -> {
+          { destroy_many: @view.url_for(action: :destroy_many) }
+        }
+      end
     end
   end
 end

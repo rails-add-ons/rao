@@ -6,13 +6,13 @@
 %form{ method: 'post', id: 'batch-action-form' }
   = hidden_field_tag :authenticity_token, form_authenticity_token
 .dropdown.batch-action-dropdown
-  %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button", id: 'batch-action-dropdown' }
-    = t('.title')
+  %button.btn.btn-xs.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button", id: 'batch-action-dropdown' }
+    /=# t('.title')
     %span.caret
   %ul.dropdown-menu{"aria-labelledby" => 'batch-action-dropdown' }
     - options[:actions].each do |action, target|
       %li
-        %a{ href: target, class: 'batch-action-form-submit-link' }= t(".#{action}")
+        %a{ href: target, class: 'batch-action-form-submit-link btn btn-xs btn-link' }= t(".#{action}")
 
 :javascript
   $(document).ready(function() {

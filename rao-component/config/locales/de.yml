@@ -23,6 +23,7 @@ de:
           batch_actions:
             title: Stapelverarbeitung
             destroy: Löschen
+            destroy_many: Löschen
             publish: Veröffentlichen
             unpublish: Zurückziehen
   date:
