@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.43.pre)
+    rao (0.0.44.pre)
 
 PATH
   remote: .
   specs:
-    rao-service (0.0.43.pre)
+    rao-service (0.0.44.pre)
       activemodel
       activesupport
       rails (>= 3.2.0)
