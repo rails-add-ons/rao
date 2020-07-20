@@ -1,6 +1,7 @@
-require 'rao/configuration'
+require "zeitwerk"
+loader = Zeitwerk::Loader.for_gem
+loader.setup
 
 module Rao
   extend Configuration
-  autoload :VERSION, 'rao/version'
 end
