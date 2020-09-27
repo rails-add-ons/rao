@@ -3,7 +3,7 @@
     %i.fas.fa-edit
     = t('.edit')
 
-  = link_to(resource_path(resource), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' }) do
+  = link_to(resource_path(resource), class: 'btn btn-danger', method: :delete, data: { confirm: t('.destroy_confirmation') }) do
     %i.fas.fa-trash
     = t('.destroy')
 

@@ -44,6 +44,7 @@ en:
         show_actions:
           back: "Back"
           destroy: "Delete"
+          destroy_confirmation: "Are you sure?"
           edit: "Edit"
       batch_actions_concern:
         destroy_many:
