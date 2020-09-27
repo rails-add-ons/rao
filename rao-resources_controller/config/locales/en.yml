@@ -43,5 +43,8 @@ en:
           title: "New %{resource_name}"
         show_actions:
           back: "Back"
-          delete: "Delete"
+          destroy: "Delete"
           edit: "Edit"
+      batch_actions_concern:
+        destroy_many:
+          success: "Deleted %{count} %{collection_name}."

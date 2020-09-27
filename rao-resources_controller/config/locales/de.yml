@@ -43,7 +43,7 @@ de:
           title: "%{resource_name} erstellen"
         show_actions:
           back: "Zurück"
-          delete: "Löschen"
+          destroy: "Löschen"
           edit: "Bearbeiten"
       batch_actions_concern:
         destroy_many:

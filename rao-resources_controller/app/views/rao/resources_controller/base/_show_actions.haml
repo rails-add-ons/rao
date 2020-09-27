@@ -1,11 +1,11 @@
-= bootstrap_button_group do
-  = bootstrap_button(to: edit_resource_path(resource), context: :secondary) do
-    = fa_icon(:pencil)
+.btn-group
+  = link_to(edit_resource_path(resource), class: 'btn btn-secondary') do
+    %i.fas.fa-edit
     = t('.edit')
 
-  = bootstrap_button(to: resource_path(resource), context: :danger, method: :delete, data: { confirm: 'Are you sure?' }) do
-    = fa_icon :trash
+  = link_to(resource_path(resource), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' }) do
+    %i.fas.fa-trash
     = t('.destroy')
 
-= bootstrap_button(to: collection_path, context: :link) do
+= link_to(collection_path, class: 'btn btn-link') do
   = t('.back')

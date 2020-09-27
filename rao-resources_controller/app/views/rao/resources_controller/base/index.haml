@@ -2,8 +2,8 @@
   %span
     = resource_class.model_name.human(count: :other)
   .pull-right
-    = bootstrap_button(to: new_resource_path, context: :success) do
-      = fa_icon(:plus)
+    = link_to(new_resource_path, class: 'btn btn-success') do
+      %i.fas.fa-plus
       = t('.new')
 
 = render 'before_index_table', collection: @collection
