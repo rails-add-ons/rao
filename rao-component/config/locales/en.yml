@@ -13,6 +13,7 @@ en:
         download: Download
         visit: Open
       resource_table:
+        destroy_confirmation: Are you sure?
         download: Download
       table:
         body_cells:

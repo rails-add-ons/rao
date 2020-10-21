@@ -13,6 +13,7 @@ de:
         download: Download
         visit: Öffnen
       resource_table:
+        destroy_confirmation: Sind Sie sicher?
         download: Download
       table:
         body_cells:
