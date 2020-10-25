@@ -32,6 +32,9 @@ de:
         alert: "%{resource_name} konnte nicht ausgeführt werden. Es traten folgende Fehler auf: %{errors}"
   rao:
     resources_controller:
+      aasm_concern:
+        trigger_event:
+          success: "Der Vorgang %{event} war erfolgreich. Der neue Status ist %{state}."
       base:
         form_buttons:
           cancel: "Abbrechen"

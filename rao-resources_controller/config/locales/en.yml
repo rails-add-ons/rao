@@ -32,6 +32,9 @@ en:
         alert: "%{resource_name} could not be executed. Errors: %{errors}"
   rao:
     resources_controller:
+      aasm_concern:
+        trigger_event:
+          success: "The event %{event} completed successfully. The new state is %{state}."
       base:
         form_buttons:
           cancel: "Cancel"
