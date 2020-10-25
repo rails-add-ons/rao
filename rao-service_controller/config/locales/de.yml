@@ -1,4 +1,10 @@
 de:
+  errors:
+    template:
+      services:
+        header:
+          one: 'Konnte %{model} nicht ausführen: ein Fehler.'
+          other: 'Konnte %{model} nicht ausführen: %{count} Fehler.'
   flash:
     actions:
       create:

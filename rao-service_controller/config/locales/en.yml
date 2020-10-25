@@ -1,4 +1,10 @@
 en:
+  errors:
+    template:
+      services:
+        header:
+          one: 1 error prohibited this %{model} from being executed
+          other: "%{count} errors prohibited this %{model} from being executed"
   flash:
     actions:
       create:
