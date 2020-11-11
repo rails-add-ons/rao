@@ -1,3 +1,4 @@
 source 'https://rubygems.org'
 gemspec
 gem 'rao', path: '../'
+gem 'rao-component', path: '../rao-component'

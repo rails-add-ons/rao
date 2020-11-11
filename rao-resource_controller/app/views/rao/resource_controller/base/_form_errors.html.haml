@@ -1,0 +1,5 @@
+.alert.alert-danger.error-explanation
+  .error-heading= t('errors.template.header', count: form.object.errors.count, model: form.object.class.model_name.human)
+  %ul
+    - form.object.errors.full_messages.each do |msg|
+      %li= msg

@@ -40,26 +40,26 @@ module Rao
 
     def update
       if @resource.send(update_method_name, permitted_params) && respond_to?(:after_update_location, true) && after_update_location.present?
-        respond_with(resource_namespace, @resource, location: after_update_location)
+        respond_with(*[*resource_namespace, @resource, location: after_update_location])
       else
-        respond_with(resource_namespace, @resource)
+        respond_with(*[*resource_namespace, @resource])
       end
     end
 
     def destroy
       @resource.destroy
       if respond_to?(:after_destroy_location, true) && after_destroy_location.present?
-        respond_with(resource_namespace, @resource, location: after_destroy_location)
+        respond_with(*[*resource_namespace, @resource, location: after_destroy_location])
       else
-        respond_with(resource_namespace, @resource)
+        respond_with(*[*resource_namespace, @resource])
       end
     end
 
     def create
       if @resource.save && respond_to?(:after_create_location, true) && after_create_location.present?
-        respond_with(resource_namespace, @resource, location: after_create_location)
+        respond_with(*[*resource_namespace, @resource, location: after_create_location])
       else
-        respond_with(resource_namespace, @resource)
+        respond_with(*[*resource_namespace, @resource])
       end
     end
 

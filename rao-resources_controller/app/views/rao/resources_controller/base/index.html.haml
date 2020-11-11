@@ -9,7 +9,7 @@
 = render 'before_index_table', collection: @collection
 
 = collection_table(collection: @collection, resource_class: resource_class) do |t|
-  = render 'table',         table: t
-  = render 'table_actions', table: t
+  = render 'index_table',         table: t
+  = render 'index_table_actions', table: t
 
 = render partial: 'pagination', locals: { collection: @collection} if respond_to?(:paginate?) && paginate?

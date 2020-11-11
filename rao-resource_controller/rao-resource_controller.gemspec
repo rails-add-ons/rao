@@ -18,10 +18,15 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", ">= 4.2.0"
   s.add_dependency "rao"
   s.add_dependency "responders"
+  s.add_dependency "simple_form"
+  s.add_dependency "haml-rails"
+  s.add_dependency "rao-component"
 
   s.add_development_dependency "sqlite3", "~> 1.3.6"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "guard-bundler"
-  s.add_development_dependency "pry"
+  s.add_development_dependency "pry-rails"
+  s.add_development_dependency "rails-controller-testing"
+  s.add_development_dependency "capybara"
 end

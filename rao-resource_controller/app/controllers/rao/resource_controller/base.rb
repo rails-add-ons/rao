@@ -6,6 +6,13 @@ module Rao
       include RestResourceUrlsConcern
       include ResourceInflectionsConcern
       include LocationHistoryConcern
+      # include ResourceConcern
+      # include ResourceInflectionsConcern
+      # include RestResourceUrlsConcern
+      # include RestActionsConcern
+      # include LocationHistoryConcern
+
+      helper Rao::Component::ApplicationHelper
     end
   end
 end

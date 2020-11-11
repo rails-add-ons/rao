@@ -1,0 +1,8 @@
+.btn-group
+  = link_to(edit_resource_path, class: 'btn btn-secondary') do
+    %i.fas.fa-edit
+    = t('.edit')
+
+  = link_to(resource_path, class: 'btn btn-danger', method: :delete, data: { confirm: t('.destroy_confirmation') }) do
+    %i.fas.fa-trash
+    = t('.destroy')
