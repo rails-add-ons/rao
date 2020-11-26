@@ -12,9 +12,9 @@
           - elsif title === false
             - title = nil
           - if options.has_key?(:sort)
-            %td= sort_link(name, title, options[:sort])
+            %th= sort_link(name, title, options[:sort])
           - else
-            %td= title
+            %th= title
   %tbody
     - collection.each do |resource|
       - tr_options = { class: resource_class.name.underscore.gsub('/', '-') }
