@@ -1,4 +1,4 @@
-%h1= t('.title', inflections)
+%h1= t('.title', **inflections)
 
 = bootstrap_form_for(@service, url: create_service_path) do |f|
   = render 'form_errors',  service: f.object
