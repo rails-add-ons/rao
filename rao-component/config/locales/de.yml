@@ -13,8 +13,12 @@ de:
         download: Download
         visit: Öffnen
       resource_table:
+        destroy: Löschen
         destroy_confirmation: Sind Sie sicher?
+        edit: Bearbeiten
+        show: Anzeigen
         download: Download
+        visit: Öffnen
       table:
         body_cells:
           boolean:
