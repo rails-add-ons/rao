@@ -38,6 +38,10 @@ module Rao
         @resource_class = @options.delete(:resource_class) || @collection.first.class
       end
 
+      def tr_html=(value)
+        @tr_html = value
+      end
+
       def column(name, options = {}, &block)
         options.reverse_merge!(render_as: :default)
         options.reverse_merge!(block: block) if block_given?
@@ -79,7 +83,8 @@ module Rao
           collection:        @collection,
           resource_class:    @resource_class,
           table_css_classes: table_css_classes,
-          show_header:       show_header
+          show_header:       show_header,
+          tr_html:           @tr_html || {}
         }
       end
 

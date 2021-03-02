@@ -57,6 +57,83 @@ RSpec.describe Rao::Component::ApplicationHelper, type: :helper do
       it { within('table tbody tr.open_struct') { expect(subject).to have_css('td.attribute-id') } }
       it { within('table tbody tr.open_struct') { expect(subject).to have_css('td.attribute-name') } }
     end
+
+    describe 'td html options' do
+      let(:assigns) {
+        {
+          collection:
+          [
+            OpenStruct.new({ id: '1', name: 'Foo' }),
+            OpenStruct.new({ id: '2', name: 'Bar' })
+          ]
+        }
+      }
+
+      describe 'with a hash' do
+        let(:haml) {
+          <<~EOF
+          = collection_table(collection: @collection) do |t|
+            = t.column :id
+            = t.column :name, td_html: { class: "foo" }
+            EOF
+        }
+        it { expect(rendered).to be_a(String) }
+        it { within('table tbody tr.open_struct') { expect(subject).to have_css('td.foo') } }
+      end
+
+      describe 'with a proc' do
+        let(:haml) {
+          <<~EOF
+          = collection_table(collection: @collection) do |t|
+            = t.column :id
+            = t.column :name, td_html: ->(r) { r.id == "2" ? { class: "foo" } : {} }
+            EOF
+        }
+        
+        it { expect(rendered).to be_a(String) }
+        it { within('table tbody tr.open_struct') { expect(subject).to have_css('td.foo') } }
+      end
+    end
+
+    describe 'tr html options' do
+      let(:assigns) {
+        {
+          collection:
+          [
+            OpenStruct.new({ id: '1', name: 'Foo' }),
+            OpenStruct.new({ id: '2', name: 'Bar' })
+          ]
+        }
+      }
+
+      describe 'with a hash' do
+        let(:haml) {
+          <<~EOF
+          = collection_table(collection: @collection) do |t|
+            - t.tr_html = { class: "foo" }
+            = t.column :id
+            = t.column :name
+            EOF
+        }
+
+        it { expect(rendered).to be_a(String) }
+        it { within('table tbody') { expect(subject).to have_css('tr.foo') } }
+      end
+
+      describe 'with a hash' do
+        let(:haml) {
+          <<~EOF
+          = collection_table(collection: @collection) do |t|
+            - t.tr_html = ->(r, i) { r.id == "1" ? { class: "foo" } : nil }
+            = t.column :id
+            = t.column :name
+            EOF
+        }
+
+        it { expect(rendered).to be_a(String) }
+        it { within('table tbody') { expect(subject).to have_css('tr.foo') } }
+      end
+    end
   end
 
   describe "#resource_table" do

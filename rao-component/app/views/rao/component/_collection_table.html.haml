@@ -16,15 +16,20 @@
           - else
             %th= title
   %tbody
-    - collection.each do |resource|
+    - collection.each_with_index do |resource, index|
       - tr_options = { class: resource_class.name.underscore.gsub('/', '-') }
       - if resource.respond_to?(:model_name)
         - tr_options[:id] = dom_id(resource)
       - else
         - tr_options[:id] = "#{resource.class.name.underscore.gsub('/', '-')}-#{resource.object_id}"
-      %tr{ tr_options }
+
+      %tr{ tr_options.merge(tr_html.respond_to?(:call) ? (tr_html.call(resource, index) || {}) : (tr_html || {})) }
         - columns.each do |name, options|
-          - td_options = { class: "attribute-#{name}", id: "#{tr_options[:id]}-#{name}"}
+          - td_html = if options[:td_html].respond_to?(:call)
+            - options[:td_html].call(resource) || {}
+          - else
+            - options[:td_html] || {}
+          - td_options = { class: ["attribute-#{name}", td_html.delete(:class)].compact.join(" "), id: "#{tr_options[:id]}-#{name}" }.merge(td_html)
           - if options[:block].present?
             %td{ td_options }= options[:block].call(resource)
           - else
