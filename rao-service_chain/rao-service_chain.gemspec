@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.6.6'
 
-  s.add_dependency "rails", ">= 3.2.0"
+  s.add_dependency "rails", ">= 6.0.0.0"
   s.add_dependency "rao-service"
   s.add_dependency "rao-view_helper"
   s.add_dependency "aasm"
