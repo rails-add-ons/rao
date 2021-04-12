@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.4.4
+  - 2.6.6
 env:
   - GEM=rao-api-resources_controller
   - GEM=rao-api-service_controller
