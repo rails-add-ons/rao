@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rao"
   s.add_dependency "rao-view_helper"
 
-  s.add_development_dependency "sqlite3", '~> 1.3.6'
+  s.add_development_dependency "sqlite3", '~> 1.4'
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "guard-bundler"

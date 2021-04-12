@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rao"
 
-  s.add_development_dependency "sqlite3", "~> 1.3.6"
+  s.add_development_dependency "sqlite3", "~> 1.4"
   s.add_development_dependency "rails-dummy"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "guard-rspec"
@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "pry"
 
   # dummy app
-  s.add_development_dependency "rails"
+  s.add_development_dependency "rails", "6.0.0.0"
   s.add_development_dependency "bootsnap"
   s.add_development_dependency "coffee-rails", "~> 4.2"
   s.add_development_dependency "turbolinks", "~> 5"
