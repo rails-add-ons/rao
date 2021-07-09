@@ -129,7 +129,7 @@ module Rao
       end
 
       def t(key, options = {})
-        I18n.t("#{self.class.name.underscore.gsub('/', '.')}#{key}", options)
+        I18n.t("#{self.class.name.underscore.gsub('/', '.')}#{key}", *options)
       end
     end
   end
