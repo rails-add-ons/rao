@@ -1,20 +1,20 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.47.pre)
-    rao-service (0.0.47.pre)
+    rao (0.0.48.pre)
+    rao-service (0.0.48.pre)
       activemodel
       activesupport
       rails (>= 6.0.0.0)
       rao
-    rao-view_helper (0.0.47.pre)
+    rao-view_helper (0.0.48.pre)
       rails (>= 6.0.0.0)
       rao
 
 PATH
   remote: .
   specs:
-    rao-service_chain (0.0.47.pre)
+    rao-service_chain (0.0.48.pre)
       aasm
       haml-rails
       rails (>= 6.0.0.0)
@@ -24,7 +24,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (5.1.1)
+    aasm (5.2.0)
       concurrent-ruby (~> 1.0)
     actioncable (6.0.0)
       actionpack (= 6.0.0)
@@ -222,9 +222,9 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    ruby_parser (3.15.1)
-      sexp_processor (~> 4.9)
-    sexp_processor (4.15.2)
+    ruby_parser (3.16.0)
+      sexp_processor (~> 4.15, >= 4.15.1)
+    sexp_processor (4.15.3)
     shellany (0.0.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)

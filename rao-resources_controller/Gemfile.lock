@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.47.pre)
+    rao (0.0.48.pre)
 
 PATH
   remote: .
   specs:
-    rao-resources_controller (0.0.47.pre)
+    rao-resources_controller (0.0.48.pre)
       rails (>= 6.0.0.0)
       rao
       responders
