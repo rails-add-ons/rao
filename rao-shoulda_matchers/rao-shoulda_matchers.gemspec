@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "pry"
 
   # dummy app
-  s.add_development_dependency "rails", "6.0.0.0"
+  s.add_development_dependency "rails", "6.1"
   s.add_development_dependency "bootsnap"
   s.add_development_dependency "coffee-rails", "~> 4.2"
   s.add_development_dependency "turbolinks", "~> 5"
