@@ -1,35 +1,55 @@
 [![Travis CI](https://travis-ci.org/rails-add-ons/rao.svg?branch=master)](https://travis-ci.org/rails-add-ons/rao)
 
-# RAO
-Short description and motivation.
+# Rails AddOns
 
-## Usage
-How to use my plugin.
+Rails AddOns is a collecation of tools to make development with ruby on rails faster and easier.
 
-## Installation
-Add this line to your application's Gemfile:
+## Modules
 
-```ruby
-gem 'rao'
-```
+### Rao::Api::ResourcesController
 
-And then execute:
-```bash
-$ bundle
-```
+A base controller for RESTful resources APIs.
 
-Or install it yourself as:
-```bash
-$ gem install rao
-```
+### Rao::Api::ServiceController
+
+A base controller for RESTful service APIs.
+
+### Rao::Component
+
+Helpers for HTML resource and collection tables.
+
+### Rao::Query
+
+A microframework for querying active record via query params.
+
+### Rao::ResourceController
+
+A CRUD base controller (and views) for singular resources.
+
+### Rao::ResourcesController
+
+A CRUD base controller (and views) for resources.
+
+### Rao::Service
+
+A service layer for ruby on rails.
+
+### Rao::ServiceChain
+
+Flow control for services.
+
+### Rao::ShouldaMatchers
+
+RSpec matchers for CRUD controllers.
+
+### Rao::ViewHelper
+
+A view component micro framework.
 
 ## Running all specs
 ```bash
 $ bundle && ./rspec-all.sh
 ```
-
-## Contributing
-Contribution directions go here.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
