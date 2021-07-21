@@ -69,11 +69,11 @@ module Rao
     #
     module SpecHelper
       def self.included(mod)
-        mod.let(:view_paths) { ActionController::Base.view_paths }
+        mod.let(:lookup_context) { ActionView::LookupContext.new(ActionController::Base.view_paths) }
         mod.let(:assigns) { {} }
         mod.let(:request) { ActionDispatch::Request.new({ 'rack.input' => StringIO.new }) }
         mod.let(:controller) { ActionController::Base.new.tap { |c| c.request = request; c } }
-        mod.let(:view) { ActionView::Base.new(view_paths, assigns, controller) }
+        mod.let(:view) { ActionView::Base.new(lookup_context, assigns, controller) }
         mod.let(:view_helper) { described_class.new(view) }
         mod.let(:method_name) { |e| e.metadata[:example_group][:description].to_sym }
         mod.let(:default_url_options) { { host: 'localhost:3000' } }
@@ -88,6 +88,7 @@ module Rao
         }
         mod.let(:html) { Capybara::Node::Simple.new(rendered) }
 
+        mod.before(:each) { view.define_singleton_method(:compiled_method_container) { self.class } }
         mod.before(:each) { view.class.include Rails.application.routes.url_helpers }
         mod.before(:each) { view.class.send(:define_method, :main_app, -> { Rails.application.class.routes.url_helpers }) }
         mod.around(:each) do |example|

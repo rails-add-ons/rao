@@ -15,15 +15,15 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.required_ruby_version = '>= 2.6.6'
+  s.required_ruby_version = '>= 2.6.0'
 
-  s.add_dependency "rails", ">= 3.2.0"
+  s.add_dependency "rails", ">= 6.1"
   s.add_dependency "rao-service"
   s.add_dependency "rao-view_helper"
   s.add_dependency "aasm"
   s.add_dependency "haml-rails"
 
-  s.add_development_dependency "sqlite3", "~> 1.3.6"
+  s.add_development_dependency "sqlite3", "~> 1.4"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "guard-bundler"

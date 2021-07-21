@@ -9,13 +9,14 @@ Gem::Specification.new do |s|
   s.version     = Rao::VERSION
   s.authors     = ["Roberto Vasquez Angel"]
   s.email       = ["roberto@vasquez-angel.de"]
+  s.homepage    = "https://github.com/rao"
   s.summary     = "Rails Add Ons."
   s.description = "The missing bits."
   s.license     = "MIT"
 
   s.files = Dir["{lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.required_ruby_version = '>= 2.6.6'
+  s.required_ruby_version = '>= 2.6.0'
 
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'guard-rspec'

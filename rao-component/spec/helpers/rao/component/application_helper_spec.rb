@@ -2,9 +2,24 @@ require "rails_helper"
 
 RSpec.describe Rao::Component::ApplicationHelper, type: :helper do
   let(:context) { 
-    view = ActionView::Base.new(ActionController::Base.view_paths)
-    view.extend(described_class)
-    view.assign(assigns)
+    # https://stackoverflow.com/questions/59773680/deprecation-warning-actionviewbase-instances-should-be-constructed-with-a-loo
+    # https://github.com/mileszs/wicked_pdf/issues/878
+    
+    lookup_context = ActionView::LookupContext.new(ActionController::Base.view_paths)
+    view = ActionView::Base.new(lookup_context, assigns, ActionController::Base.new)
+    
+    # view = ActionView::Base
+    #          .with_view_paths(ActionController::Base.view_paths, assigns)
+    # view.extend(described_class)
+    
+    view.define_singleton_method :compiled_method_container do
+      self.class
+    end
+    
+    view.class_eval do
+      include Rao::Component::ApplicationHelper
+    end
+    
     view
   }
 
