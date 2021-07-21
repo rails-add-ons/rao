@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Rao::VERSION
   s.authors     = ["Roberto Vasquez Angel"]
   s.email       = ["roberto@vasquez-angel.de"]
+  s.homepage    = "https://github.com/rao"
   s.summary     = "Rails Add Ons."
   s.description = "The missing bits."
   s.license     = "MIT"
