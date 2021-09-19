@@ -5,12 +5,16 @@ module Rao
     included do
       helper_method :paginate?
     end
+    
+    private
 
     def paginate?
       true
     end
 
-    private
+    def per_page_default
+      Rao::ResourcesController::Configuration.pagination_per_page_default
+    end
 
     def load_collection
       @collection = load_collection_scope.page(params[:page]).per(per_page)
@@ -19,7 +23,7 @@ module Rao
     def per_page
       # Return page size from configuration if per_page is not present in params
       unless params.has_key?(:per_page)
-        return Rao::ResourcesController::Configuration.pagination_per_page_default
+        return per_page_default
       end
 
       # Return count of all records or nil if no records present if
