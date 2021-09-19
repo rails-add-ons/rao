@@ -4,6 +4,7 @@ module Rao
 
     included do
       helper_method :paginate?
+      helper_method :per_page
     end
     
     private
