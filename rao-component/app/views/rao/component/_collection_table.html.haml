@@ -29,7 +29,7 @@
             - options[:td_html].call(resource) || {}
           - else
             - options[:td_html] || {}
-          - td_options = { class: ["attribute-#{name}", td_html.delete(:class)].compact.join(" "), id: "#{tr_options[:id]}-#{name}" }.merge(td_html)
+          - td_options = { class: ["attribute-#{name}", td_html[:class]].compact.join(" "), id: "#{tr_options[:id]}-#{name}" }.merge(td_html.except(:class))
           - if options[:block].present?
             %td{ td_options }= options[:block].call(resource)
           - else
