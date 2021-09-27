@@ -1,6 +1,6 @@
 module Rao
   module Service
-    class Job < ApplicationJob
+    class Job < Rao::Service::Configuration.job_base_class_name.constantize
       def perform(service_class_name, attributes = {}, options = {})
         service_class_name.constantize.call(attributes, options)
       end

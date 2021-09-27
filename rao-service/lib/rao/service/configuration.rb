@@ -11,6 +11,7 @@ module Rao
       mattr_accessor(:default_notification_sender)    { 'john.doe@domain.local' }
       mattr_accessor(:default_notification_recipient) { 'john.doe@domain.local' }
       mattr_accessor(:notification_environment)       { Object.const_defined?('::Rails') ? ::Rails.env : nil }
+      mattr_accessor(:job_base_class_name)            { 'ActiveJob::Base' }
     end
   end
 end

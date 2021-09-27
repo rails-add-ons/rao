@@ -16,4 +16,10 @@ Rao::Service.configure do |config|
   # Default: config.default_notification_recipient = ->(result) { ::Rails.env }
   #
   config.notification_environment = ->(result) { ::Rails.env }
+
+  # Sets the base class for service jobs.
+  #
+  # default: config.job_base_class_name = 'ActiveJob::Base'
+  #
+  config.job_base_class_name = 'ActiveJob::Base'
 end
