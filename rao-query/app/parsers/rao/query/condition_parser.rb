@@ -73,7 +73,7 @@ module Rao
       # end
 
       def extract_table_column_and_operator(string)
-        if string =~ /([\.a-z_]{1,})\(([a-z_]{2,})\)/
+        if string =~ /([\.a-z0-9_]{1,})\(([a-z0-9_]{2,})\)/
           table_and_column = $~[1]
           operator = $~[2]
           column, table_or_association = table_and_column.split('.').reverse
