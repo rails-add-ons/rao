@@ -42,6 +42,35 @@ module Api
 end
 ```
 
+### Sorting collections
+
+You can specify the sorting via the params "sort_by" and "sort_direction".
+
+### Including associated records
+
+See rao-query.
+
+### Filtering collections
+
+See rao-query.
+
+### Using the modules instead inheritance
+
+Sometimes you want your controller to inherit from a specific controller. In
+that case you can't use Rao::Api::ResourcesController::Base as the base controller.
+Instead of using inheritance you can include the needed modules directly:
+
+    class CountriesController < ApplicationController
+      include Rao::Api::ResourcesController::RestActionsConcern
+      include Rao::Api::ResourcesController::ResourcesConcern
+      include Rao::Api::ResourcesController::SerializationConcern
+      include Rao::Api::ResourcesController::CountActionConcern
+      include Rao::Api::ResourcesController::DestroyAllActionConcern
+      include Rao::Api::ResourcesController::DeleteAllActionConcern
+      include Rao::Api::ResourcesController::FirstActionConcern
+      include Rao::Api::ResourcesController::LastActionConcern
+      include Rao::Api::ResourcesController::ExceptionHandlingConcern
+    end
 
 ## Installation
 Add this line to your application's Gemfile:
