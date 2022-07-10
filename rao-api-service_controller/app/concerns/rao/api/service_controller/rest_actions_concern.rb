@@ -58,8 +58,9 @@ module Rao
       #
       # Example:
       #     # app/controller/import_services_controller.rb
-      #     class ImportServices < ApplicationServicesController
+      #     class ImportServicesController < ApplicationServicesController
       #       #...
+      #
       #       private
       #
       #       def initialize_service_for_create
