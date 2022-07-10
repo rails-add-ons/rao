@@ -11,6 +11,7 @@ module Rao
         include FirstActionConcern
         include LastActionConcern
         include ExceptionHandlingConcern
+        include SortingConcern
       end
     end
   end
