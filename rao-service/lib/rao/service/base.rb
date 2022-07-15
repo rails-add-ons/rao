@@ -37,6 +37,11 @@ module Rao
         add_attribute_names(*args)
       end
 
+      def self.attr_reader(*args)
+        super
+        add_attribute_names(*args)
+      end
+
       def self.add_attribute_names(*args)
         args.each do |attr_name|
           attribute_names << attr_name
