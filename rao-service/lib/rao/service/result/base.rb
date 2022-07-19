@@ -12,6 +12,9 @@ module Rao
         include MailableConcern
       end
 
+      require 'rao/service/result/base/attribute_names_concern'
+      include AttributeNamesConcern
+
       require 'rao/service/result/base/succeedable_concern'
       include SucceedableConcern
 
