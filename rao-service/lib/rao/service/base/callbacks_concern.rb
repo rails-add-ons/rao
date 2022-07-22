@@ -9,6 +9,9 @@ module Rao
       def before_validation; end
       def after_validation; end
       def after_perform; end
+      def around_perform
+        yield
+      end
 
       def perform(options = {})
         options.reverse_merge!(validate: true)
@@ -19,8 +22,10 @@ module Rao
           after_validation
         end
         before_perform
-        say "Performing" do
-          _perform
+        around_perform do
+          say "Performing" do
+            _perform
+          end
         end
         after_perform
         save if autosave? && respond_to?(:save, true)
