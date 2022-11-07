@@ -27,7 +27,7 @@ module Rao
     def edit; end
 
     def update
-      if @resource.send(update_method_name, permitted_params) && respond_to?(:after_update_location, true) && after_update_location.present?
+      if @resource.update(permitted_params) && respond_to?(:after_update_location, true) && after_update_location.present?
         respond_with(resource_namespace, @resource, location: after_update_location)
       else
         respond_with(resource_namespace, @resource)
@@ -52,10 +52,6 @@ module Rao
     end
 
     private
-
-    def update_method_name
-      Rails::VERSION::MAJOR < 4 ? :update_attributes : :update
-    end
 
     def resource_namespace
       nil
