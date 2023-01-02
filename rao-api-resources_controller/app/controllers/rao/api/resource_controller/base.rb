@@ -3,15 +3,9 @@ module Rao
     module ResourceController
       class Base < Rao::Api::ResourcesController::Configuration.resources_controller_base_class_name.constantize
         include RestActionsConcern
-        include ResourcesConcern
+        include ResourceConcern
         include SerializationConcern
-        include CountActionConcern
-        include DestroyAllActionConcern
-        include DeleteAllActionConcern
-        include FirstActionConcern
-        include LastActionConcern
         include ExceptionHandlingConcern
-        include SortingConcern
       end
     end
   end
