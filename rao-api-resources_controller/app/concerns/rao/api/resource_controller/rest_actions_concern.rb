@@ -35,7 +35,7 @@ module Rao
 
       def update
         respond_to do |format|
-          if @resource.update_attributes(permitted_params)
+          if @resource.update(permitted_params)
             format.json { render json: serialize_resource(@resource) }
           else
             format.json { render json: { errors: serialize_errors(@resource.errors) }, status: 422 }
