@@ -4,7 +4,7 @@ module Rao
 
     def reposition
       @resource = load_resource
-      @dropped_resource = resource_class.find(params[:dropped_id])
+      @dropped_resource = load_resource_scope.find(params[:dropped_id])
       @dropped_resource.move_to_right_of(@resource)
 
       label_methods = [:human, :name, :email, :to_s]
