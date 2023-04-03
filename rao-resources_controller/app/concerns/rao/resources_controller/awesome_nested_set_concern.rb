@@ -25,7 +25,13 @@ module Rao
         end
       end
 
-      redirect_to collection_path, notice: I18n.t("awesome_nested_set.flash.actions.reposition.notice", target_resource: target_resource_label, inserted_resource: inserted_resource_label)
+      redirect_to after_reposition_location, notice: I18n.t("awesome_nested_set.flash.actions.reposition.notice", target_resource: target_resource_label, inserted_resource: inserted_resource_label)
+    end
+
+    private
+
+    def after_reposition_location
+      collection_path
     end
   end
 end
