@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.48.pre)
+    rao (0.0.49.pre)
 
 PATH
   remote: .
   specs:
-    rao-resource_controller (0.0.48.pre)
+    rao-resource_controller (0.0.49.pre)
       rails (>= 6.1)
       rao
       responders
@@ -166,9 +166,9 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    responders (3.0.1)
-      actionpack (>= 5.0)
-      railties (>= 5.0)
+    responders (3.1.0)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
