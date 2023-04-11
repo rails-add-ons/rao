@@ -19,8 +19,11 @@ module Rao
     #     => "4.52 ct/kWh"
     #
     class Base
-      def initialize(context)
+      attr_reader :options
+
+      def initialize(context, options = {})
         @context = context
+        @options = options
       end
 
       private
@@ -30,7 +33,7 @@ module Rao
       end
 
       def render(locals = {})
-        c.render partial: "/#{self.class.name.underscore}/#{caller_locations(1,1)[0].label}", locals: locals
+        c.render partial: "/#{self.class.name.underscore}/#{caller_locations(1,1)[0].label}", locals: locals.reverse_merge(view_helper: self)
       end
 
       # You can use scoped translations by using the dot notation.
