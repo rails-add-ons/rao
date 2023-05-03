@@ -18,7 +18,7 @@ module Rao
           if operator == 'cont'
             return ["#{table}.#{column} LIKE ?", "%#{normalized_condition(table, column, condition)}%"]
           else
-            return ["#{table}.#{column} = ?", normalized_condition(table, column, condition)]
+            return ["#{table}.#{column} #{extract_operator(parent_key)} ?", normalized_condition(table, column, condition)]
           end
         else
           if nested
