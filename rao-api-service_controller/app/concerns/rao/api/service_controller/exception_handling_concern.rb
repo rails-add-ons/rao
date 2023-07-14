@@ -10,7 +10,7 @@ module Rao
 
         rescue_from ActiveRecord::RecordNotFound do |exception|
           handle_404(exception)
-        end
+        end if Object.const_defined?(:ActiveRecord)
       end
 
       private
