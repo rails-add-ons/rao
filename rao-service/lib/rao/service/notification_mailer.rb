@@ -1,3 +1,5 @@
+require "rao/service/application_mailer"
+
 module Rao
   module Service
     class NotificationMailer < ApplicationMailer
