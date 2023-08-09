@@ -85,8 +85,12 @@ module Rao
         @collection = load_collection_scope.all
       end
 
+      def load_resource_scope
+        resource_class
+      end
+
       def load_resource
-        @resource = resource_class.find(params[:id])
+        @resource = load_resource_scope.find(params[:id])
       end
 
       def load_resource_for_show
