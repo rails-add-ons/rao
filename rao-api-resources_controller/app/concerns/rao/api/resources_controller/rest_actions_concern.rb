@@ -73,13 +73,16 @@ module Rao
 
       private
 
-      def load_collection
-        scope = if respond_to?(:with_conditions_from_query, true)
-          scope = with_conditions_from_query(resource_class)
+      def load_collection_scope
+        if respond_to?(:with_conditions_from_query, true)
+          with_conditions_from_query(resource_class)
         else
           resource_class
         end
-        @collection = scope.all
+      end
+
+      def load_collection
+        @collection = load_collection_scope.all
       end
 
       def load_resource
