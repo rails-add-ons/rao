@@ -47,11 +47,11 @@ module Rao
         end
 
         def default_query_params
-          request.query_parameters.except(*default_query_params_exceptions)
+          request.query_parameters.except(*query_params_exceptions)
         end
 
-        def default_query_params_exceptions
-          Rao::Query::Configuration.default_query_params_exceptions
+        def query_params_exceptions
+          @query_params_exceptions ||= Rao::Query::Configuration.default_query_params_exceptions
         end
 
         def normalize_query_params(params)
