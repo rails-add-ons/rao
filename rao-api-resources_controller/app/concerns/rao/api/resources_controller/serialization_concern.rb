@@ -17,8 +17,8 @@ module Rao
         json
       end
 
-      def serialize_errors(errors)
-        errors.as_json(full_messages: true)
+      def serialize_errors(errors, full_messages: true)
+        errors.as_json(full_messages: full_messages)
       end
     end
   end
