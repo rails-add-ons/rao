@@ -12,13 +12,14 @@ module Rao
     class CollectionTable < Base
       include AasmConcern
       include ActiveStorageConcern
-      include AwesomeNestedSetConcern
-      include ActsAsPublishedConcern
       include ActsAsListConcern
+      include ActsAsPublishedConcern
+      include AwesomeNestedSetConcern
       include BatchActionsConcern
       include BooleanConcern
-      include EmailConcern
       include DateConcern
+      include EmailConcern
+      include MoneyConcern
       include ThumbnailConcern
 
       attr_reader :collection

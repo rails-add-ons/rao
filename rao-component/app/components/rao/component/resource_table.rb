@@ -15,6 +15,7 @@ module Rao
       include BooleanConcern
       include DateConcern
       include EmailConcern
+      include MoneyConcern
       include ThumbnailConcern
 
       SIZE_MAP = {
