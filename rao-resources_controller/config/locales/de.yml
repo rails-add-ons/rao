@@ -34,6 +34,7 @@ de:
     resources_controller:
       aasm_concern:
         trigger_event:
+          failure: "Der Vorgang %{event} war nicht erfolgreich. Es traten folgende Fehler auf: %{errors}"
           success: "Der Vorgang %{event} war erfolgreich. Der neue Status ist %{state}."
       base:
         form_buttons:

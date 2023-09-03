@@ -34,6 +34,7 @@ en:
     resources_controller:
       aasm_concern:
         trigger_event:
+          failure: "The event %{event} failed. Errors: %{errors}"
           success: "The event %{event} completed successfully. The new state is %{state}."
       base:
         form_buttons:
