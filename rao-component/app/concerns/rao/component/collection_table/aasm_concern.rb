@@ -13,7 +13,8 @@ module Rao
     #
     #     # app/carts/index.html.haml
     #     = collection_table(collection: @carts) do |table|
-    #       = table.aasm :default
+    #       = table.aasm_state :default
+    #       = table.aasm_actions :default
     #
     # You will have to add a event triggering route to your resource:
     #
