@@ -1,4 +1,4 @@
-- if resource.send(name).attached?
+- if resource.send(name)&.attached?
   = capture_haml do
     = link_to(main_app.url_for(resource.send(name)), class: 'btn btn-xs btn-primary btn-responsive') do
       %i.fas.fa-download
