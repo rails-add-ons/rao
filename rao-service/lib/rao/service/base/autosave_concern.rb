@@ -25,6 +25,10 @@ module Rao
         @options[:autosave] = true
         self
       end
+
+      def autosave=(value)
+        @options[:autosave] = ActiveModel::Type::Boolean.new.cast(value)
+      end
     end
   end
 end
