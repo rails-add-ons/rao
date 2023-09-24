@@ -79,8 +79,8 @@ module Rao
         end
 
         def matches?(base_path)
-          @base_path = @spec.class.name.split('::')[0..2].join('::').constantize.description
-          # @base_path     = base_path
+          @base_path = @spec.respond_to?(:base_path) ? @spec.base_path : @spec.class.name.split('::')[0..2].join('::').constantize.description
+
           @show_path = "#{@base_path}/#{id}"
           @edit_path = "#{@base_path}/#{id}/edit"
 
@@ -92,7 +92,7 @@ module Rao
 
           @spec.within(@form_id) do
             @form_block.call
-            @spec.find('input[name="commit"]').click
+            submit_button.click
           end
                       
           @resource.reload
@@ -181,6 +181,10 @@ module Rao
 
         def description
           "expose update action on #{@edit_path}"
+        end
+
+        def submit_button
+          @spec.find('input[name="commit"]')
         end
       end
     end

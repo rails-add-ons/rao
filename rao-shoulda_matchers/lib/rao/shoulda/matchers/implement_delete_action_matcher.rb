@@ -46,9 +46,9 @@ module Rao
         end
 
         def matches?(base_path)
-          @base_path = @spec.class.name.split('::')[0..2].join('::').constantize.description
-          # @base_path     = base_path
+          @base_path = @spec.respond_to?(:base_path) ? @spec.base_path : @spec.class.name.split('::')[0..2].join('::').constantize.description
           @expected_path = @base_path
+
           @show_path = "#{@base_path}/#{id}"
 
           @spec.visit(@show_path)

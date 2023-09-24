@@ -86,8 +86,7 @@ module Rao
         end
 
         def matches?(base_path)
-          @base_path = @spec.class.name.split('::')[0..2].join('::').constantize.description
-          # @base_path     = base_path
+          @base_path = @spec.respond_to?(:base_path) ? @spec.base_path : @spec.class.name.split('::')[0..2].join('::').constantize.description
           @new_path = "#{@base_path}/new"
 
           @spec.visit(@new_path)
@@ -95,7 +94,7 @@ module Rao
           @before_count = @block.call(@resource_class)
           @spec.within(@form_id) do
             @form_block.call
-            @spec.find('input[name="commit"]').click
+            submit_button.click
           end
           @after_count = @block.call(@resource_class)
 
@@ -154,6 +153,10 @@ module Rao
 
         def description
           "expose create action on #{@new_path}"
+        end
+
+        def submit_button
+          @spec.find('input[name="commit"]')
         end
       end
     end
