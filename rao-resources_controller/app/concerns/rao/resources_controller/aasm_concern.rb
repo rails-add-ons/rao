@@ -8,11 +8,26 @@ module Rao
       end
 
       def trigger_event
-        if @resource.aasm(permitted_params_for_trigger_event[:machine_name].to_sym).fire!(permitted_params_for_trigger_event[:event_name].to_sym)
-          flash[:notice] = t('rao.resources_controller.aasm_concern.trigger_event.success', state: @resource.aasm(permitted_params_for_trigger_event[:machine_name].to_sym).current_state, event: permitted_params_for_trigger_event[:event_name])
-        else
-          flash[:notice] = t('rao.resources_controller.aasm_concern.trigger_event.failure', event: permitted_params_for_trigger_event[:event_name], errors: @resource.errors.full_messages.to_sentence)
+        begin
+          result = @resource.aasm(permitted_params_for_trigger_event[:machine_name].to_sym).fire!(permitted_params_for_trigger_event[:event_name].to_sym)
+        rescue ActiveRecord::RecordInvalid => e
+          result = false
         end
+
+        if result
+          flash[:notice] = t(
+            'rao.resources_controller.aasm_concern.trigger_event.success',
+            event: permitted_params_for_trigger_event[:event_name],
+            state: @resource.aasm(permitted_params_for_trigger_event[:machine_name].to_sym).current_state
+          )
+        else
+          flash[:danger] = t(
+            'rao.resources_controller.aasm_concern.trigger_event.failure',
+            event: permitted_params_for_trigger_event[:event_name],
+            errors: @resource.errors.full_messages.to_sentence
+          )
+        end
+
         redirect_back(fallback_location: root_path)
       end
 
