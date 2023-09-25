@@ -81,6 +81,10 @@ module Rao
         { autosave: true }
       end
 
+      def params
+        super.deep_transform_keys!(&:underscore)
+      end
+
       def permitted_params
         raise "You have to implement permitted_params in #{self.class.name}."
       end
