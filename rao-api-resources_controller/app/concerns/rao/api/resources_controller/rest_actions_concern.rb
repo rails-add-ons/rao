@@ -109,6 +109,10 @@ module Rao
         @resource = resource_class.new(permitted_params)
       end
 
+      def params
+        super.deep_transform_keys!(&:underscore)
+      end
+
       def permitted_params
         raise "not implemented"
       end
