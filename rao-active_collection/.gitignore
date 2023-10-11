@@ -1,10 +1,6 @@
 .bundle/
 log/*.log
 pkg/
-spec/dummy/db/*.sqlite3
-spec/dummy/db/*.sqlite3-journal
-spec/dummy/log/*.log
-spec/dummy/tmp/
 
 # Ignore built gems.
 *.gem
@@ -17,3 +13,6 @@ spec/dummy/tmp/
 
 # Ignore coverage files.
 coverage/
+
+# Ignore dummy app
+spec/dummy

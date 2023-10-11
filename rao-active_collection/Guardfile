@@ -80,3 +80,12 @@ guard :rspec, cmd: "bundle exec rspec" do
     Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
   end
 end
+
+# guard :standardrb, fix: true, all_on_start: true do
+#   UI.info 'StandardRb is initialized'
+#   watch(/.+\.rb$/)
+# end
+
+guard :standardrb, fix: true, all_on_start: false, progress: false do
+  watch(/.+\.rb$/)
+end
