@@ -5,6 +5,7 @@ module Rao
     class Base
       include ActiveModel::Conversion
       include ActiveModel::Validations
+      include ActiveModel::Dirty
       include AttributeNamesConcern
 
       def self.primary_key
@@ -13,7 +14,12 @@ module Rao
 
       class << self
         include Enumerable
-        delegate :count, :delete_all, :find, :first, :first!, :order, :last, :last!, :reorder, :where, to: :all
+        delegate :count, :delete_all, :find, :first, :first!, :order, :last, :last!, :page, :reorder, :where, to: :all
+      end
+
+      def self.inherited(base)
+        klass = Class.new(Rao::ActiveCollection::Relation)
+        base.const_set(:Relation, klass)
       end
 
       def ==(other)
@@ -29,11 +35,17 @@ module Rao
       end
 
       def self.all
-        Rao::ActiveCollection::Relation.new(self)
+        self::Relation.new(self)
       end
 
       def self.collection
         @collection ||= {}.with_indifferent_access
+      end
+
+      def self.columns_hash
+        @columns_hash ||= attribute_names.each_with_object({}.with_indifferent_access) do |attribute, hash|
+          hash[attribute] = OpenStruct.new(name: attribute, type: String)
+        end
       end
 
       def self.create(attributes = {})
@@ -46,6 +58,10 @@ module Rao
 
       def self.generate_primary_key(record = nil)
         (collection.keys.map(&:to_i).max || 0) + 1
+      end
+
+      def self.table_name
+        name.underscore.tr("/", "_").pluralize
       end
 
       def destroy
@@ -68,23 +84,45 @@ module Rao
         @destroyed = false
       end
 
+      def self.limit(limit)
+        self::Relation.new(self).limit(limit)
+      end
+
       def new_record?
         !!@new_record
+      end
+
+      def self.offset(offset)
+        self::Relation.new(self).offset(offset)
       end
 
       def persisted?
         !(new_record? || destroyed?)
       end
 
+      def reload
+        restore_attributes
+        clear_changes_information
+        self
+      end
+
       def save
         send("#{self.class.primary_key}=", self.class.generate_primary_key(self))
         return unless valid?
         @new_record = false
+        changes_applied
         self.class.collection[send(self.class.primary_key)] = self
       end
 
       def save!
         save || raise(ActiveRecord::RecordInvalid.new(self))
+      end
+
+      def update(attributes)
+        attributes.each do |key, value|
+          send("#{key}=", value)
+        end
+        save
       end
 
       private

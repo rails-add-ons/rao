@@ -10,11 +10,13 @@ module Rao
         def attr_accessor(*args)
           super
           add_attribute_names(*args)
+          define_attribute_methods(*args)
         end
 
         def attr_reader(*args)
           super
           add_attribute_names(*args)
+          define_attribute_methods(*args)
         end
 
         def add_attribute_names(*args)

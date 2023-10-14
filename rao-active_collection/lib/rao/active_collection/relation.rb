@@ -5,17 +5,22 @@ module Rao
 
       attr_accessor :collection
 
-      # delegate :size, to: :to_a
+      delegate :columns_hash, :table_name, to: :@klass
 
       def initialize(klass)
         @klass = klass
         @collection = klass.collection
         @conditions = []
         @order = []
+        @page = nil
+        @per = nil
+        @limit = nil
+        @offset = nil
       end
 
       def to_a
-        @collection.values
+        transform_page_and_per_to_limit_and_offset! if @page
+        apply_limit(apply_offset(@collection.values))
       end
 
       def count
@@ -74,8 +79,28 @@ module Rao
         last || raise(ActiveRecord::RecordNotFound)
       end
 
+      def limit(limit)
+        @limit = limit
+        self
+      end
+
+      def offset(offset)
+        @offset = offset
+        self
+      end
+
       def order(condition)
         @order << OrderCondition.new(self, condition)
+        self
+      end
+
+      def page(page)
+        @page = page
+        self
+      end
+
+      def per(per)
+        @per = per
         self
       end
 
@@ -90,6 +115,21 @@ module Rao
       def apply_condition(condition)
         relation = condition.result
         @collection = relation.collection
+      end
+
+      def apply_offset(collection)
+        return collection unless @offset
+        collection.drop(@offset)
+      end
+
+      def apply_limit(collection)
+        return collection unless @limit
+        collection.first(@limit)
+      end
+
+      def transform_page_and_per_to_limit_and_offset!
+        @limit = @per
+        @offset = (@page - 1) * @per
       end
     end
   end
