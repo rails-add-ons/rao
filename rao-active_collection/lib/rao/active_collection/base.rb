@@ -48,6 +48,10 @@ module Rao
         end
       end
 
+      def self.column_names
+        columns_hash.keys.map(&:to_sym)
+      end
+
       def self.create(attributes = {})
         new(attributes).save
       end

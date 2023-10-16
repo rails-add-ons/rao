@@ -33,7 +33,14 @@ RSpec.describe Rao::ActiveCollection::Base do
       subject { Post.columns_hash }
 
       it { expect(subject).to be_a(Hash) }
-      it { expect(subject.keys).to match_array(Post.attribute_names) }
+      it { expect(subject.keys.map(&:to_sym)).to match_array(Post.attribute_names) }
+    end
+
+    describe "column_names" do
+      subject { Post.column_names }
+
+      it { expect(subject).to be_a(Array) }
+      it { expect(subject).to match_array(Post.attribute_names) }
     end
 
     describe "count" do
