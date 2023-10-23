@@ -12,7 +12,7 @@ module Rao
       else
         module ClassMethods
           def call!(*args)
-            new(*args).autosave!.perform
+            new(*args).perform!
           end
         end
       end
@@ -28,6 +28,11 @@ module Rao
 
       def autosave=(value)
         @options[:autosave] = ActiveModel::Type::Boolean.new.cast(value)
+      end
+
+      def perform!
+        autosave!
+        perform
       end
     end
   end

@@ -41,4 +41,16 @@ RSpec.describe AutosaveConcernService do
 
     it { expect(subject).to respond_to(:autosave?) }
   end
+
+  describe "perform!" do
+    let(:attributes) { {} }
+    let(:options) { {} }
+
+    before(:each) { $saved = false }
+
+    subject { described_class.new }
+
+    it { expect(subject).to respond_to(:perform!) }
+    it { expect { subject.perform! }.to change{ $saved }.from(false).to(true) }
+  end
 end
