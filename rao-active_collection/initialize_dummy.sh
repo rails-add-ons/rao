@@ -19,5 +19,5 @@ cd spec/dummy
 sed -i "s|../Gemfile|../../../Gemfile|g" config/boot.rb
 
 # Install
-rails generate $INSTALL_NAME:install
+# rails generate $INSTALL_NAME:install
 rails db:migrate db:test:prepare
