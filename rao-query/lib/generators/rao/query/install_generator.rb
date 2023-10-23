@@ -7,7 +7,7 @@ module Rao
         source_root File.expand_path('../templates', __FILE__)
 
         def generate_initializer
-          template 'initializer.rb', 'config/initializers/rao_query.rb'
+          template 'initializer.rb', 'config/initializers/rao-query.rb'
         end
       end
     end
