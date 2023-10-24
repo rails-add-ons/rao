@@ -8,12 +8,16 @@ module Rao
       else
         before_filter :store_location
       end
+
+      helper_method :last_location
     end
 
     private
 
     def store_location
-      truncate_location_history(9)
+      return if request.referer.nil?
+      truncate_location_history(3)
+      puts "[LocationHistoryConcern] Storing last location [#{request.referer}]"
       location_history[Time.zone.now] = request.referer
     end
 
@@ -27,7 +31,12 @@ module Rao
 
     def truncate_location_history(count = 0)
       return if location_history.size <= count
-      session[:location_history] = session[:location_history].sort.last(count).to_h
+      truncated = session[:location_history].sort.last(count)
+      session[:location_history] = if truncated.respond_to?(:to_h)
+        truncated.to_h
+      else
+        truncated.each_with_object({}) { |a, hash| hash[a.first] = a.last }
+      end
     end
   end
 end
