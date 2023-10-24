@@ -16,7 +16,7 @@ module Rao
 
     def store_location
       return if request.referer.nil?
-      truncate_location_history(9)
+      truncate_location_history(3)
       logger.debug "[LocationHistoryConcern] Storing last location [#{request.referer}]"
       location_history[Time.zone.now] = request.referer
     end
