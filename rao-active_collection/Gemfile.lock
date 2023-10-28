@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.50.pre)
+    rao (0.0.51.pre)
 
 PATH
   remote: .
   specs:
-    rao-active_collection (0.0.50.pre)
+    rao-active_collection (0.0.51.pre)
       rails (>= 6.1)
       rao
 
