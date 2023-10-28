@@ -68,7 +68,7 @@ module Rao
       end
 
       def first!
-        first || raise(ActiveRecord::RecordNotFound)
+        first || raise(ActiveRecord::RecordNotFound, "Couldn't find #{table_name} with conditions: #{@conditions.map(&:conditions)}}")
       end
 
       def last
