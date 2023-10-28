@@ -1,0 +1,18 @@
+.bundle/
+log/*.log
+pkg/
+
+# Ignore built gems.
+*.gem
+
+# Ignore dummy app.
+# spec/dummy
+
+# Ignore backup files.
+*~
+
+# Ignore coverage files.
+coverage/
+
+# Ignore dummy app
+spec/dummy
