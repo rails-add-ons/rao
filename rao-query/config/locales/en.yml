@@ -1,6 +1,8 @@
 en:
   rao:
     query:
+      form:
+        title: "Filter"
       form_builder:
         boolean_label: "%{attribute_name}?"
         predicates:
