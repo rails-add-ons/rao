@@ -7,8 +7,10 @@ de:
         boolean_label: "%{attribute_name}?"
         predicates:
           cont: "%{attribute_name} enthält"
+          gt: "%{attribute_name} ist größer als"
           eq: "%{attribute_name} ist"
           'null': "%{attribute_name} ist leer"
+          lt: "%{attribute_name} ist kleiner als"
           not_null: "%{attribute_name} ist nicht leer"
         reset: "Zurücksetzen"
         submit: "Suchen"
