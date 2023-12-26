@@ -15,11 +15,11 @@ module Rao
     end
 
     def resource_path(resource)
-      resource_router.send(:url_for, { action: :show, id: resource, only_path: true })
+      resource_router.send(:url_for, { action: :show, id: resource.id, only_path: true })
     end
 
     def edit_resource_path(resource)
-      resource_router.send(:url_for, { action: :edit, id: resource, only_path: true })
+      resource_router.send(:url_for, { action: :edit, id: resource.id, only_path: true })
     end
 
     def resource_router
