@@ -73,6 +73,7 @@ module Rao
       end
 
       def table_css_classes
+        return @options[:table_html] if @options.has_key?(:table_html)
         classes = ['table', 'resource-table', @resource_class.name.underscore.gsub('/', '-')]
         classes << 'table-bordered'   if bordered?
         classes << 'table-hover'      if hover?
