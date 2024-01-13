@@ -42,6 +42,8 @@ module Rao
         @rows[name] = options
       end
 
+      alias_method :field, :row
+
       def id(options = {}, &block)
         row(:id, options, &block)
       end

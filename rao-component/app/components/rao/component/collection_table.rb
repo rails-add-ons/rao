@@ -49,6 +49,8 @@ module Rao
         @columns[name] = options
       end
 
+      alias_method :field, :column
+
       def id(options = {}, &block)
         column(:id, options, &block)
       end
