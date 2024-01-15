@@ -23,7 +23,7 @@ RSpec.describe Rao::Component::ApplicationHelper, type: :helper do
     view
   }
 
-  let(:rendered) { Haml::Engine.new(haml).render(context) }
+  let(:rendered) { Haml::Template.new { haml }.render(context) }
 
   subject {
     Capybara::Node::Simple.new(rendered)
