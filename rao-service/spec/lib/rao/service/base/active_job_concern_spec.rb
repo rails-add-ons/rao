@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 class DelayableService < Rao::Service::Base
   class Result < Rao::Service::Result::Base
@@ -13,7 +13,9 @@ end
 RSpec.describe DelayableService do
   it { expect(described_class.ancestors).to include(Rao::Service::Base::ActiveJobConcern) }
 
-  before(:each) { ActiveJob::Base.queue_adapter.enqueued_jobs = [] }
+  before(:each) do
+    ActiveJob::Base.queue_adapter.enqueued_jobs = []
+  end
 
   describe '#call_later' do
     let(:attributes) { {} }

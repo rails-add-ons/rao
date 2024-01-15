@@ -1,3 +1,8 @@
+begin
+  require "active_job"
+rescue LoadError => e
+end
+
 require "rao/service/configuration"
 require "rao/service/version"
 
@@ -16,7 +21,8 @@ module Rao
   end
 end
 
-require "rao/service/engine" if Object.const_defined?('::Rails')
+require "rao/service/engine" if Rao::Service.rails_present?
 require "rao/service/base"
+require "rao/service/job" if Rao::Service.active_job_present?
 
 Rao.configure { |c| c.register_configuration(:service, Rao::Service) }
