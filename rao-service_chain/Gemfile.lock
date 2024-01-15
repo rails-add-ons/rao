@@ -1,20 +1,20 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.51.pre)
-    rao-service (0.0.51.pre)
+    rao (0.0.52.pre)
+    rao-service (0.0.52.pre)
       activemodel
       activesupport
       rails (>= 6.1)
       rao
-    rao-view_helper (0.0.51.pre)
+    rao-view_helper (0.0.52.pre)
       rails (>= 6.1)
       rao
 
 PATH
   remote: .
   specs:
-    rao-service_chain (0.0.51.pre)
+    rao-service_chain (0.0.52.pre)
       aasm
       haml-rails
       rails (>= 6.1)
@@ -123,7 +123,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    haml (6.2.3)
+    haml (6.3.0)
       temple (>= 0.8.2)
       thor
       tilt

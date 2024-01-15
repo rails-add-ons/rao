@@ -1,12 +1,12 @@
 PATH
   remote: ..
   specs:
-    rao (0.0.51.pre)
+    rao (0.0.52.pre)
 
 PATH
   remote: .
   specs:
-    rao-view_helper (0.0.51.pre)
+    rao-view_helper (0.0.52.pre)
       rails (>= 6.1)
       rao
 
