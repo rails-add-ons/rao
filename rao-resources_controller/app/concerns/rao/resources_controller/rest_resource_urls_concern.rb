@@ -12,19 +12,35 @@ module Rao
     private
 
     def new_resource_path
-      resource_router.polymorphic_path(resource_class, action: :new)
+      if respond_to?(:resource_namespace, true)
+        resource_router.new_polymorphic_path([resource_namespace, resource_class])
+      else
+        resource_router.new_polymorphic_path(resource_class)
+      end
     end
 
     def collection_path
-      resource_router.polymorphic_path(resource_class)
+      if respond_to?(:resource_namespace, true)
+        resource_router.polymorphic_path([resource_namespace, resource_class])
+      else
+        resource_router.polymorphic_path(resource_class)
+      end
     end
 
     def resource_path(resource)
-      resource_router.polymorphic_path(resource)
+      if respond_to?(:resource_namespace, true)
+        resource_router.polymorphic_path([resource_namespace, resource])
+      else
+        resource_router.polymorphic_path(resource)
+      end
     end
 
     def edit_resource_path(resource)
-      resource_router.polymorphic_path(resource, action: :edit)
+      if respond_to?(:resource_namespace, true)
+        resource_router.edit_polymorphic_path([resource_namespace, resource])
+      else
+        resource_router.edit_polymorphic_path(resource)
+      end
     end
 
     def resource_router
