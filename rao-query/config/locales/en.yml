@@ -8,9 +8,11 @@ en:
         predicates:
           cont: "%{attribute_name} contains"
           gt: "%{attribute_name} is greater than"
+          gt_or_eq: "%{attribute_name} is greater or equal"
           eq: "%{attribute_name} equals"
           'null': "%{attribute_name} is present"
           lt: "%{attribute_name} is less than"
+          lt_or_eq: "%{attribute_name} is less or equal"
           not_null: "%{attribute_name} is not present"
         reset: "Reset"
         submit: "Search"

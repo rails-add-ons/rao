@@ -8,9 +8,11 @@ de:
         predicates:
           cont: "%{attribute_name} enthält"
           gt: "%{attribute_name} ist größer als"
+          gt_or_eq: "%{attribute_name} ist größer oder gleich"
           eq: "%{attribute_name} ist"
           'null': "%{attribute_name} ist leer"
           lt: "%{attribute_name} ist kleiner als"
+          lt_or_eq: "%{attribute_name} ist kleiner oder gleich"
           not_null: "%{attribute_name} ist nicht leer"
         reset: "Zurücksetzen"
         submit: "Suchen"
