@@ -96,6 +96,12 @@ module Rao
         scope.columns_hash[column].type == :boolean
       end
 
+      def column_is_date?(table_name, column_name)
+        scope, column = get_scope_and_column_from_column_name(column_name, table_name)
+        raise "Unknown column: #{column_name}" unless scope.columns_hash.has_key?(column)
+        scope.columns_hash[column].type == :date
+      end
+
       def get_scope_and_column_from_column_name(column_name, table_name = nil)
         if table_name == @scope.table_name
           return @scope, column_name
@@ -125,9 +131,15 @@ module Rao
         end
       end
 
+      def to_date(string)
+        Date.parse(string)
+      end
+
       def normalized_condition(table, column, condition)
         if column_is_boolean?(table, column)
           to_boolean(condition)
+        elsif column_is_date?(table, column)
+          to_date(condition)
         else
           condition
         end
