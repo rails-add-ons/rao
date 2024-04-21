@@ -7,11 +7,11 @@ module Rao
         not_eq:   :'<>',
         not_null: :is_not_null,
 
-        gt:       :>,
         gt_or_eq: :>=,
-        eq:       :'=',
+        gt:       :>,
         lt_or_eq: :<=,
         lt:       :<,
+        eq:       :'=',
         null:     :is_null,
         cont:     :like
       }
