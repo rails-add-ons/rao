@@ -1,6 +1,20 @@
 module Rao
   module Query
     class FormBuilder < SimpleForm::FormBuilder
+      def scope_button(scope, options = {})
+        if template.params.fetch(:q, {}).permit!.fetch("#{scope}_scope", nil).present?
+          template.tag.a(href: template.url_for(q: template.params.fetch(:q, {}).except("#{scope}_scope")), class: 'btn btn-primary active') do
+            template.tag.i(class: "fas fa-filter") + "&nbsp;".html_safe +
+            template.tag.span(template.resource_class.human_scope_name(scope))
+          end
+        else
+          template.tag.a(href: template.url_for(q: (template.params.fetch(:q, {}).permit!.merge("#{scope}_scope" => :null))), class: 'btn btn-primary') do
+            template.tag.i(class: "fas fa-filter") + "&nbsp;".html_safe + 
+            template.tag.span(template.resource_class.human_scope_name(scope))
+          end
+        end
+      end
+
       def boolean(name, options = {})
         translated_label = translate_label_for_boolean(name, options.delete(:association))
         options.reverse_merge!(collection: [[I18n.t("rao.query.form_builder.yes"), 1], [I18n.t("rao.query.form_builder.no"), 0]], include_blank: true, label: translated_label)

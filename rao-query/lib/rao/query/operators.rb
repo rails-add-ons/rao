@@ -13,7 +13,9 @@ module Rao
         lt:       :<,
         eq:       :'=',
         null:     :is_null,
-        cont:     :like
+        cont:     :like,
+
+        scope: :scope
       }
 
       def self.extract_attribute_name_and_predicate_from_name(name)

@@ -34,12 +34,26 @@ module Rao
               scope = scope.order(condition)
             when 'includes'
               scope = scope.includes(condition.map(&:to_sym))
+            when /(.*)\(scope\)/
+              unless query_allowed_scopes.include?($1.to_sym)
+                puts "[Rao::Query] Warning: Scope #{$1} is not allowed. Not applying scope."
+                return scope
+              end
+              if condition == "null"
+                scope = scope.send($1)
+              else
+                scope = scope.send($1, condition)
+              end
             else
               condition_statement = ::Rao::Query::ConditionParser.new(scope, field, condition).condition_statement
               scope = scope.where(condition_statement)
             end
           end
           scope
+        end
+
+        def query_allowed_scopes
+          []
         end
 
         def query_params
