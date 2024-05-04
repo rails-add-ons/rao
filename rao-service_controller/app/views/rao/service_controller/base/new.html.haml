@@ -1,6 +1,10 @@
 %h1= t('.title', **inflections)
 
+= render 'new_before_form', service: @service
+
 = bootstrap_form_for(@service, url: create_service_path) do |f|
   = render 'form_errors',  service: f.object
   = render 'form',         form: f
   = render 'form_buttons', form: f
+
+= render 'new_after_form', service: @service
