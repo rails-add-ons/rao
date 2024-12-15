@@ -1,6 +1,7 @@
-- if resource.errors.any?
-  .alert.alert-danger.error-explanation
-    .error-heading= t('errors.template.header', count: resource.errors.count, model: resource.class.model_name.human)
-    %ul
-      - resource.errors.full_messages.each do |msg|
-        %li= msg
+.form-errors
+  - if form.object.errors.any?
+    #error_explanation.alert.alert-danger
+      %h2= t(".heading", count: form.object.errors.count, model: form.object.class.model_name.human)
+      %ul
+        - form.object.errors.full_messages.each do |message|
+          %li= message

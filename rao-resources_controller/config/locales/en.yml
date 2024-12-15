@@ -1,55 +1,25 @@
 en:
-  acts_as_list:
-    flash:
-      actions:
-        reposition:
-          inserted_after: Inserted "%{inserted_resource} after %{target_resource}."
-          inserted_before: "Inserted %{inserted_resource} before %{target_resource}."
-  acts_as_published:
-    flash:
-      actions:
-        toggle_published:
-          published:
-            notice: "Published %{resource_name}."
-          unpublished:
-            notice: "Unpublished %{resource_name}."
-  awesome_nested_set:
-    flash:
-      actions:
-        reposition:
-          notice: "%{inserted_resource} nach %{target_resource} eingefügt"
-  flash:
-    actions:
-      create:
-        notice: "%{resource_name} was successfully created."
-      update:
-        notice: "%{resource_name} was successfully updated."
-      destroy:
-        notice: "%{resource_name} was successfully destroyed."
-        alert: "%{resource_name} could not be destroyed."
-      perform:
-        notice: "%{resource_name} was executed."
-        alert: "%{resource_name} could not be executed. Errors: %{errors}"
   rao:
     resources_controller:
-      aasm_concern:
-        trigger_event:
-          failure: "The event %{event} failed. Errors: %{errors}"
-          success: "The event %{event} completed successfully. The new state is %{state}."
       base:
-        form_buttons:
-          cancel: "Cancel"
         edit:
-          title: "Edit %{resource_name}"
+          title: Edit %{resource_name}
+        form_actions:
+          cancel: Cancel
+        form_errors:
+          heading:
+            one: "Could not save %{model}. The following error occurred:"
+            other: "Could not save %{model}. %{count} errors occurred:"
         index:
-          new: "New"
+          title: Listing %{collection_name}
+        index_actions:
+          back: Back
+          new: New %{resource_name}
         new:
-          title: "New %{resource_name}"
+          title: New %{resource_name}
+        new_actions:
+          cancel: Cancel
         show_actions:
-          back: "Back"
-          destroy: "Delete"
-          destroy_confirmation: "Are you sure?"
-          edit: "Edit"
-      batch_actions_concern:
-        destroy_many:
-          success: "Deleted %{count} %{collection_name}."
+          back: Back
+          destroy: Destroy
+          edit: Edit

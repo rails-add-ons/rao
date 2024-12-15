@@ -1,32 +1,31 @@
-$:.push File.expand_path("../lib", __FILE__)
-
-# Maintain your gem's version:
+# Use a unified version number for all gems in the rao namespace.
 require_relative "../lib/rao/version"
 
-# Describe your gem and declare its dependencies:
-Gem::Specification.new do |s|
-  s.name        = "rao-component"
-  s.version     = Rao::VERSION
-  s.authors     = ["Roberto Vasquez Angel"]
-  s.email       = ["roberto@vasquez-angel.de"]
-  s.homepage    = "https://github.com/rao"
-  s.summary     = "View Components for Ruby on Rails."
-  s.license     = "MIT"
+Gem::Specification.new do |spec|
+  spec.name        = "rao-component"
+  spec.version     = Rao::VERSION
+  spec.authors     = [ "Roberto Vasquez Angel" ]
+  spec.email       = [ "rva@beegoodit.de" ]
+  spec.homepage    = "https://github.com/rails-add-ons/rao-component"
+  spec.summary     = "View Components for Ruby on Rails."
+  spec.description = "Provides advanced view helpers/components for Ruby on Rails."
+  spec.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
+  # to allow pushing to a single host or delete this section to allow pushing to any host.
+  # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
-  s.required_ruby_version = '>= 2.6.0'
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = spec.homepage
+  # spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
-  s.add_dependency "rails", ">= 6.1"
-  s.add_dependency "rao"
-  s.add_dependency "haml-rails"
+  spec.files = Dir.chdir(File.expand_path(__dir__)) do
+    Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  end
 
-  s.add_development_dependency "sqlite3", "~> 1.4"
-  s.add_development_dependency "rspec-rails"
-  s.add_development_dependency "guard-rspec"
-  s.add_development_dependency "guard-bundler"
-  s.add_development_dependency "pry"
-  s.add_development_dependency "simplecov"
-  s.add_development_dependency "rails"
-  s.add_development_dependency "capybara"
+  spec.add_dependency "rails", ">= 8.1.0.alpha"
+
+  spec.add_development_dependency "guard-bundler"
+  spec.add_development_dependency "guard-rspec"
+  spec.add_development_dependency "rspec-rails"
 end

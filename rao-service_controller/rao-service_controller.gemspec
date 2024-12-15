@@ -1,30 +1,30 @@
-$:.push File.expand_path("../lib", __FILE__)
+require_relative "lib/rao/service_controller/version"
 
-# Maintain your gem's version:
-require_relative "../lib/rao/version"
+Gem::Specification.new do |spec|
+  spec.name        = "rao-service_controller"
+  spec.version     = Rao::ServiceController::VERSION
+  spec.authors     = [ "Roberto Vasquez Angel" ]
+  spec.email       = [ "rva@beegoodit.de" ]
+  spec.homepage    = "https://github.com/rails-ao/rao-service_controller"
+  spec.summary     = "A toolkit to build resourceful controllers for Rails applications."
+  spec.description = "Provides a base class and a set of modules to build resourceful controllers for Rails applications."
+  spec.license     = "MIT"
 
-# Describe your gem and declare its dependencies:
-Gem::Specification.new do |s|
-  s.name        = "rao-service_controller"
-  s.version     = Rao::VERSION
-  s.authors     = ["Roberto Vasquez Angel"]
-  s.email       = ["roberto@vasquez-angel.de"]
-  s.homepage    = "https://github.com/rao"
-  s.summary     = "Services Controller for Ruby on Rails."
-  s.license     = "MIT"
+  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
+  # to allow pushing to a single host or delete this section to allow pushing to any host.
+  # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = spec.homepage
+  # spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
-  s.required_ruby_version = '>= 2.6.0'
+  spec.files = Dir.chdir(File.expand_path(__dir__)) do
+    Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  end
 
-  s.add_dependency "rails", ">= 6.1"
-  s.add_dependency "rao"
-  s.add_dependency "simple_form"
-  s.add_dependency "twitter-bootstrap-components-rails"
-  s.add_dependency "font-awesome-rails"
+  spec.add_dependency "rails", ">= 8.1.0.alpha"
 
-  s.add_development_dependency "sqlite3", "~> 1.4"
-  s.add_development_dependency "rspec-rails"
-  s.add_development_dependency "guard-rspec"
-  s.add_development_dependency "guard-bundler"
+  spec.add_development_dependency "guard-bundler"
+  spec.add_development_dependency "guard-rspec"
+  spec.add_development_dependency "rspec-rails"
 end

@@ -1,55 +1,27 @@
 de:
-  acts_as_list:
-    flash:
-      actions:
-        reposition:
-          inserted_after: "%{inserted_resource} nach %{target_resource} eingefügt."
-          inserted_before: "%{inserted_resource} vor %{target_resource} eingefügt."
-  acts_as_published:
-    flash:
-      actions:
-        toggle_published:
-          published:
-            notice: "%{resource_name} veröffentlicht."
-          unpublished:
-            notice: "%{resource_name} zurückgezogen."
-  awesome_nested_set:
-    flash:
-      actions:
-        reposition:
-          notice: "%{inserted_resource} nach %{target_resource} eingefügt."
-  flash:
-    actions:
-      create:
-        notice: "%{resource_name} wurde erstellt."
-      update:
-        notice: "%{resource_name} wurde aktualisiert."
-      destroy:
-        notice: "%{resource_name} wurde gelöscht."
-        alert: "%{resource_name} konnte nicht gelöscht werden."
-      perform:
-        notice: "%{resource_name} wurde ausgeführt."
-        alert: "%{resource_name} konnte nicht ausgeführt werden. Es traten folgende Fehler auf: %{errors}"
   rao:
     resources_controller:
-      aasm_concern:
-        trigger_event:
-          failure: "Der Vorgang %{event} war nicht erfolgreich. Es traten folgende Fehler auf: %{errors}"
-          success: "Der Vorgang %{event} war erfolgreich. Der neue Status ist %{state}."
       base:
-        form_buttons:
-          cancel: "Abbrechen"
         edit:
-          title: "%{resource_name} bearbeiten"
+          title: Bearbeite %{resource_name}
+        edit_actions:
+          cancel: Abbrechen
+        form_actions:
+          cancel: Abbrechen
+        form_errors:
+          heading:
+            one: "Konnte %{model} nicht speichern. Folgender Fehler ist aufgetreten:"
+            other: "Konnte %{model} nicht speichern. %{count} Fehler sind aufgetreten:"
         index:
-          new: "Erstellen"
+          title: Liste von %{collection_name}
+        index_actions:
+          back: Zurück
+          new: "%{resource_name} hinzufügen"
         new:
-          title: "%{resource_name} erstellen"
+          title: "%{resource_name} hinzufügen"
+        new_actions:
+          cancel: Abbrechen
         show_actions:
-          back: "Zurück"
-          destroy: "Löschen"
-          destroy_confirmation: "Sind Sie sicher?"
-          edit: "Bearbeiten"
-      batch_actions_concern:
-        destroy_many:
-          success: "%{count} %{collection_name} wurden gelöscht."
+          back: Zurück
+          destroy: Löschen
+          edit: Bearbeiten

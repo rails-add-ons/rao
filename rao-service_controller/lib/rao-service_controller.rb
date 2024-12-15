@@ -1,6 +1,8 @@
-require 'font-awesome-rails'
-require 'simple_form'
-require 'twitter-bootstrap-components-rails'
-require 'rao'
+require "rao/service_controller/version"
+require "rao/service_controller/engine"
 
-require "rao/service_controller"
+module Rao
+  module ServiceController
+    # Your code goes here...
+  end
+end

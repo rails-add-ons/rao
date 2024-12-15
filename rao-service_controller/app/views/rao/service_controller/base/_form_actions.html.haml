@@ -1,0 +1,4 @@
+.form-actions.d-flex.justify-content-end
+  = button_tag(class: "btn btn-primary", type: "submit") do
+    %i.fa-solid.fa-check
+    = t('.submit', service_name: form.object.model_name.human)

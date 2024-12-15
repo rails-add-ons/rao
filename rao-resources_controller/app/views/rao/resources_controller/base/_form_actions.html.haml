@@ -1,0 +1,4 @@
+.form-actions.d-flex.justify-content-end
+  = form.button(:submit, class: 'btn btn-success') do
+    %i.fa-solid.fa-check
+    = t('.submit', model_name: form.object.model_name.human)

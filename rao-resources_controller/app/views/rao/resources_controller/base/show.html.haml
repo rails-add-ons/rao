@@ -1,10 +1,22 @@
-%h1= Rao::ResourcesController::Configuration.label_for_resource_proc.call(@resource)
+.content-header
+  .row
+    .col
+      %h1= @resource.to_s
 
-= render 'before_show_table', resource: @resource
+.content-body.overflow-y-auto.mb-2
+  .row
+    .col
+      .resource-table
+        = resource_table(resource: @resource) do |table|
+          = render 'show_table',         table: table
+          = render 'show_table_actions', table: table
 
-= resource_table(resource: @resource) do |t|
-  = render 'show', table: t
+  .row
+    .col
+      = render "after_show_table", resource: @resource
 
-= render 'after_show_table', resource: @resource
-  
-= render 'show_actions', resource: @resource
+.content-footer
+  .row
+    .col
+      = render "show_actions", resource: @resource
+

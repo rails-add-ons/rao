@@ -1,4 +1,8 @@
-require "rao"
-require "responders"
+require "rao/resources_controller/version"
+require "rao/resources_controller/engine"
 
-require "rao/resources_controller"
+module Rao
+  module ResourcesController
+    # Your code goes here...
+  end
+end

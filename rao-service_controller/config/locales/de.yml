@@ -1,29 +1,18 @@
 de:
-  errors:
-    template:
-      services:
-        header:
-          one: 'Konnte %{model} nicht ausführen: ein Fehler.'
-          other: 'Konnte %{model} nicht ausführen: %{count} Fehler.'
-  flash:
-    actions:
-      create:
-        notice: "%{resource_name} wurde erstellt."
-      update:
-        notice: "%{resource_name} wurde aktualisiert."
-      destroy:
-        notice: "%{resource_name} wurde gelöscht."
-        alert: "%{resource_name} konnte nicht gelöscht werden."
-      perform:
-        notice: "%{resource_name} wurde ausgeführt."
-        alert: "%{resource_name} konnte nicht ausgeführt werden. Es traten folgende Fehler auf: %{errors}"
   rao:
     service_controller:
       base:
-        create:
-          back: "Zurück"
-        form_buttons:
+        form_actions:
           submit: "%{service_name} ausführen"
-          submitted: "Wird ausgeführt..."
+        form_errors:
+          heading:
+            one: "Es ist ein Fehler beim Ausführen von %{service_name} aufgetreten"
+            other: "Es sind %{count} Fehler beim Ausführen von %{service_name} aufgetreten"
         new:
           title: "%{service_name} ausführen"
+        new_actions:
+          back: "Zurück"
+        result:
+          title: "%{service_name} ausgeführt"
+        result_actions:
+          back: "Zurück"

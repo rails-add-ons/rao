@@ -1,0 +1,22 @@
+.content-header
+  .row
+    .col
+      %h1= t(".title", **inflections)
+
+.content-body.overflow-y-auto.mb-2
+  .row
+    .col
+      .result-table
+        = resource_table(resource: @result) do |table|
+          = render 'result_table',         table: table
+          = render 'result_table_actions', table: table
+
+  .row
+    .col
+      = render "after_result_table", resource: @resource
+
+.content-footer
+  .row
+    .col
+      = render "result_actions", result: @result
+

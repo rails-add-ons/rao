@@ -1,7 +1,5 @@
-require 'rao/version'
-
 module Rao
   module ServiceController
-    VERSION = ::Rao::VERSION
+    VERSION = "0.1.0"
   end
 end

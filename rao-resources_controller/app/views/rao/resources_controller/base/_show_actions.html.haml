@@ -1,11 +1,12 @@
-.btn-group
-  = link_to(edit_resource_path(resource), class: 'btn btn-secondary') do
-    %i.fas.fa-edit
-    = t('.edit')
+.show-actions.d-flex.justify-content-between
+  = link_to(controller.send(:show_back_link_location), class: "btn btn-link") do
+    %i.fa-solid.fa-chevron-left
+    = t(".back")
 
-  = link_to(resource_path(resource), class: 'btn btn-danger', method: :delete, data: { confirm: t('.destroy_confirmation') }) do
-    %i.fas.fa-trash
-    = t('.destroy')
-
-= link_to(collection_path, class: 'btn btn-link') do
-  = t('.back')
+  .btn-group
+    = link_to(edit_resource_path(@resource), class: "btn btn-warning text-white") do
+      %i.fa-solid.fa-pencil
+      = t(".edit")
+    = link_to(resource_path(@resource), class: "btn btn-danger text-white", method: :delete, data: { confirm: t('.destroy_confirmation') }) do
+      %i.fa-solid.fa-fire
+      = t(".destroy")

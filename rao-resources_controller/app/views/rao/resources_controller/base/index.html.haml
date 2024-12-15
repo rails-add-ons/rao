@@ -1,15 +1,25 @@
-%h1
-  %span
-    = resource_class.model_name.human(count: :other)
-  .pull-right
-    = link_to(new_resource_path, class: 'btn btn-success') do
-      %i.fas.fa-plus
-      = t('.new')
+.content-header
+  .row
+    .col
+      %h1= t(".title", **inflections)
 
-= render 'before_index_table', collection: @collection
+.content-body.overflow-y-auto.mb-2
+  .row
+    .col
+      = render "before_index_table", collection: @collection
 
-= collection_table(collection: @collection, resource_class: resource_class) do |t|
-  = render 'table',         table: t
-  = render 'table_actions', table: t
+  .row
+    .col
+      .collection-table.table.table-responsive
+        = collection_table(collection: @collection, resource_class: resource_class) do |table|
+          = render 'index_table',         table: table
+          = render 'index_table_actions', table: table
 
-= render partial: 'pagination', locals: { collection: @collection} if respond_to?(:paginate?) && paginate?
+  .row
+    .col
+      = render "after_index_table", collection: @collection
+
+.content-footer
+  .row
+    .col
+      = render "index_actions"

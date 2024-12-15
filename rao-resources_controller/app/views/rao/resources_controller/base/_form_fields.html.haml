@@ -1,0 +1,6 @@
+.form-fields
+  - resource_class.attribute_names.dup.delete_if { |an| %w(id created_at updated_at).include?(an) }.each do |name|
+    - if name.end_with?('_id') && !resource_class.reflect_on_association(name.chomp('_id')).options[:polymorphic]
+      = form.association name.chomp("_id")
+    - else
+      = form.input name

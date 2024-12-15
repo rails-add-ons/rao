@@ -1,5 +1,0 @@
-= form.button :submit, class: 'btn btn-success' do
-  = fa_icon :check
-  = t('.submit', model_name: form.object.model_name.human)
-= link_to(((action_name == 'new' || form.object.new_record?) ? collection_path : resource_path(form.object)), class: 'btn btn-link') do
-  = t('.cancel')

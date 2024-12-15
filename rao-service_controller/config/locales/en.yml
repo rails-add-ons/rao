@@ -1,29 +1,18 @@
 en:
-  errors:
-    template:
-      services:
-        header:
-          one: 1 error prohibited this %{model} from being executed
-          other: "%{count} errors prohibited this %{model} from being executed"
-  flash:
-    actions:
-      create:
-        notice: "%{resource_name} was successfully created."
-      update:
-        notice: "%{resource_name} was successfully updated."
-      destroy:
-        notice: "%{resource_name} was successfully destroyed."
-        alert: "%{resource_name} could not be destroyed."
-      perform:
-        notice: "%{resource_name} was executed."
-        alert: "%{resource_name} could not be executed. Errors: %{errors}"
   rao:
     service_controller:
       base:
-        create:
-          back: "Back"
-        form_buttons:
-          submit: "Run %{service_name}"
-          submitted: "Running..."
+        form_actions:
+          submit: "Execute %{service_name}"
+        form_errors:
+          heading:
+            one: "An error occurred while executing %{service_name}"
+            other: "%{count} errors occurred while executing %{service_name}"
         new:
-          title: "Run %{service_name}"
+          title: "Execute %{service_name}"
+        new_actions:
+          back: "Back"
+        result:
+          title: "%{service_name} executed"
+        result_actions:
+          back: "Back"

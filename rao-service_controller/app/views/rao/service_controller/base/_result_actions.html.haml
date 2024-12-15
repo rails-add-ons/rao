@@ -1,0 +1,4 @@
+.result-actions.d-flex.justify-content-between
+  = link_to(controller.send(:result_back_link_location), class: "btn btn-link") do
+    %i.fa-solid.fa-chevron-left
+    = t(".back")
