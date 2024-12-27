@@ -28,7 +28,7 @@ module Rao
           end
         end
         after_perform
-        save if ok? && autosave? && respond_to?(:save, true)
+        save if result.ok? && autosave? && respond_to?(:save, true)
         perform_result
       end
     end
