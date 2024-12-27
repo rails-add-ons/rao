@@ -1,6 +1,29 @@
 en:
+  acts_as_list:
+    flash:
+      actions:
+        reposition:
+          inserted_after: Inserted "%{inserted_resource} after %{target_resource}."
+          inserted_before: "Inserted %{inserted_resource} before %{target_resource}."
+  acts_as_published:
+    flash:
+      actions:
+        toggle_published:
+          published:
+            notice: "Published %{resource_name}."
+          unpublished:
+            notice: "Unpublished %{resource_name}."
+  awesome_nested_set:
+    flash:
+      actions:
+        reposition:
+          notice: "%{inserted_resource} nach %{target_resource} eingefügt"
   rao:
     resources_controller:
+      aasm_concern:
+        trigger_event:
+          failure: "The event %{event} failed. Errors: %{errors}"
+          success: "The event %{event} completed successfully. The new state is %{state}."
       base:
         edit:
           title: Edit %{resource_name}

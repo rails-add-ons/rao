@@ -1,6 +1,29 @@
 de:
+  acts_as_list:
+    flash:
+      actions:
+        reposition:
+          inserted_after: "%{inserted_resource} nach %{target_resource} eingefügt."
+          inserted_before: "%{inserted_resource} vor %{target_resource} eingefügt."
+  acts_as_published:
+    flash:
+      actions:
+        toggle_published:
+          published:
+            notice: "%{resource_name} veröffentlicht."
+          unpublished:
+            notice: "%{resource_name} zurückgezogen."
+  awesome_nested_set:
+    flash:
+      actions:
+        reposition:
+          notice: "%{inserted_resource} nach %{target_resource} eingefügt."
   rao:
     resources_controller:
+      aasm_concern:
+        trigger_event:
+          failure: "Der Vorgang %{event} war nicht erfolgreich. Es traten folgende Fehler auf: %{errors}"
+          success: "Der Vorgang %{event} war erfolgreich. Der neue Status ist %{state}."
       base:
         edit:
           title: Bearbeite %{resource_name}
