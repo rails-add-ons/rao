@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in rao-resources_controller.gemspec.
+# Specify your gem's dependencies in rao-component.gemspec.
 gemspec
 
 gem "rails", git: "https://github.com/rails/rails.git", branch: "main"
