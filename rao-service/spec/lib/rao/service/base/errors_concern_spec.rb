@@ -26,19 +26,19 @@ RSpec.describe ErrorsConcernService do
   describe '#initialize_errors' do
     subject { described_class.new }
 
-    it { expect(subject.instance_variable_get(:@errors)).to be_a(ActiveModel::Errors) }
+    it { expect(subject.errors).to be_a(ActiveModel::Errors) }
   end
 
   describe '#add_error' do
     subject { described_class.call(action: :add_error) }
 
-    it { expect(subject.instance_variable_get(:@errors).messages).to eq({ foo: ["bar"]}) }
+    it { expect(subject.errors.messages).to eq({ foo: ["bar"]}) }
   end
 
   describe '#add_error_and_say' do
     subject { described_class.call(action: :add_error_and_say) }
 
     it { expect(subject.messages.map(&:content)).to include("qux") }
-    it { expect(subject.instance_variable_get(:@errors).messages).to eq({ baz: ["qux"]}) }
+    it { expect(subject.errors.messages).to eq({ baz: ["qux"]}) }
   end
 end

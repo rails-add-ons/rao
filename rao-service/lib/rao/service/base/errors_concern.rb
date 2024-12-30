@@ -11,10 +11,6 @@ module Rao
         @errors = ActiveModel::Errors.new(self)
       end
 
-      def copy_errors_to_result
-        @result.instance_variable_set(:@errors, @errors)
-      end
-
       def copy_errors_from_to(obj, key_prefix)
         obj.errors.each do |key, message|
           @errors.add(key_prefix, message)

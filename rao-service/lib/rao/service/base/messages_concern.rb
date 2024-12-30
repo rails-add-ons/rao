@@ -42,10 +42,6 @@ module Rao
         !!@options[:silence]
       end
 
-      def copy_messages_to_result
-        @result.instance_variable_set(:@messages, @messages)
-      end
-
       def _message(content, options = {})
         Rao::Service::Message::Base.new(content, indent_level: options[:indent_level], prefix: options[:prefix], suffix: options[:suffix])
       end

@@ -11,7 +11,7 @@ module Rao
         alias_method :ok?, :success?
 
         def failed?
-          @errors.any?
+          @service.errors.any?
         end
       end
     end

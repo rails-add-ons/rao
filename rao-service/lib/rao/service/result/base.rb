@@ -18,14 +18,22 @@ module Rao
       require 'rao/service/result/base/succeedable_concern'
       include SucceedableConcern
 
-      attr_reader :messages, :errors, :service
+      attr_reader :service
 
       def initialize(service)
         @service = service
       end
 
+      def errors
+        @service.instance_variable_get(:@errors)
+      end
+
       def model_name
         @service.model_name
+      end
+
+      def messages
+        @service.instance_variable_get(:@messages)
       end
     end
   end

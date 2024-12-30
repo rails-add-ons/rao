@@ -12,8 +12,6 @@ module Rao
       end
 
       def perform_result
-        copy_messages_to_result
-        copy_errors_to_result
         @result
       end
 
