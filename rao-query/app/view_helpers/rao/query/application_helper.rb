@@ -35,7 +35,8 @@ module Rao
       def form_for(collection, options = {}, &block)
         handle_simple_form_missing unless c.respond_to?(:simple_form_for)
         wrapped_collection = SearchableCollection.new(collection, c.params[:q])
-        c.simple_form_for(wrapped_collection, options.reverse_merge(as: :q, url: c.collection_path, method: :get, builder: Rao::Query::FormBuilder), &block)
+        url = options.delete(:url) || c.collection_path
+        c.simple_form_for(wrapped_collection, options.reverse_merge(as: :q, url: url, method: :get, builder: Rao::Query::FormBuilder), &block)
       end
 
       class SearchableCollection
