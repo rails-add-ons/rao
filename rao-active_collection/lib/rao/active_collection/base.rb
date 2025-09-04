@@ -1,4 +1,5 @@
 require "rao/active_collection/attribute_names_concern"
+require "ostruct"
 
 module Rao
   module ActiveCollection
@@ -81,11 +82,28 @@ module Rao
       end
 
       def initialize(attributes = {})
+        # Initialize all attributes to nil first for proper dirty tracking
+        self.class.attribute_names.each do |attr_name|
+          instance_variable_set("@#{attr_name}", nil)
+        end
+
         attributes.each do |key, value|
           send("#{key}=", value)
         end
         @new_record = true
         @destroyed = false
+
+        # Mark all attributes as not changed initially
+        # We need to call changes_applied after setting initial values
+        changes_applied
+      end
+
+      # Store original values for reload functionality
+      def store_original_values
+        @original_values = {}
+        self.class.attribute_names.each do |attr_name|
+          @original_values[attr_name] = send(attr_name)
+        end
       end
 
       def self.limit(limit)
@@ -105,8 +123,17 @@ module Rao
       end
 
       def reload
-        restore_attributes
-        clear_changes_information
+        # Use stored original values for reload functionality
+        if persisted? && @original_values
+          # Apply the stored original values
+          @original_values.each do |key, value|
+            send("#{key}=", value)
+          end
+          
+          # Mark changes as applied to establish new baseline
+          changes_applied
+        end
+
         self
       end
 
@@ -115,6 +142,7 @@ module Rao
         return unless valid?
         @new_record = false
         changes_applied
+        store_original_values
         self.class.collection[send(self.class.primary_key)] = self
       end
 
@@ -128,6 +156,8 @@ module Rao
         end
         save
       end
+
+      # mark as changed when a setter is called
 
       private
 

@@ -30,5 +30,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rb-readline"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "standardrb"
-  s.add_development_dependency "sqlite3", "~> 1.4"
+  s.add_development_dependency "sqlite3", "~> 2.1"
 end
