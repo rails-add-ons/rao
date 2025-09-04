@@ -6,13 +6,10 @@ pkg/
 *.gem
 
 # Ignore dummy app.
-# spec/dummy
+spec/dummy
 
 # Ignore backup files.
 *~
 
 # Ignore coverage files.
 coverage/
-
-# Ignore dummy app
-spec/dummy
