@@ -9,6 +9,9 @@ rm -rf spec/dummy
 DISABLE_MIGRATE=true bundle exec rake dummy:app
 rm spec/dummy/.ruby-version
 
+# Comment out all config.assets.* lines for Rails 8.0 compatibility
+find spec/dummy/config -name "*.rb" -exec sed -i 's/.*config\.assets\./# &/g' {} \;
+
 # Satisfy prerequisites
 cd spec/dummy
 
