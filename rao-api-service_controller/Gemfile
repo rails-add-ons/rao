@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 gemspec
-gem 'rao', path: '../'
-gem 'rails', '6.1'
+gem "rao", path: "../"
+gem "rao-service", path: "../rao-service"
+gem "rails", "8.0.2"
