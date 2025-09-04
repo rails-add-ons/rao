@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :post do
-    association(:author)
-    firstname { "Jane" }
-    lastname { "Doe" }
-    visible { true }
+    title { "MyString" }
+    body { "MyText" }
+    published_at { "2025-09-01 13:56:35" }
   end
 end

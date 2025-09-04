@@ -1,6 +1,7 @@
 require "rao/api/resources_controller/configuration"
 require "rao/api/resources_controller/version"
 require "rao/api/resources_controller/engine"
+require "responders"
 
 module Rao
   module Api
