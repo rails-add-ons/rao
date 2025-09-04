@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rao"
 
-  s.add_development_dependency "sqlite3", "~> 1.4"
+  s.add_development_dependency "sqlite3", "~> 2.1"
   s.add_development_dependency "rails-dummy"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "guard-rspec"
@@ -27,15 +27,13 @@ Gem::Specification.new do |s|
   s.add_development_dependency "pry"
 
   # dummy app
-  s.add_development_dependency "rails", "6.1"
+  s.add_development_dependency "rails", "8.0.2"
   s.add_development_dependency "bootsnap"
   s.add_development_dependency "coffee-rails", "~> 4.2"
   s.add_development_dependency "turbolinks", "~> 5"
   s.add_development_dependency "jbuilder", "~> 2.5"
   s.add_development_dependency "byebug"
   s.add_development_dependency "web-console", ">= 3.3.0"
-  s.add_development_dependency "spring"
-  s.add_development_dependency "spring-watcher-listen", "~> 2.0.0"
   s.add_development_dependency "puma"
   s.add_development_dependency "sass-rails", "~> 5.0"
   s.add_development_dependency "uglifier", ">= 1.3.0"
