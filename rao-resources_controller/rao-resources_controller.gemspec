@@ -23,8 +23,12 @@ Gem::Specification.new do |spec|
   end
 
   spec.add_dependency "rails", ">= 8.1.0.alpha"
+  spec.add_dependency "rao"
 
   spec.add_development_dependency "guard-bundler"
   spec.add_development_dependency "guard-rspec"
   spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "rails-dummy"
+  spec.add_development_dependency "bootsnap"
+  spec.add_development_dependency "pry-rails"
 end

@@ -1,5 +1,7 @@
+require 'rao/version'
+
 module Rao
   module ResourcesController
-    VERSION = "0.1.0"
+    VERSION = ::Rao::VERSION
   end
 end
