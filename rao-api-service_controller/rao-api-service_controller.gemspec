@@ -4,29 +4,29 @@ $:.push File.expand_path("../lib", __FILE__)
 require_relative "../lib/rao/version"
 
 # Describe your gem and declare its dependencies:
-Gem::Specification.new do |s|
-  s.name        = "rao-api-service_controller"
-  s.version     = Rao::VERSION
-  s.authors     = ["Roberto Vasquez Angel"]
-  s.email       = ["roberto@vasquez-angel.de"]
-  s.homepage    = "https://github.com/rao"
-  s.summary     = "API Services Controller for Ruby on Rails."
-  s.license     = "MIT"
+Gem::Specification.new do |spec|
+  spec.name        = "rao-api-service_controller"
+  spec.version     = Rao::VERSION
+  spec.authors     = ["Roberto Vasquez Angel"]
+  spec.email       = ["roberto@vasquez-angel.de"]
+  spec.homepage    = "https://github.com/rao"
+  spec.summary     = "API Services Controller for Ruby on Rails."
+  spec.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.required_ruby_version = '>= 2.6.0'
+  spec.required_ruby_version = '>= 2.6.0'
 
-  s.add_dependency "rails", ">= 6.1"
-  s.add_dependency "rao"
-  s.add_dependency "rao-service"
-  s.add_dependency "responders"
+  spec.add_dependency "rails", ">= 8.0"
+  spec.add_dependency "rao"
+  spec.add_dependency "rao-service"
+  spec.add_dependency "responders"
 
-  s.add_development_dependency "sqlite3", "~> 2.1"
-  s.add_development_dependency "rspec-rails"
-  s.add_development_dependency "guard-rspec"
-  s.add_development_dependency "guard-bundler"
-  s.add_development_dependency "rails-dummy"
-  s.add_development_dependency "bootsnap"
-  s.add_development_dependency "pry-rails"
+  spec.add_development_dependency "sqlite3", "~> 2.1"
+  spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "guard-rspec"
+  spec.add_development_dependency "guard-bundler"
+  spec.add_development_dependency "rails-dummy"
+  spec.add_development_dependency "bootsnap"
+  spec.add_development_dependency "pry-rails"
 end
