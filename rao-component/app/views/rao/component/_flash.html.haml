@@ -1,0 +1,4 @@
+- flash.each do |type, message|
+  - next if message.blank?
+  .alert{ class: "alert-#{type}" }
+    = message
