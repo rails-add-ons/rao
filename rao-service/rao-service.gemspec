@@ -4,30 +4,30 @@ $:.push File.expand_path("../lib", __FILE__)
 require_relative "../lib/rao/version"
 
 # Describe your gem and declare its dependencies:
-Gem::Specification.new do |s|
-  s.name        = "rao-service"
-  s.version     = Rao::VERSION
-  s.authors     = ["Roberto Vasquez Angel"]
-  s.email       = ["roberto@vasquez-angel.de"]
-  s.homepage    = "https://github.com/rao"
-  s.summary     = "Services for Ruby on Rails."
-  s.license     = "MIT"
+Gem::Specification.new do |spec|
+  spec.name        = "rao-service"
+  spec.version     = Rao::VERSION
+  spec.authors     = ["Roberto Vasquez Angel"]
+  spec.email       = ["roberto@vasquez-angel.de"]
+  spec.homepage    = "https://github.com/rao"
+  spec.summary     = "Services for Ruby on Rails."
+  spec.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.required_ruby_version = '>= 2.6.0'
+  spec.required_ruby_version = '>= 2.6.0'
 
-  s.add_dependency "rails", ">= 6.1"
-  s.add_dependency "activesupport"
-  s.add_dependency "activemodel"
-  s.add_dependency "rao"
+  spec.add_dependency "rails", ">= 8.0"
+  spec.add_dependency "activesupport"
+  spec.add_dependency "activemodel"
+  spec.add_dependency "rao"
 
-  s.add_development_dependency 'rails-dummy'
-  s.add_development_dependency "sqlite3", "~> 2.1"
-  s.add_development_dependency "rspec-rails"
-  s.add_development_dependency "guard-rspec"
-  s.add_development_dependency "guard-bundler"
-  s.add_development_dependency "pry"
-  s.add_development_dependency "rb-readline"
-  s.add_development_dependency "bootsnap"
+  spec.add_development_dependency "sqlite3", "~> 2.1"
+  spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "guard-rspec"
+  spec.add_development_dependency "guard-bundler"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "rb-readline"
+  spec.add_development_dependency "bootsnap"
+  spec.add_development_dependency "rails-dummy"
 end
