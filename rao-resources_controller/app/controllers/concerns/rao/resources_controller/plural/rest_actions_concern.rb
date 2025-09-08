@@ -46,35 +46,34 @@ module Rao
         extend ActiveSupport::Concern
 
         included do
+          include ActionController::MimeResponds
+
+          respond_to :html, :turbo_stream
+          responders :flash
+
           before_action :load_collection, only: %i[ index ]
           before_action :load_resource, only: %i[ show edit update destroy ]
           before_action :initialize_resource, only: %i[ new ]
           before_action :initialize_resource_for_create, only: %i[ create ]
 
           helper Rao::Component::ApplicationHelper
+          helper_method :resource_namespace
         end
 
         # GET /posts or /posts.json
-        def index
-        end
+        def index; end
       
         # GET /posts/1 or /posts/1.json
-        def show
-        end
+        def show; end
       
         # GET /posts/new
-        def new
-          @resource = resource_class.new
-        end
+        def new; end
       
         # GET /posts/1/edit
-        def edit
-        end
+        def edit; end
       
         # POST /posts or /posts.json
         def create
-          @resource = resource_class.new(resource_params)
-      
           respond_to do |format|
             if @resource.save
               format.html { redirect_to @resource, notice: "#{resource_class.model_name.human} was successfully created." }
@@ -104,12 +103,24 @@ module Rao
           @resource.destroy!
       
           respond_to do |format|
-            format.html { redirect_to collection_path, status: :see_other, notice: "#{resource_class.model_name.human} was successfully destroyed." }
+            format.html { redirect_to after_destroy_location || @resource, status: :see_other, notice: "#{resource_class.model_name.human} was successfully destroyed." }
             format.json { head :no_content }
           end
         end
       
         private
+
+        def after_create_location
+          nil
+        end
+
+        def after_destroy_location
+          nil
+        end
+
+        def after_update_location
+          nil
+        end
 
         # Override this method in your controller to provide a custom back link location.
         def edit_back_link_location
@@ -130,7 +141,6 @@ module Rao
         def show_back_link_location
           collection_path
         end
-        
 
         # Override this method in your controller to provide a custom collection load scope.
         def load_collection_scope

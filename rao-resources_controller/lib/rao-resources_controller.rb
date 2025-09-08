@@ -1,3 +1,7 @@
+require "haml-rails"
+require "responders"
+require "rao-component"
+require "simple_form"
 require "rao"
 require "rao/resources_controller/version"
 require "rao/resources_controller/configuration"

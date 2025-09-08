@@ -1,31 +1,54 @@
-GIT
-  remote: https://github.com/rails/rails.git
-  revision: 1ced226437872515239044a1dc1d81a8453ae291
-  branch: main
+PATH
+  remote: ../rao-component
   specs:
-    actioncable (8.1.0.alpha)
-      actionpack (= 8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
+    rao-component (0.0.52.pre)
+      haml-rails
+      rails (>= 8.0)
+      rao
+
+PATH
+  remote: ..
+  specs:
+    rao (0.0.52.pre)
+      rails (>= 8.0)
+
+PATH
+  remote: .
+  specs:
+    rao-resources_controller (0.0.52.pre)
+      haml-rails
+      rails (>= 8.0)
+      rao
+      rao-component
+      responders
+      simple_form
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    actioncable (8.0.2)
+      actionpack (= 8.0.2)
+      activesupport (= 8.0.2)
       nio4r (~> 2.0)
       websocket-driver (>= 0.6.1)
       zeitwerk (~> 2.6)
-    actionmailbox (8.1.0.alpha)
-      actionpack (= 8.1.0.alpha)
-      activejob (= 8.1.0.alpha)
-      activerecord (= 8.1.0.alpha)
-      activestorage (= 8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
+    actionmailbox (8.0.2)
+      actionpack (= 8.0.2)
+      activejob (= 8.0.2)
+      activerecord (= 8.0.2)
+      activestorage (= 8.0.2)
+      activesupport (= 8.0.2)
       mail (>= 2.8.0)
-    actionmailer (8.1.0.alpha)
-      actionpack (= 8.1.0.alpha)
-      actionview (= 8.1.0.alpha)
-      activejob (= 8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
+    actionmailer (8.0.2)
+      actionpack (= 8.0.2)
+      actionview (= 8.0.2)
+      activejob (= 8.0.2)
+      activesupport (= 8.0.2)
       mail (>= 2.8.0)
       rails-dom-testing (~> 2.2)
-    actionpack (8.1.0.alpha)
-      actionview (= 8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
+    actionpack (8.0.2)
+      actionview (= 8.0.2)
+      activesupport (= 8.0.2)
       nokogiri (>= 1.8.5)
       rack (>= 2.2.4)
       rack-session (>= 1.0.1)
@@ -33,36 +56,35 @@ GIT
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
       useragent (~> 0.16)
-    actiontext (8.1.0.alpha)
-      action_text-trix (~> 2.1.15)
-      actionpack (= 8.1.0.alpha)
-      activerecord (= 8.1.0.alpha)
-      activestorage (= 8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
+    actiontext (8.0.2)
+      actionpack (= 8.0.2)
+      activerecord (= 8.0.2)
+      activestorage (= 8.0.2)
+      activesupport (= 8.0.2)
       globalid (>= 0.6.0)
       nokogiri (>= 1.8.5)
-    actionview (8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
+    actionview (8.0.2)
+      activesupport (= 8.0.2)
       builder (~> 3.1)
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
-    activejob (8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
+    activejob (8.0.2)
+      activesupport (= 8.0.2)
       globalid (>= 0.3.6)
-    activemodel (8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
-    activerecord (8.1.0.alpha)
-      activemodel (= 8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
+    activemodel (8.0.2)
+      activesupport (= 8.0.2)
+    activerecord (8.0.2)
+      activemodel (= 8.0.2)
+      activesupport (= 8.0.2)
       timeout (>= 0.4.0)
-    activestorage (8.1.0.alpha)
-      actionpack (= 8.1.0.alpha)
-      activejob (= 8.1.0.alpha)
-      activerecord (= 8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
+    activestorage (8.0.2)
+      actionpack (= 8.0.2)
+      activejob (= 8.0.2)
+      activerecord (= 8.0.2)
+      activesupport (= 8.0.2)
       marcel (~> 1.0)
-    activesupport (8.1.0.alpha)
+    activesupport (8.0.2)
       base64
       benchmark (>= 0.3)
       bigdecimal
@@ -75,49 +97,24 @@ GIT
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
-    rails (8.1.0.alpha)
-      actioncable (= 8.1.0.alpha)
-      actionmailbox (= 8.1.0.alpha)
-      actionmailer (= 8.1.0.alpha)
-      actionpack (= 8.1.0.alpha)
-      actiontext (= 8.1.0.alpha)
-      actionview (= 8.1.0.alpha)
-      activejob (= 8.1.0.alpha)
-      activemodel (= 8.1.0.alpha)
-      activerecord (= 8.1.0.alpha)
-      activestorage (= 8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
-      bundler (>= 1.15.0)
-      railties (= 8.1.0.alpha)
-    railties (8.1.0.alpha)
-      actionpack (= 8.1.0.alpha)
-      activesupport (= 8.1.0.alpha)
-      irb (~> 1.13)
-      rackup (>= 1.0.0)
-      rake (>= 12.2)
-      thor (~> 1.0, >= 1.2.2)
-      tsort (>= 0.2)
-      zeitwerk (~> 2.6)
-
-PATH
-  remote: .
-  specs:
-    rao-resources_controller (0.0.52.pre)
-      rails (>= 8.1.0.alpha)
-      rao
-
-GEM
-  remote: https://rubygems.org/
-  specs:
-    action_text-trix (2.1.15)
-      railties
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
     base64 (0.3.0)
     benchmark (0.4.1)
-    bigdecimal (3.2.2)
+    bigdecimal (3.2.3)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
     builder (3.3.0)
+    capybara (3.40.0)
+      addressable
+      matrix
+      mini_mime (>= 0.1.3)
+      nokogiri (~> 1.11)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      regexp_parser (>= 1.5, < 3.0)
+      xpath (~> 3.2)
     coderay (1.1.3)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
@@ -127,6 +124,11 @@ GEM
     drb (2.2.3)
     erb (5.0.2)
     erubi (1.13.1)
+    factory_bot (6.5.5)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.5.1)
+      factory_bot (~> 6.5)
+      railties (>= 6.1.0)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
     ffi (1.17.2-arm-linux-gnu)
@@ -159,8 +161,21 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    haml (6.3.0)
+      temple (>= 0.8.2)
+      thor
+      tilt
+    haml-rails (2.1.0)
+      actionpack (>= 5.1)
+      activesupport (>= 5.1)
+      haml (>= 4.0.6)
+      railties (>= 5.1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
+    importmap-rails (2.2.2)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.8.1)
     irb (1.15.2)
       pp (>= 0.6.0)
@@ -183,6 +198,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
+    matrix (0.4.3)
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.5)
@@ -238,7 +254,8 @@ GEM
     psych (5.2.6)
       date
       stringio
-    puma (6.6.1)
+    public_suffix (6.0.2)
+    puma (7.0.1)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.1)
@@ -249,18 +266,37 @@ GEM
       rack (>= 1.3)
     rackup (2.2.1)
       rack (>= 3)
+    rails (8.0.2)
+      actioncable (= 8.0.2)
+      actionmailbox (= 8.0.2)
+      actionmailer (= 8.0.2)
+      actionpack (= 8.0.2)
+      actiontext (= 8.0.2)
+      actionview (= 8.0.2)
+      activejob (= 8.0.2)
+      activemodel (= 8.0.2)
+      activerecord (= 8.0.2)
+      activestorage (= 8.0.2)
+      activesupport (= 8.0.2)
+      bundler (>= 1.15.0)
+      railties (= 8.0.2)
     rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
-    rails-dummy (0.1.1)
-      railties
     rails-html-sanitizer (1.6.2)
       loofah (~> 2.21)
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
+    railties (8.0.2)
+      actionpack (= 8.0.2)
+      activesupport (= 8.0.2)
+      irb (~> 1.13)
+      rackup (>= 1.0.0)
+      rake (>= 12.2)
+      thor (~> 1.0, >= 1.2.2)
+      zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.0)
-    rao (0.0.52.pre)
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
@@ -270,6 +306,10 @@ GEM
     regexp_parser (2.11.2)
     reline (0.6.2)
       io-console (~> 0.5)
+    responders (3.1.1)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
+    rexml (3.4.3)
     rspec (3.13.1)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -291,7 +331,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.5)
-    rubocop (1.80.1)
+    rubocop (1.80.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -305,10 +345,10 @@ GEM
     rubocop-ast (1.46.0)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
-    rubocop-performance (1.25.0)
+    rubocop-performance (1.26.0)
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
-      rubocop-ast (>= 1.38.0, < 2.0)
+      rubocop-ast (>= 1.44.0, < 2.0)
     rubocop-rails (2.33.3)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
@@ -320,8 +360,18 @@ GEM
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
+    rubyzip (3.1.0)
     securerandom (0.4.1)
+    selenium-webdriver (4.35.0)
+      base64 (~> 0.2)
+      logger (~> 1.4)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 4.0)
+      websocket (~> 1.0)
     shellany (0.0.1)
+    simple_form (5.3.1)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sqlite3 (2.7.3-aarch64-linux-gnu)
     sqlite3 (2.7.3-aarch64-linux-musl)
     sqlite3 (2.7.3-arm-linux-gnu)
@@ -331,9 +381,13 @@ GEM
     sqlite3 (2.7.3-x86_64-linux-gnu)
     sqlite3 (2.7.3-x86_64-linux-musl)
     stringio (3.1.7)
+    temple (0.10.4)
     thor (1.4.0)
+    tilt (2.6.1)
     timeout (0.4.3)
-    tsort (0.2.0)
+    turbo-rails (2.0.16)
+      actionpack (>= 7.1.0)
+      railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.5)
@@ -341,10 +395,13 @@ GEM
     unicode-emoji (4.0.4)
     uri (1.0.3)
     useragent (0.16.11)
+    websocket (1.2.11)
     websocket-driver (0.8.0)
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    xpath (3.2.0)
+      nokogiri (~> 1.8)
     zeitwerk (2.7.3)
 
 PLATFORMS
@@ -359,17 +416,23 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  capybara
+  factory_bot_rails
   guard-bundler
   guard-rspec
+  importmap-rails
   propshaft
   pry-rails
   puma
-  rails!
-  rails-dummy
+  rails (>= 8.0)
+  rao!
+  rao-component!
   rao-resources_controller!
   rspec-rails
   rubocop-rails-omakase
+  selenium-webdriver
   sqlite3
+  turbo-rails
 
 BUNDLED WITH
    2.7.1

@@ -1,5 +1,5 @@
 module Rao
-  module ResourceController
+  module ResourcesController
     module Singular
       # This module provides RESTful actions for a Rails controller that manages a single resource,
       # including show, new, edit, create, update, and destroy actions.
@@ -48,20 +48,15 @@ module Rao
         included do
           include ActionController::MimeResponds
 
-          respond_to :html
+          respond_to :html, :turbo_stream, :json
           responders :flash
 
-          if respond_to?(:before_action)
-            before_action :load_resource, only: [:show, :edit, :destroy, :update]
-            before_action :initialize_resource, only: [:new]
-            before_action :initialize_resource_for_create, only: [:create]
-            before_action :before_rest_action, if: -> { respond_to?(:before_rest_action, true) }
-          else
-            before_filter :load_resource, only: [:show, :edit, :destroy, :update]
-            before_filter :initialize_resource, only: [:new]
-            before_filter :initialize_resource_for_create, only: [:create]
-          end
+          before_action :load_resource, only: [:show, :edit, :destroy, :update]
+          before_action :initialize_resource, only: [:new]
+          before_action :initialize_resource_for_create, only: [:create]
+          before_action :before_rest_action
 
+          helper Rao::Component::ApplicationHelper
           helper_method :resource_namespace
         end
 
@@ -77,49 +72,88 @@ module Rao
         # Displays the edit form for the existing resource.
         def edit; end
 
+        # POST /profile or /profile.json
+        # Creates a new resource with the provided parameters.
+        # Redirects to a custom location if after_create_location is not nil,
+        # otherwise uses the default respond_with behavior.
+        def create
+          @resource.save
+          respond_with(@resource, location: after_create_location || @resource)
+          # respond_to do |format|
+          #   if @resource.save
+          #     format.html { redirect_to @resource, notice: "#{resource_class.model_name.human} was successfully created." }
+          #     format.json { render :show, status: :created, location: after_create_location || @resource }
+          #   else
+          #     format.html { render :new, status: :unprocessable_entity }
+          #     format.json { render json: @resource.errors, status: :unprocessable_entity }
+          #   end
+          # end
+        end
+
         # PATCH/PUT /profile
         # Updates the existing resource with the provided parameters.
-        # Redirects to a custom location if after_update_location is defined,
+        # Redirects to a custom location if after_update_location is not nil,
         # otherwise uses the default respond_with behavior.
         def update
-          if @resource.send(update_method_name, permitted_params) && respond_to?(:after_update_location, true) && after_update_location.present?
-            respond_with(resource_namespace, @resource, location: after_update_location)
-          else
-            respond_with(resource_namespace, @resource)
-          end
+          @resource.update(resource_params)
+          respond_with(@resource, location: after_update_location || @resource)
+
+          # respond_to do |format|
+          #   if @resource.update(resource_params)
+          #     format.html { redirect_to @resource, notice: "#{resource_class.model_name.human} was successfully updated." }
+          #     format.json { render :show, status: :ok, location: after_update_location || @resource }
+          #   else
+          #     format.html { render :edit, status: :unprocessable_entity }
+          #     format.json { render json: @resource.errors, status: :unprocessable_entity }
+          #   end
+          # end
         end
 
         # DELETE /profile
         # Destroys the existing resource.
-        # Redirects to a custom location if after_destroy_location is defined,
+        # Redirects to a custom location if after_destroy_location is not nil,
         # otherwise uses the default respond_with behavior.
         def destroy
           @resource.destroy
-          if respond_to?(:after_destroy_location, true) && after_destroy_location.present?
-            respond_with(resource_namespace, @resource, location: after_destroy_location)
-          else
-            respond_with(resource_namespace, @resource)
-          end
-        end
+          # this should call user_url and not users_url
+          respond_with(@resource, location: (after_destroy_location || root_path))
+          # respond_with(@resource, location: (after_destroy_location || @resource))
 
-        # POST /profile
-        # Creates a new resource with the provided parameters.
-        # Redirects to a custom location if after_create_location is defined,
-        # otherwise uses the default respond_with behavior.
-        def create
-          if @resource.save && respond_to?(:after_create_location, true) && after_create_location.present?
-            respond_with(resource_namespace, @resource, location: after_create_location)
-          else
-            respond_with(resource_namespace, @resource)
-          end
+          # respond_to do |format|
+          #   format.html { redirect_to after_destroy_location || @resource, status: :see_other, notice: "#{resource_class.model_name.human} was successfully destroyed." }
+          #   format.json { head :no_content }
+          # end
         end
 
         private
 
-        # Returns the appropriate update method name based on Rails version.
-        # Uses :update_attributes for Rails < 4, :update for Rails >= 4.
-        def update_method_name
-          Rails::VERSION::MAJOR < 4 ? :update_attributes : :update
+        def before_rest_action; end
+
+        def after_create_location
+          nil
+        end
+
+        def after_destroy_location
+          nil
+        end
+
+        def after_update_location
+          nil
+        end
+
+        # Override this method in your controller to provide a custom back link location.
+        def edit_back_link_location
+          resource_path(@resource)
+        end
+        
+        # Override this method in your controller to provide a custom back link location.
+        def new_back_link_location
+          root_path
+        end
+        
+        # Override this method in your controller to provide a custom back link location. 
+        def show_back_link_location
+          root_path
         end
 
         # Override this method in your controller to provide a custom resource namespace.
@@ -150,13 +184,19 @@ module Rao
         # Override this method in your controller to initialize a new resource for create in a custom way.
         # Defaults to creating a new instance with the permitted parameters.
         def initialize_resource_for_create
-          @resource = resource_class.new(permitted_params)
+          @resource = resource_class.new(resource_params)
         end
 
-        # Override this method in your controller to define the permitted parameters for the resource.
-        # This method must be implemented in your controller.
-        def permitted_params
-          raise "not implemented"
+        # Only allow a list of trusted parameters through.
+        def resource_params
+          if respond_to?(:permitted_params, true)
+            # add permitted_params aliasing resource_params adding a deprecation warning
+            ActiveSupport::Deprecation.warn("The `permitted_params` method is deprecated and will be removed in the next major version. Please use `resource_params` instead.", caller)
+            return permitted_params
+          end
+
+          # params.require(resource_class.model_name.singular).permit(*resource_class.permitted_params)
+          raise "Please implement the `resource_params` method in your controller."
         end
       end
     end

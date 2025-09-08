@@ -47,4 +47,5 @@ de:
         show_actions:
           back: Zurück
           destroy: Löschen
+          destroy_confirmation: Sind Sie sicher?
           edit: Bearbeiten

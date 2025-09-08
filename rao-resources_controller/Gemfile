@@ -3,7 +3,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in rao-resources_controller.gemspec.
 gemspec
 
-gem "rails", git: "https://github.com/rails/rails.git", branch: "main"
+gem "rails", ">= 8.0"
 
 gem "puma"
 
@@ -16,3 +16,20 @@ gem "rubocop-rails-omakase", require: false
 
 # Start debugger with binding.b [https://github.com/ruby/debug]
 # gem "debug", ">= 1.0.0"
+
+gem "rao", path: "../"
+gem "rao-component", path: "../rao-component"
+
+group :development, :test do
+  gem "bootsnap"
+  gem "capybara"
+  gem "factory_bot_rails"
+  gem "guard-bundler"
+  gem "guard-rspec"
+  gem "pry-rails"
+  gem "rspec-rails"
+  gem "selenium-webdriver"
+end
+
+gem "importmap-rails"
+gem "turbo-rails"

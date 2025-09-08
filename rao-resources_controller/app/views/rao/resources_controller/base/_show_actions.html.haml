@@ -4,9 +4,11 @@
     = t(".back")
 
   .btn-group
-    = link_to(edit_resource_path(@resource), class: "btn btn-warning text-white") do
+    = link_to(edit_resource_path(resource), class: "btn btn-warning text-white") do
       %i.fa-solid.fa-pencil
       = t(".edit")
-    = link_to(resource_path(@resource), class: "btn btn-danger text-white", method: :delete, data: { confirm: t('.destroy_confirmation') }) do
+    = link_to destroy_resource_path(resource),
+              class: "btn btn-danger text-white",
+              data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirmation') } do
       %i.fa-solid.fa-fire
       = t(".destroy")

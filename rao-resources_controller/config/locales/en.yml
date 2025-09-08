@@ -45,4 +45,5 @@ en:
         show_actions:
           back: Back
           destroy: Destroy
+          destroy_confirmation: Are you sure?
           edit: Edit

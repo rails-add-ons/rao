@@ -7,6 +7,8 @@
       = link_to(edit_resource_path(resource), class: 'btn btn-sm btn-secondary') do
         %i.fas.fa-edit
         %span.btn-text= t('.edit')
-      = link_to(resource_path(resource), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: t('.destroy_confirmation') }) do
+      = link_to destroy_resource_path(resource),
+                class: "btn btn-sm btn-danger",
+                data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirmation') } do
         %i.fas.fa-trash
         %span.btn-text= t('.destroy')
