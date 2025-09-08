@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   end
 
-  spec.add_dependency "rails", ">= 8.0.0"
+  spec.add_dependency "rails", ">= 8.0"
   spec.add_dependency "rao"
   spec.add_dependency "haml-rails"
 
@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bootsnap"
   spec.add_development_dependency "pry-rails"
   spec.add_development_dependency "capybara"
+  spec.add_development_dependency "sqlite3", "~> 2.1"
 end
