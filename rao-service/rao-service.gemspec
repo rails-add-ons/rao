@@ -1,9 +1,5 @@
-$:.push File.expand_path("../lib", __FILE__)
-
-# Maintain your gem's version:
 require_relative "../lib/rao/version"
 
-# Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
   spec.name        = "rao-service"
   spec.version     = Rao::VERSION
@@ -11,23 +7,23 @@ Gem::Specification.new do |spec|
   spec.email       = ["roberto@vasquez-angel.de"]
   spec.homepage    = "https://github.com/rao"
   spec.summary     = "Services for Ruby on Rails."
+  spec.description = "Provides a base class and a set of modules to build services for Rails applications."
   spec.license     = "MIT"
 
-  spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
+  # to allow pushing to a single host or delete this section to allow pushing to any host.
+  # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
-  spec.required_ruby_version = '>= 2.6.0'
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = spec.homepage
+  # spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+
+  spec.files = Dir.chdir(File.expand_path(__dir__)) do
+    Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  end
 
   spec.add_dependency "rails", ">= 8.0"
   spec.add_dependency "activesupport"
   spec.add_dependency "activemodel"
   spec.add_dependency "rao"
-
-  spec.add_development_dependency "sqlite3", "~> 2.1"
-  spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "guard-rspec"
-  spec.add_development_dependency "guard-bundler"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "rb-readline"
-  spec.add_development_dependency "bootsnap"
-  spec.add_development_dependency "rails-dummy"
 end
