@@ -19,16 +19,4 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", ">= 8.0"
   spec.add_dependency "rao"
-
-  spec.add_development_dependency "rails-dummy"
-  spec.add_development_dependency "bootsnap"
-  spec.add_development_dependency "factory_bot_rails"
-  spec.add_development_dependency "guard-bundler"
-  spec.add_development_dependency "guard-rspec"
-  spec.add_development_dependency "guard-standardrb"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "rb-readline"
-  spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "standardrb"
-  spec.add_development_dependency "sqlite3", "~> 2.1"
 end
