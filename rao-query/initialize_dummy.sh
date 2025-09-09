@@ -1,53 +1,63 @@
 #!/bin/bash
-GEM_NAME=${PWD##*/}
-INSTALL_NAME=${GEM_NAME//rao-/rao\:}
 
 # Delete old dummy app
 rm -rf spec/dummy
 
 # Generate new dummy app
-DISABLE_MIGRATE=true bundle exec rake dummy:app
-rm spec/dummy/.ruby-version
+CURRENT_DIR=$(pwd)
+TEMP_DIR=$(mktemp -d)
+cd $TEMP_DIR
+rails --version
+rails new dummy \
+  --skip-git \
+  --skip-bundle \
+  -T \
+  --javascript=importmap
+mv dummy $CURRENT_DIR/spec/dummy
+cd $CURRENT_DIR
+rm -rf $TEMP_DIR
 
-# Comment out all config.assets.* lines for Rails 8.0 compatibility
-find spec/dummy/config -name "*.rb" -exec sed -i 's/.*config\.assets\./# &/g' {} \;
+# Abort unless the dummy app was created successfully
+if [ ! -d "spec/dummy" ]; then
+  echo "Dummy app was not created successfully"
+  exit 1
+fi
 
-# Satisfy prerequisites
+# Proceed in the dummy app
 cd spec/dummy
 
-# Use correct Gemfile
-rm Gemfile
-sed -i "s|../Gemfile|../../../Gemfile|g" config/boot.rb
+# Remove .ruby-version
+rm .ruby-version
 
-# Add ActiveStorage
-# rails active_storage:install
+# install importmaps
+bin/rails importmap:install
 
-# I18n configuration
-# touch config/initializers/i18n.rb
-# echo "Rails.application.config.i18n.available_locales = [:en, :de]" >> config/initializers/i18n.rb
-# echo "Rails.application.config.i18n.default_locale    = :de" >> config/initializers/i18n.rb
+# install turbo-rails
+bin/rails turbo:install
 
-# I18n routing
-# touch config/initializers/route_translator.rb
-# echo "RouteTranslator.config do |config|" >> config/initializers/route_translator.rb
-# echo "  config.force_locale = true" >> config/initializers/route_translator.rb
-# echo "end" >> config/initializers/route_translator.rb
+# Add rao from local path by appending to Gemfile
+cat >> Gemfile << 'EOF'
 
-# Add turbolinks
-# sed -i "15irequire 'turbolinks'" config/application.rb
+gem "rao", path: "../../../"
+gem "rao-view_helper", path: "../../../rao-view_helper/"
+gem "rao-query", path: "../../../rao-query/"
 
-# Install administrador
-# rails generate administrador:install
+EOF
 
-# Install SimpleForm
-# rails generate simple_form:install --bootstrap
+# Add rspec
+sed -i '/group :development, :test do/a\\n  gem "rspec-rails"' Gemfile
 
-# Install cmor_core_backend
-# rails g cmor:core:backend:install
+# Add factory_bot_rails
+sed -i '/group :development, :test do/a\\n  gem "factory_bot_rails"' Gemfile
+
+# Install dependencies
+bundle install
 
 # Setup specs
 rails g model post title body:text published_at:timestamp
 
 # Install
-rails generate $INSTALL_NAME:install
+rails generate rao:query:install
+
+# Setup database
 rails db:migrate db:test:prepare
