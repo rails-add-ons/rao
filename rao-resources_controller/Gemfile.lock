@@ -23,6 +23,17 @@ PATH
       responders
       simple_form
 
+PATH
+  remote: .
+  specs:
+    rao-resources_controller (0.0.52.pre)
+      haml-rails
+      rails (>= 8.0)
+      rao
+      rao-component
+      responders
+      simple_form
+
 GEM
   remote: https://rubygems.org/
   specs:
