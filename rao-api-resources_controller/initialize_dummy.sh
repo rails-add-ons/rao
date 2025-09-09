@@ -1,28 +1,56 @@
 #!/bin/bash
-GEM_NAME=${PWD##*/}
-INSTALL_NAME=${GEM_NAME//rao-/rao\:}
 
 # Delete old dummy app
 rm -rf spec/dummy
 
 # Generate new dummy app
-DISABLE_MIGRATE=true bundle exec rake dummy:app
+CURRENT_DIR=$(pwd)
+TEMP_DIR=$(mktemp -d)
+cd $TEMP_DIR
+rails --version
+rails new dummy \
+  --skip-git \
+  --skip-bundle \
+  -T \
+  --javascript=importmap
+mv dummy $CURRENT_DIR/spec/dummy
+cd $CURRENT_DIR
+rm -rf $TEMP_DIR
 
-# Fix ruby versions for rvm
-rm spec/dummy/Gemfile
-rm spec/dummy/.ruby-version
+# Abort unless the dummy app was created successfully
+if [ ! -d "spec/dummy" ]; then
+  echo "Dummy app was not created successfully"
+  exit 1
+fi
 
-# Comment out all config.assets.* lines for Rails 8.0 compatibility
-find spec/dummy/config -name "*.rb" -exec sed -i 's/.*config\.assets\./# &/g' {} \;
-
-# Satisfy prerequisites
+# Proceed in the dummy app
 cd spec/dummy
 
-# Use correct Gemfile
-sed -i "s|../Gemfile|../../../Gemfile|g" config/boot.rb
+# Remove .ruby-version
+rm .ruby-version
 
-# Install
-rails generate rao:api:resources_controller:install
+# install importmaps
+bin/rails importmap:install
+
+# install turbo-rails
+bin/rails turbo:install
+
+# Add rao from local path by appending to Gemfile
+cat >> Gemfile << 'EOF'
+
+gem "rao", path: "../../../"
+gem "rao-api-resources_controller", path: "../../../rao-api-resources_controller/"
+
+EOF
+
+# Add rspec
+sed -i '/group :development, :test do/a\\n  gem "rspec-rails"' Gemfile
+
+# Add factory_bot_rails
+sed -i '/group :development, :test do/a\\n  gem "factory_bot_rails"' Gemfile
+
+# Install dependencies
+bundle install
 
 # Setup dummy app models
 rails g model post title body:text published_at:timestamp
@@ -41,6 +69,9 @@ module Api
   end
 end
 EOF
+
+# Install
+rails generate rao:api:resources_controller:install
 
 # Setup database
 rails db:migrate db:test:prepare
