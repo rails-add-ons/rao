@@ -1,8 +1,8 @@
-require_relative "lib/rao/service_controller/version"
+require_relative "../lib/rao/version"
 
 Gem::Specification.new do |spec|
   spec.name        = "rao-service_controller"
-  spec.version     = Rao::ServiceController::VERSION
+  spec.version     = Rao::VERSION
   spec.authors     = [ "Roberto Vasquez Angel" ]
   spec.email       = [ "rva@beegoodit.de" ]
   spec.homepage    = "https://github.com/rails-ao/rao-service_controller"
