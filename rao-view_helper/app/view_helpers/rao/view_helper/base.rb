@@ -33,7 +33,9 @@ module Rao
       end
 
       def render(locals = {})
-        c.render partial: "/#{self.class.name.underscore}/#{caller_locations(1,1)[0].label}", locals: locals.reverse_merge(view_helper: self)
+        partial_path = self.class.name.underscore
+        partial_name = caller_locations(1,1)[0].label.split("#").last
+        c.render partial: "/#{partial_path}/#{partial_name}", locals: locals.reverse_merge(view_helper: self)
       end
 
       # You can use scoped translations by using the dot notation.
