@@ -62,7 +62,7 @@ RSpec.describe Rao::Component::ApplicationHelper, type: :helper do
       }
       
       it { expect(rendered).to be_a(String) }
-      it { expect(subject).to have_css('table') }
+      it { binding.pry; expect(subject).to have_css('table') }
       it { expect(subject).to have_css('table.table') }
       it { expect(subject).to have_css('table.collection-table') }
       it { expect(subject).to have_css('table.open_structs') }

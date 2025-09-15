@@ -1,3 +1,22 @@
+GIT
+  remote: https://github.com/brendon/acts_as_list.git
+  revision: 9b642c5546c64807479d309d2f800e40bfe2d069
+  specs:
+    acts_as_list (1.2.4)
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
+
+PATH
+  remote: ../rao-resources_controller
+  specs:
+    rao-resources_controller (0.0.52.pre)
+      haml-rails
+      rails (>= 8.0)
+      rao
+      rao-component
+      responders
+      simple_form
+
 PATH
   remote: ..
   specs:
@@ -297,6 +316,9 @@ GEM
     regexp_parser (2.11.2)
     reline (0.6.2)
       io-console (~> 0.5)
+    responders (3.1.1)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rexml (3.4.3)
     rspec (3.13.1)
       rspec-core (~> 3.13.0)
@@ -357,6 +379,9 @@ GEM
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
     shellany (0.0.1)
+    simple_form (5.3.1)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sqlite3 (2.7.3-aarch64-linux-gnu)
     sqlite3 (2.7.3-aarch64-linux-musl)
     sqlite3 (2.7.3-arm-linux-gnu)
@@ -400,6 +425,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  acts_as_list!
   bootsnap
   capybara
   factory_bot_rails
@@ -413,6 +439,7 @@ DEPENDENCIES
   rails-dummy
   rao!
   rao-component!
+  rao-resources_controller!
   rspec-rails
   rubocop-rails-omakase
   selenium-webdriver

@@ -32,3 +32,7 @@ end
 
 gem "importmap-rails"
 gem "turbo-rails"
+
+
+gem "acts_as_list", git: "https://github.com/brendon/acts_as_list.git"
+gem "rao-resources_controller", path: "../rao-resources_controller"
