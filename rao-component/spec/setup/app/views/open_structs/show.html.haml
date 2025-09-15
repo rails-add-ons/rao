@@ -1,0 +1,4 @@
+- @resource = OpenStruct.new(id: '1', name: 'Foo')
+= resource_table(resource: @resource) do |table|
+  = table.field :id
+  = table.field :name

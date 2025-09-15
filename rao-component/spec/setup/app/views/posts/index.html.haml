@@ -1,0 +1,19 @@
+%h1 Listing posts
+
+= collection_table(collection: @posts) do |table|
+  = table.acts_as_list_actions
+  = table.field :id
+  = table.field :title
+  = table.field :body
+  = table.field :published_at
+  = table.field :position
+  = table.acts_as_list_actions scope: nil
+  = table.field :actions do |resource|
+    - capture_haml do
+      = link_to 'Show', resource, class: 'btn btn-sm btn-default'
+      = link_to 'Edit', [:edit, resource], class: 'btn btn-sm btn-default'
+      = link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+
+%br
+
+= link_to 'New Post', new_post_path, class: 'btn btn-primary'

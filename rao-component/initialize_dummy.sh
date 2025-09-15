@@ -40,6 +40,7 @@ rm Gemfile*
 # Add requires to application.rb (acts_as_list and rao-resources_controller)
 sed -i '/require "rails"/a\\nrequire "acts_as_list"' config/application.rb
 sed -i '/require "rails"/a\\nrequire "rao-resources_controller"' config/application.rb
+sed -i '/require "rails"/a\\nrequire "ostruct"' config/application.rb
 
 # install importmaps
 bin/rails importmap:install
@@ -89,6 +90,11 @@ sed -i '/class PostsController < ApplicationController/a\\n  include Rao::Resour
 # Create posts
 bin/rails runner "require 'factory_bot_rails'; FactoryBot.create_list(:post, 10)"
 
+# Create OpenStructs routes/controller/views
+rails generate controller OpenStructs index show
+
 # Overwrite posts index/show views
 cp $CURRENT_DIR/spec/setup/app/views/posts/index.html.haml ./app/views/posts/index.html.haml
 cp $CURRENT_DIR/spec/setup/app/views/posts/show.html.haml ./app/views/posts/show.html.haml
+cp $CURRENT_DIR/spec/setup/app/views/open_structs/index.html.haml ./app/views/open_structs/index.html.haml
+cp $CURRENT_DIR/spec/setup/app/views/open_structs/show.html.haml ./app/views/open_structs/show.html.haml

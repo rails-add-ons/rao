@@ -87,7 +87,7 @@ module Rao
           resource_class:    @resource_class,
           table_css_classes: table_css_classes,
           show_header:       show_header,
-          tr_html:           @tr_html || {}
+          tr_html:           @tr_html || -> (r, i) { { id: r.respond_to?(:to_param) ? "#{r.class.name.underscore.gsub('/', '-')}-#{i}-#{r.to_param}" : "#{r.class.name.underscore.gsub('/', '-')}-#{i}-#{r.object_id}"} }
         }
       end
 

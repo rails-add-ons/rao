@@ -5,25 +5,26 @@
     "#{resource.class.name.underscore.gsub('/', '-')}-#{resource.object_id}"
   end
 %table{ class: table_css_classes, id: "#{tr_prefix}-resource-table" }
-  - rows.each do |name, options|
-    - title = options.delete(:title)
-    - if title.nil?
-      - if resource_class.respond_to?(:human_attribute_name)
-        - title = resource_class.human_attribute_name(name)
-      - else
-        - title = name
-    - elsif title === false
-      - title = nil
-    %tr{ class: "attribute-#{name}", id: "#{tr_prefix}-#{name}"}
-      - if resource_class.respond_to? :human_attribute_name
-        %th{ class: 'attribute-name' }
-          = title
-      - else
-        %th{ class: 'attribute-name' }
-          = name
-      - if options[:block].present?
-        %td{ class: 'attribute-value' }
-          = options[:block].call(resource)
-      - else
-        %td{ class: 'attribute-value' }
-          = render partial: "rao/component/table/body_cells/#{options[:render_as]}", locals: { resource: resource, name: name, options: options }
+  %tbody
+    - rows.each do |name, options|
+      - title = options.delete(:title)
+      - if title.nil?
+        - if resource_class.respond_to?(:human_attribute_name)
+          - title = resource_class.human_attribute_name(name)
+        - else
+          - title = name
+      - elsif title === false
+        - title = nil
+      %tr{ class: "#{resource_class.name.underscore} attribute-#{name}", id: "#{tr_prefix}-#{name}" }
+        - if resource_class.respond_to? :human_attribute_name
+          %th{ class: 'attribute-name' }
+            = title
+        - else
+          %th{ class: 'attribute-name' }
+            = name
+        - if options[:block].present?
+          %td{ class: 'attribute-value' }
+            = options[:block].call(resource)
+        - else
+          %td{ class: 'attribute-value' }
+            = render partial: "rao/component/table/body_cells/#{options[:render_as]}", locals: { resource: resource, name: name, options: options }
