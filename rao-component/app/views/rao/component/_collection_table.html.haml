@@ -23,7 +23,11 @@
       - else
         - tr_options[:id] = "#{resource.class.name.underscore.gsub('/', '-')}-#{resource.object_id}"
 
-      %tr{ tr_options.merge(tr_html.call(resource, index)) }
+      - tr_html_options = if tr_html.respond_to?(:call)
+        - tr_html.call(resource, index) || {}
+      - else
+        - tr_html || {}
+      %tr{ tr_options.merge(tr_html_options) }
         - columns.each do |name, options|
           - td_html = if options[:td_html].respond_to?(:call)
             - options[:td_html].call(resource) || {}

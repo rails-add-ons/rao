@@ -93,8 +93,12 @@ bin/rails runner "require 'factory_bot_rails'; FactoryBot.create_list(:post, 10)
 # Create OpenStructs routes/controller/views
 rails generate controller OpenStructs index show
 
+# Create Options routes/controller/views
+rails generate controller Options index show
+
 # Overwrite posts index/show views
 cp $CURRENT_DIR/spec/setup/app/views/posts/index.html.haml ./app/views/posts/index.html.haml
 cp $CURRENT_DIR/spec/setup/app/views/posts/show.html.haml ./app/views/posts/show.html.haml
 cp $CURRENT_DIR/spec/setup/app/views/open_structs/index.html.haml ./app/views/open_structs/index.html.haml
 cp $CURRENT_DIR/spec/setup/app/views/open_structs/show.html.haml ./app/views/open_structs/show.html.haml
+cp $CURRENT_DIR/spec/setup/app/views/options/index.html.haml ./app/views/options/index.html.haml

@@ -1,0 +1,48 @@
+:ruby
+  collection = [
+    OpenStruct.new(id: '1', name: 'Foo', status: 'active'),
+    OpenStruct.new(id: '2', name: 'Bar', status: 'inactive'),
+    OpenStruct.new(id: '3', name: 'Baz', status: 'active')
+  ]
+
+%h2 TD HTML Options Tests
+
+#td-hash-options
+  %h3 Hash Options
+  = collection_table(collection: collection) do |table|
+    = table.column :id
+    = table.column :name, td_html: { class: "highlight-name" }
+    = table.column :status, td_html: { class: "status-cell", data: { status: "custom" } }
+
+#td-proc-options
+  %h3 Proc Options
+  = collection_table(collection: collection) do |table|
+    = table.column :id
+    = table.column :name, td_html: ->(r) { r.id == "2" ? { class: "special-name" } : {} }
+    = table.column :status, td_html: ->(r) { r.status == "active" ? { class: "active-status" } : { class: "inactive-status" } }
+
+%h2 TR HTML Options Tests
+
+#tr-hash-options
+  %h3 Hash Options
+  = collection_table(collection: collection) do |table|
+    - table.tr_html = { class: "custom-row" }
+    = table.column :id
+    = table.column :name
+    = table.column :status
+
+#tr-proc-options
+  %h3 Proc Options
+  = collection_table(collection: collection) do |table|
+    - table.tr_html = ->(r, i) { r.status == "active" ? { class: "active-row" } : { class: "inactive-row" } }
+    = table.column :id
+    = table.column :name
+    = table.column :status
+
+#tr-proc-options-with-index
+  %h3 Proc Options with Index
+  = collection_table(collection: collection) do |table|
+    - table.tr_html = ->(r, i) { i == 0 ? { class: "first-row" } : {} }
+    = table.column :id
+    = table.column :name
+    = table.column :status

@@ -41,6 +41,46 @@ RSpec.describe Rao::Component::ApplicationHelper, type: :feature do
       it { expect(page).to have_css('table tbody') }
       it { expect(page).to have_css('table tbody tr.open_struct') }
     end
+
+    describe "td html options" do
+      let(:options_path) { "/options/index" }
+
+      before do
+        visit options_path
+      end
+
+      describe "with hash options" do
+        it { expect(page).to have_css('#td-hash-options table tbody tr.open_struct td.highlight-name') }
+        it { expect(page).to have_css('#td-hash-options table tbody tr.open_struct td.status-cell[data-status="custom"]') }
+      end
+
+      describe "with proc options" do
+        it { expect(page).to have_css('#td-proc-options table tbody tr.open_struct td.special-name') }
+        it { expect(page).to have_css('#td-proc-options table tbody tr.open_struct td.active-status') }
+        it { expect(page).to have_css('#td-proc-options table tbody tr.open_struct td.inactive-status') }
+      end
+    end
+
+    describe "tr html options" do
+      let(:options_path) { "/options/index" }
+
+      before do
+        visit options_path
+      end
+
+      describe "with hash options" do
+        it { expect(page).to have_css('#tr-hash-options table tbody tr.custom-row') }
+      end
+
+      describe "with proc options" do
+        it { expect(page).to have_css('#tr-proc-options table tbody tr.active-row') }
+        it { expect(page).to have_css('#tr-proc-options table tbody tr.inactive-row') }
+      end
+
+      describe "with proc options using index" do
+        it { expect(page).to have_css('table tbody tr.first-row') }
+      end
+    end
   end
 
   describe "#resource_table" do
