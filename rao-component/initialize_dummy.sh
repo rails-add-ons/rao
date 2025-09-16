@@ -46,10 +46,14 @@ sed -i '/require "rails"/a\\nrequire "ostruct"' config/application.rb
 bin/rails importmap:install
 
 # Add rao-component to importmap
-echo 'pin "rao-component", to: "rao-component/application.js"' >> config/importmap.rb
+# echo 'pin "rao-component", to: "rao-component/application.js"' >> config/importmap.rb
+# echo 'pin "rao-component/acts_as_list", to: "rao-component/acts_as_list.js"' >> config/importmap.rb
+# echo 'pin "rao-component/awesome_nested_set", to: "rao-component/awesome_nested_set.js"' >> config/importmap.rb
+# echo 'pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.7.1/dist/jquery.js"' >> config/importmap.rb
+# echo 'pin "jquery-ui", to: "https://ga.jspm.io/npm:jquery-ui@1.13.2/dist/jquery-ui.js"' >> config/importmap.rb
 
 # Add rao-component import to application.js
-echo 'import "rao-component"' >> app/javascript/application.js
+echo 'import "rao-component/application"' >> app/javascript/application.js
 
 # install turbo-rails
 bin/rails turbo:install
