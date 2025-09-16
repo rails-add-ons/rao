@@ -39,6 +39,7 @@ rm Gemfile*
 
 # Add requires to application.rb (acts_as_list and rao-resources_controller)
 sed -i '/require "rails"/a\\nrequire "acts_as_list"' config/application.rb
+sed -i '/require "rails"/a\\nrequire "acts_as_published"' config/application.rb
 sed -i '/require "rails"/a\\nrequire "rao-resources_controller"' config/application.rb
 sed -i '/require "rails"/a\\nrequire "ostruct"' config/application.rb
 
@@ -71,14 +72,16 @@ rails db:migrate db:test:prepare
 # Add acts_as_list to Post model
 cat > app/models/post.rb << 'EOF'
 class Post < ApplicationRecord
+  include ActsAsPublished::ActiveRecord
   acts_as_list
+  acts_as_published
 
   default_scope { order(position: :asc) }
 end
 EOF
 
-# Add acts_as_list routes to posts by replacing resources :posts
-sed -i 's/resources :posts/resources :posts do\n    post :reposition, on: :member\n  end/' config/routes.rb
+# Add acts_as_list and acts_as_published routes to posts by replacing resources :posts
+sed -i 's/resources :posts/resources :posts do\n    post :reposition, on: :member\n    post :toggle_published, on: :member\n  end/' config/routes.rb
 
 # Add acts_as_list controller to posts
 cat > app/controllers/posts_controller.rb << 'EOF'
@@ -87,9 +90,16 @@ class PostsController < ApplicationController
   include Rao::ResourcesController::Plural::RestActionsConcern
   include Rao::ResourcesController::Plural::RestResourcesUrlsConcern
   include Rao::ResourcesController::ActsAsListConcern
+  include Rao::ResourcesController::ActsAsPublishedConcern
 
   def self.resource_class
     Post
+  end
+
+  private
+
+  def after_publish_toggle_location
+    { action: :index }
   end
 end
 EOF

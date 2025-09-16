@@ -1,12 +1,12 @@
 %p#notice= notice
 
-= resource_table(resource: @post) do |table|
+= resource_table(resource: @resource) do |table|
   = table.field :id
   = table.field :title
   = table.field :body
   = table.field :published_at
   = table.field :position
 
-= link_to 'Edit', edit_post_path(@post)
+= link_to 'Edit', edit_post_path(@resource)
 \|
 = link_to 'Back', posts_path

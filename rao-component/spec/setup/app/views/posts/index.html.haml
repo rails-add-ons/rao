@@ -7,7 +7,7 @@
   = table.field :body
   = table.field :published_at
   = table.field :position
-  = table.acts_as_list_actions scope: nil
+  = table.acts_as_published_actions
   = table.field :actions do |resource|
     - capture_haml do
       = link_to 'Show', resource, class: 'btn btn-sm btn-default'
