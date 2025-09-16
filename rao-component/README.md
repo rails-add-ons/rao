@@ -6,17 +6,16 @@ How to use my plugin.
 
 ## Adding acts_as_list support for collection tables.
 
-To use this feature you have to add coffee-rails, jquery-rails and jquery-ui-rails gems to your applicaiton.
+The component now uses modern vanilla JavaScript with the HTML5 Drag and Drop API - no external dependencies required!
 
-If you want to have sortable items via acts_as_list and drag and drop, you have to add the javascript to your
-application:
+If you want to have sortable items via acts_as_list and drag and drop, the functionality is automatically included when you import the rao-component:
 
+```javascript
+   // app/javascript/application.js
+   import "rao-component/application"
 ```
-   // app/assets/javascripts/applicaiton.js
-   //= require jquery
-   //= require jquery-ui
-   //= require rao-component/acts_as_list
-```
+
+The drag and drop functionality supports both `acts_as_list` and `awesome_nested_set` patterns with scoped drag operations and visual feedback.
 
 ## Installation
 Add this line to your application's Gemfile:

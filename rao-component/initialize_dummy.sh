@@ -69,13 +69,30 @@ rails g factory_bot:model Post title body:text published_at:timestamp position:i
 rails db:migrate db:test:prepare
 
 # Add acts_as_list to Post model
-sed -i '/class Post < ApplicationRecord/a\\n  acts_as_list' app/models/post.rb
+cat > app/models/post.rb << 'EOF'
+class Post < ApplicationRecord
+  acts_as_list
+
+  default_scope { order(position: :asc) }
+end
+EOF
 
 # Add acts_as_list routes to posts by replacing resources :posts
 sed -i 's/resources :posts/resources :posts do\n    post :reposition, on: :member\n  end/' config/routes.rb
 
 # Add acts_as_list controller to posts
-sed -i '/class PostsController < ApplicationController/a\\n  include Rao::ResourcesController::ActsAsListConcern' app/controllers/posts_controller.rb
+cat > app/controllers/posts_controller.rb << 'EOF'
+class PostsController < ApplicationController
+  include Rao::ResourcesController::Plural::ResourcesConcern
+  include Rao::ResourcesController::Plural::RestActionsConcern
+  include Rao::ResourcesController::Plural::RestResourcesUrlsConcern
+  include Rao::ResourcesController::ActsAsListConcern
+
+  def self.resource_class
+    Post
+  end
+end
+EOF
 
 # Create posts
 bin/rails runner "require 'factory_bot_rails'; FactoryBot.create_list(:post, 10)"

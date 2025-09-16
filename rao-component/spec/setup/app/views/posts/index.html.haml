@@ -1,6 +1,6 @@
 %h1 Listing posts
 
-= collection_table(collection: @posts) do |table|
+= collection_table(collection: @collection) do |table|
   = table.acts_as_list_actions
   = table.field :id
   = table.field :title

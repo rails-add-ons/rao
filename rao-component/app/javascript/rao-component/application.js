@@ -1,7 +1,5 @@
-import 'jquery';
-import 'jquery-ui';
-import "rao-component/acts_as_list";
-import "rao-component/awesome_nested_set";
+import ActsAsList from "rao-component/acts_as_list";
+import AwesomeNestedSet from "rao-component/awesome_nested_set";
 
 class RaoComponent {
   constructor() {
@@ -17,7 +15,7 @@ class RaoComponent {
     // Initialize AwesomeNestedSet functionality
     this.awesomeNestedSet = AwesomeNestedSet.initialize();
     
-    console.log("RaoComponent initialized with drag & drop functionality");
+    console.log("RaoComponent initialized with vanilla JavaScript drag & drop functionality");
   }
   
   static initialize() {
