@@ -45,28 +45,14 @@ sed -i '/require "rails"/a\\nrequire "ostruct"' config/application.rb
 # install importmaps
 bin/rails importmap:install
 
+# Add rao-component to importmap
+echo 'pin "rao-component", to: "rao-component/application.js"' >> config/importmap.rb
+
+# Add rao-component import to application.js
+echo 'import "rao-component"' >> app/javascript/application.js
+
 # install turbo-rails
 bin/rails turbo:install
-
-# Add rao from local path by appending to Gemfile
-# cat >> Gemfile << 'EOF'
-# 
-# gem "acts_as_list", git: "https://github.com/brendon/acts_as_list.git"
-# 
-# gem "rao", path: "../../../"
-# gem "rao-component", path: "../../../rao-component/"
-# gem "rao-resources_controller", path: "../../../rao-resources_controller"
-# 
-# EOF
-
-# Add rspec
-# sed -i '/group :development, :test do/a\\n  gem "rspec-rails"' Gemfile
-
-# Add factory_bot_rails
-# sed -i '/group :development, :test do/a\\n  gem "factory_bot_rails"' Gemfile
-
-# Install dependencies
-# bundle install
 
 # Install
 rails generate rao:component:install
