@@ -17,7 +17,6 @@ RSpec.describe Rao::Component::ApplicationHelper, type: :feature, js: true do
       let(:target_row) { page.find('table tbody tr.post:nth-child(3)') }
       let(:target_button) { target_row.find('td.attribute-acts_as_list_actions span.acts-as-list-item') }
 
-      # Quick fix: drag to the actual draggable element, not the table row
       it "repositions the item when dragged to target button" do
         expect {
           reposition_button.drag_to(target_button)
