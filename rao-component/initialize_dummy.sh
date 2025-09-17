@@ -46,21 +46,11 @@ sed -i '/require "rails"/a\\nrequire "ostruct"' config/application.rb
 # install importmaps
 bin/rails importmap:install
 
-# Add rao-component to importmap
-# echo 'pin "rao-component", to: "rao-component/application.js"' >> config/importmap.rb
-# echo 'pin "rao-component/acts_as_list", to: "rao-component/acts_as_list.js"' >> config/importmap.rb
-# echo 'pin "rao-component/awesome_nested_set", to: "rao-component/awesome_nested_set.js"' >> config/importmap.rb
-# echo 'pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.7.1/dist/jquery.js"' >> config/importmap.rb
-# echo 'pin "jquery-ui", to: "https://ga.jspm.io/npm:jquery-ui@1.13.2/dist/jquery-ui.js"' >> config/importmap.rb
-
 # Add rao-component import to application.js
-echo 'import "rao-component/application"' >> app/javascript/application.js
+# echo 'import "rao-component/application"' >> app/javascript/application.js
 
 # install turbo-rails
 bin/rails turbo:install
-
-# Install
-rails generate rao:component:install
 
 # Setup dummy app
 rails g scaffold Post title body:text published_at:timestamp position:integer --skip-test-framework
@@ -119,3 +109,6 @@ cp $CURRENT_DIR/spec/setup/app/views/posts/show.html.haml ./app/views/posts/show
 cp $CURRENT_DIR/spec/setup/app/views/open_structs/index.html.haml ./app/views/open_structs/index.html.haml
 cp $CURRENT_DIR/spec/setup/app/views/open_structs/show.html.haml ./app/views/open_structs/show.html.haml
 cp $CURRENT_DIR/spec/setup/app/views/options/index.html.haml ./app/views/options/index.html.haml
+
+# Install rao-component
+rails generate rao:component:install
