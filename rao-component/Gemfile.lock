@@ -294,8 +294,6 @@ GEM
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
-    rails-dummy (0.1.1)
-      railties
     rails-html-sanitizer (1.6.2)
       loofah (~> 2.21)
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
@@ -439,7 +437,6 @@ DEPENDENCIES
   pry-rails
   puma
   rails (>= 8.0)
-  rails-dummy
   rao!
   rao-component!
   rao-resources_controller!

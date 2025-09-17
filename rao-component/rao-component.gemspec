@@ -30,7 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "guard-bundler"
   spec.add_development_dependency "guard-rspec"
   spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "rails-dummy"
   spec.add_development_dependency "bootsnap"
   spec.add_development_dependency "pry-rails"
   spec.add_development_dependency "capybara"
