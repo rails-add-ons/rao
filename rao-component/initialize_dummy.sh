@@ -30,14 +30,12 @@ cd spec/dummy
 rm .ruby-version
 
 # In boot.rb use the Gemfile from the root directory
-# replace ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
-# with ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../../Gemfile", __dir__)
 sed -i 's|../Gemfile|../../../Gemfile|' config/boot.rb
 
 # Remove Gemfile*
 rm Gemfile*
 
-# Add requires to application.rb (acts_as_list and rao-resources_controller)
+# Add requires to application.rb
 sed -i '/require "rails"/a\\nrequire "acts_as_list"' config/application.rb
 sed -i '/require "rails"/a\\nrequire "acts_as_published"' config/application.rb
 sed -i '/require "rails"/a\\nrequire "rao-resources_controller"' config/application.rb
@@ -45,9 +43,6 @@ sed -i '/require "rails"/a\\nrequire "ostruct"' config/application.rb
 
 # install importmaps
 bin/rails importmap:install
-
-# Add rao-component import to application.js
-# echo 'import "rao-component/application"' >> app/javascript/application.js
 
 # install turbo-rails
 bin/rails turbo:install
