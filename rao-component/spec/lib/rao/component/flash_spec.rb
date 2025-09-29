@@ -40,8 +40,8 @@ RSpec.describe Rao::Component::Flash do
       it "renders flash messages with correct CSS classes" do
         result = described_class.new(view).render
         parsed = Capybara::Node::Simple.new(result)
-        
-        expect(parsed).to have_css("div.alert.alert-notice")
+
+        expect(parsed).to have_css("div.alert.alert-info")
         expect(parsed).to have_content("Flash message")
       end
     end
