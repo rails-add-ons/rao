@@ -1,6 +1,11 @@
 import ActsAsList from "rao-component/acts_as_list";
 import AwesomeNestedSet from "rao-component/awesome_nested_set";
 
+// show a greeting on load (support turbo)
+document.addEventListener("turbo:load", function() {
+  console.log("[RaoComponent] ❤️");
+});
+
 class RaoComponent {
   constructor() {
     this.actsAsList = null;
