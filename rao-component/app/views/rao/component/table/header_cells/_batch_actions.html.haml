@@ -12,7 +12,7 @@
   %ul.dropdown-menu{"aria-labelledby" => 'batch-action-dropdown' }
     - options[:actions].each do |action, target|
       %li
-        %a{ href: target, class: 'batch-action-form-submit-link btn btn-xs btn-link' }= t(".#{action}")
+        %a{ href: target, class: 'batch-action-form-submit-link btn btn-xs btn-light' }= t(".#{action}")
 
 :javascript
   $(document).ready(function() {
