@@ -3,8 +3,8 @@ require_relative "lib/rao/version"
 Gem::Specification.new do |spec|
   spec.name        = "rao"
   spec.version     = Rao::VERSION
-  spec.authors     = [ "Roberto Vasquez Angel" ]
-  spec.email       = [ "rva@beegoodit.de" ]
+  spec.authors     = [ "BeeGood IT" ]
+  spec.email       = [ "info@beegoodit.de" ]
   spec.homepage    = "https://github.com/rails-add-ons/rao"
   spec.summary     = "Essential add-ons for Ruby on Rails."
   spec.description = "The missing bits and pieces to enhance development with Ruby on Rails."
