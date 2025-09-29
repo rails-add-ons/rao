@@ -3,8 +3,8 @@ require_relative "../lib/rao/version"
 Gem::Specification.new do |spec|
   spec.name        = "rao-api-service_controller"
   spec.version     = Rao::VERSION
-  spec.authors     = ["Roberto Vasquez Angel"]
-  spec.email       = ["roberto@vasquez-angel.de"]
+  spec.authors     = ["BeeGood IT"]
+  spec.email       = ["info@beegoodit.de"]
   spec.homepage    = "https://github.com/rao"
   spec.summary     = "API Services Controller for Ruby on Rails."
   spec.description = "Provides a base class and a set of modules to build API service controllers for Rails applications."
