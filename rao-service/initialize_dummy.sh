@@ -53,7 +53,10 @@ sed -i '/group :development, :test do/a\\n  gem "factory_bot_rails"' Gemfile
 bundle install
 
 # Install
-rails generate rao:service:install
+bin/rails generate rao:service:install
+
+# Generate example service
+bin/rails g rao:service:service TestService
 
 # Setup database
-rails db:migrate db:test:prepare
+bin/rails db:migrate db:test:prepare
