@@ -3,8 +3,8 @@ require_relative "../lib/rao/version"
 Gem::Specification.new do |spec|
   spec.name        = "rao-shoulda_matchers"
   spec.version     = Rao::VERSION
-  spec.authors     = ["Roberto Vasquez Angel"]
-  spec.email       = ["roberto@vasquez-angel.de"]
+  spec.authors     = ["BeeGood IT"]
+  spec.email       = ["info@beegoodit.de"]
   spec.homepage    = "https://github.com/rao"
   spec.summary     = "Additional shoulda matchers for Ruby on Rails."
   spec.description = "Provides additional shoulda matchers for testing Rails applications."
