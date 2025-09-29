@@ -56,7 +56,7 @@ bundle install
 bin/rails generate rao:service:install
 
 # Generate example service
-bin/rails g rao:service:service TestService
+bin/rails g rao:service:service TestService name:string
 
 # Setup database
 bin/rails db:migrate db:test:prepare
