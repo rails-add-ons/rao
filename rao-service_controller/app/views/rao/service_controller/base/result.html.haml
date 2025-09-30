@@ -7,9 +7,7 @@
   .row
     .col
       .result-table
-        = resource_table(resource: @result) do |table|
-          = render 'result_table',         table: table
-          = render 'result_table_actions', table: table
+        = render "result_table"
 
   .row
     .col

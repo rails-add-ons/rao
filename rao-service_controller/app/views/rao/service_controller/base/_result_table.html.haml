@@ -1,3 +1,4 @@
-- result_class.attribute_names.each do |name|
-  = table.field name
-  
+%div{ id: dom_id(@result, :table) }
+  = resource_table(resource: @result) do |table|
+    = render 'result_table_fields', table: table
+    = render 'result_table_actions', table: table

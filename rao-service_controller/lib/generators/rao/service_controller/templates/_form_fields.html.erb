@@ -1,0 +1,8 @@
+<% if field_names.any? %>
+<%= form_inputs %>
+<% else %>
+<!-- Customize the form fields here -->
+<%% service_class.attribute_names.each do |name| %>
+  <%%= form.input name %>
+<%% end %>
+<% end %>

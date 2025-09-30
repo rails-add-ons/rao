@@ -1,4 +1,9 @@
 de:
+  flash:
+    actions:
+      perform:
+        success: "%{service_name} wurde ausgeführt."
+        failure: "%{service_name} konnte nicht ausgeführt werden. Es traten folgende Fehler auf: %{errors}"
   rao:
     service_controller:
       base:

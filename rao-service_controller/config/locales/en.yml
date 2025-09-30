@@ -1,4 +1,9 @@
 en:
+  flash:
+    actions:
+      perform:
+        success: "%{service_name} was executed."
+        failure: "%{service_name} could not be executed. Errors: %{errors}"
   rao:
     service_controller:
       base:

@@ -7,7 +7,7 @@ module Rao
     # Example usage:
     #
     # class PostsController < ApplicationController
-    #   include Rao::ResourcesController::RestResourcesUrlsConcern
+    #   include Rao::ServiceController::RestUrlsConcern
     #
     #   private
     #
@@ -20,7 +20,7 @@ module Rao
     #   end
     # end
     #
-    # In the above example, the `PostsController` includes the `RestResourcesUrlsConcern` module,
+    # In the above example, the `PostsController` includes the `RestUrlsConcern` module,
     # which provides helper methods for generating paths and URLs for the `Post` service.
     # The `service_namespace` method is overridden to specify the namespace as `:admin`,
     # and the `service_router` method is overridden to use the `main_app` router context.
@@ -55,8 +55,16 @@ module Rao
       end
 
       # Returns the path for a specific service (e.g., /posts/1).
-      def service_path(service, options = {})
-        service_router.polymorphic_path([service_namespace, service].flatten.compact, options)
+      def service_path(options = {})
+        service_router.polymorphic_path([service_namespace, service_class].flatten.compact, options)
+      end
+
+      def new_service_url(options = {})
+        new_service_path(options.merge(only_path: false))
+      end
+
+      def service_url(options = {})
+        service_path(options.merge(only_path: false))
       end
 
       # Override to define the namespace for services, if needed (e.g., :admin).

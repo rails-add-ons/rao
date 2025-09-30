@@ -45,6 +45,12 @@ module Rao
       extend ActiveSupport::Concern
 
       included do
+        include ActionController::MimeResponds
+        include ActionView::RecordIdentifier
+
+        respond_to :html, :turbo_stream, :json
+        responders :flash
+
         before_action :initialize_service, only: %i[ new ]
         before_action :initialize_service_for_create, only: %i[ create ]
 
@@ -54,31 +60,80 @@ module Rao
       # GET /posts/new
       def new
       end
-    
+
       # POST /posts or /posts.json
       def create
         @result = @service.perform!
 
-        respond_to do |format|
-          if @result.ok?
-            if respond_to?(:after_success_location, true)
-              format.html { redirect_to after_success_location, notice: "#{service_class.model_name.human} was successfully executed." }
-            else
-              format.html { render :result, status: :created, notice: "#{service_class.model_name.human} was successfully executed." }
-            end
-            format.json { render json: @result, status: :created }
-          else
-            format.html { render :new, status: :unprocessable_entity }
-            format.json { render json: @result.errors, status: :unprocessable_entity }
-          end
+        if @result.ok?
+          redirect_to after_success_location, notice: success_message
+        else
+          render :new, status: :unprocessable_entity
         end
       end
     
+#      # POST /posts or /posts.json
+#      def create
+#        @result = @service.perform!
+#      
+#        if @result.ok?
+#          respond_to do |format|
+#            if after_success_location.present?
+#              format.html { respond_with(@result, location: after_success_location) }
+#              format.json { respond_with(@result) }
+#              format.turbo_stream { set_flash_message!(@result, :create, :notice) && redirect_to(after_success_location) }
+#            else
+#              format.html do
+#                flash.now[:notice] = success_message
+#                render :result
+#              end
+#              format.json { respond_with(@result) }
+#              format.turbo_stream do
+#                flash.now[:notice] = t(".success", service_name: @service.class.model_name.human, default: t("flash.actions.perform.success", service_name: @service.class.model_name.human))
+#                # set_flash_message!(@result, :performed, :notice)
+#                render turbo_stream: [
+#                  turbo_stream.replace("flash", partial: "shared/flash", locals: { flash: flash }),
+#                  turbo_stream.replace(dom_id(@service, :form), partial: "result_table", locals: { service: @service })
+#                ]
+#              end
+#            end
+#          end
+#        else
+#          respond_to do |format|
+#            format.html { respond_with(@result) }
+#            format.json { respond_with(@result) }
+#            format.turbo_stream do
+#              flash.now[:alert] = t(".failure", service_name: @service.class.model_name.human, default: t("flash.actions.perform.failure", service_name: @service.class.model_name.human, errors: @result.errors.full_messages.join(", ")))
+#              render turbo_stream: turbo_stream.replace(
+#                dom_id(@service, :form),
+#                partial: "form_tag",
+#                locals: { service: @service }
+#              )
+#            end
+#          end
+#        end
+#      end
+    
       private
+
+      def success_message
+        t('flash.actions.perform.success', service_name: @service.class.model_name.human)
+      end
+
+      def set_flash_message!(result, action, status = :notice)
+        # get a anonymous class and include the Responders::FlashResponder module
+        anonymous_class = Class.new(ActionController::Responder) { include Responders::FlashResponder }
+        f = anonymous_class.new(self, [result])
+        f.send(:set_flash_message!)
+      end
+
+      def after_success_location
+        new_service_path
+      end
       
       # Override this method in your controller to provide a custom back link location.
       def new_back_link_location
-        root_path
+        respond_to?(:root_path) ? root_path : nil
       end
 
       # Override this method in your controller to provide a custom back link location.
@@ -100,7 +155,7 @@ module Rao
       def service_params
         if respond_to?(:permitted_params, true)
           # add permitted_params aliasing service_params adding a deprecation warning
-          ActiveSupport::Deprecation.warn("The `permitted_params` method is deprecated and will be removed in the next major version. Please use `service_params` instead.", caller)
+          ActiveSupport::Deprecation.new("1.0.0", "rao-service_controller").warn("The `permitted_params` method is deprecated and will be removed in the next major version. Please use `service_params` instead.", caller_locations)
           return permitted_params
         end
 

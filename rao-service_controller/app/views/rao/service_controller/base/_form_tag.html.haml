@@ -1,0 +1,5 @@
+%div{ id: dom_id(service_class, :form) }
+  = simple_form_for(@service, url: service_path) do |form|
+    = render 'form_errors',  form: form
+    = render 'form_fields',  form: form
+    = render 'form_actions', form: form

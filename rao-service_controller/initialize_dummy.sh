@@ -39,6 +39,7 @@ bin/rails turbo:install
 cat >> Gemfile << 'EOF'
 
 gem "rao", path: "../../../"
+gem "rao-component", path: "../../../rao-component/"
 gem "rao-service", path: "../../../rao-service/"
 gem "rao-service_controller", path: "../../../rao-service_controller/"
 
@@ -53,8 +54,15 @@ sed -i '/group :development, :test do/a\\n  gem "factory_bot_rails"' Gemfile
 # Install dependencies
 bundle install
 
+# Install rao-component
+bin/rails g rao:component:install
+bin/rails g rao:component:flash
+
 # Install
 rails generate rao:service_controller:install
+
+# Setup dummy app services
+rails g rao:service_controller:scaffold TestService name:string
 
 # Setup database
 rails db:migrate db:test:prepare
