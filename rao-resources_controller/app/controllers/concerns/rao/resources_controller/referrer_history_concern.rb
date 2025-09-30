@@ -1,35 +1,72 @@
 module Rao
   module ResourcesController
-    # This module provides functionality to store and manage a history of referrer URLs
-    # in a Rails controller. It includes methods to store the referrer, retrieve the
-    # most recent referrer, and prune the referrer history to a configurable maximum size.
+    # Provides referrer URL history tracking for resource controllers with intelligent navigation support.
     #
-    # Usage:
-    # Include this concern in your Rails controller to automatically store and manage
-    # referrer URLs. You can access the most recent referrer using the `referrer` method.
+    # This concern automatically tracks and manages a history of referrer URLs in the session,
+    # allowing controllers to provide intelligent "back" functionality and maintain context
+    # across complex navigation patterns. It's particularly useful for admin interfaces and
+    # multi-step workflows where users need to navigate back through their journey.
     #
-    # Example:
-    # class MyController < ApplicationController
-    #   include ResourcesController::ReferrerHistoryConcern
+    # @example Basic usage with referrer tracking
+    #   class PostsController < ApplicationController
+    #     include Rao::ResourcesController::ReferrerHistoryConcern
+    #     include Rao::ResourcesController::Plural::RestActionsConcern
     #
-    #   def some_action
-    #     # Access the most recent referrer
-    #     recent_referrer = referrer
-    #     # Do something with the recent referrer
+    #     def self.resource_class
+    #       Post
+    #     end
     #   end
-    # end
     #
-    # Configuration:
-    # - `max_referrer_history_size`: The maximum number of referrer URLs to store in the history.
-    #   Default is 3.
+    #   # Result: Automatic referrer history management
+    #   # - Every page visit automatically stores referrer in session
+    #   # - referrer helper method available in views and controllers
+    #   # - Intelligent "back" functionality without browser dependency
+    #   # - Maintains context across form submissions and redirects
     #
-    # Methods:
-    # - `store_referrer`: Stores the current request's referrer URL into the history.
-    # - `referrer_history`: Retrieves the session-based referrer history.
-    # - `most_recent_referrer`: Returns the most recent referrer stored in the history.
-    # - `referrer`: Alias for `most_recent_referrer`.
-    # - `prune_referrer_history(max_size)`: Prunes the referrer history to the specified maximum size.
-    # - `max_referrer_history_size`: Returns the configurable maximum size of the referrer history.
+    # @example Smart redirect functionality
+    #   class PostsController < ApplicationController
+    #     include Rao::ResourcesController::ReferrerHistoryConcern
+    #
+    #     def create
+    #       if @post.save
+    #         redirect_to referrer || posts_path
+    #       else
+    #         render :new
+    #       end
+    #     end
+    #   end
+    #
+    #   # Result: Context-aware navigation
+    #   # - Users return to where they came from after creating posts
+    #   # - Maintains workflow continuity in admin interfaces
+    #   # - Reduces navigation friction for content managers
+    #   # - Provides fallback to sensible defaults
+    #
+    # @example Multi-step workflow support
+    #   # User journey: Admin → Posts → Edit Post → Save → Back to Posts
+    #   # The concern automatically tracks this path and provides intelligent redirects
+    #
+    #   # Result: Seamless user experience
+    #   # - No "dead ends" in complex workflows
+    #   # - Users can navigate naturally through admin interfaces
+    #   # - Maintains context across multiple operations
+    #   # - Reduces cognitive load for content managers
+    #
+    # @example Session management features
+    #   # - Automatically prunes history to prevent session bloat (keeps last 3 referrers)
+    #   # - Handles edge cases like missing referrers gracefully
+    #   # - Provides debugging information for development
+    #   # - Maintains performance with large navigation histories
+    #
+    #   # Result: Robust session handling
+    #   # - No memory leaks from unlimited history growth
+    #   # - Graceful degradation when referrer is unavailable
+    #   # - Development-friendly debugging output
+    #   # - Optimal performance for production use
+    #
+    # @note Automatically handles both before_action and before_filter for Rails compatibility
+    # @see https://guides.rubyonrails.org/action_controller_overview.html Rails controller guide
+    #
     module ReferrerHistoryConcern
       extend ActiveSupport::Concern
 

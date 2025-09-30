@@ -62,15 +62,18 @@ module Rao
 
         # GET /profile/new
         # Initializes a new resource for display in the new form.
-        def new; end
+        def new
+        end
 
         # GET /profile
         # Displays the single resource.
-        def show; end
+        def show
+        end
 
         # GET /profile/edit
         # Displays the edit form for the existing resource.
-        def edit; end
+        def edit
+        end
 
         # POST /profile or /profile.json
         # Creates a new resource with the provided parameters.
@@ -116,7 +119,7 @@ module Rao
         def destroy
           @resource.destroy
           # this should call user_url and not users_url
-          respond_with(@resource, location: (after_destroy_location || root_path))
+          respond_with(@resource, location: after_destroy_location || root_path)
           # respond_with(@resource, location: (after_destroy_location || @resource))
 
           # respond_to do |format|
@@ -127,7 +130,8 @@ module Rao
 
         private
 
-        def before_rest_action; end
+        def before_rest_action
+        end
 
         def after_create_location
           nil
@@ -145,13 +149,13 @@ module Rao
         def edit_back_link_location
           resource_path(@resource)
         end
-        
+
         # Override this method in your controller to provide a custom back link location.
         def new_back_link_location
           root_path
         end
-        
-        # Override this method in your controller to provide a custom back link location. 
+
+        # Override this method in your controller to provide a custom back link location.
         def show_back_link_location
           root_path
         end
@@ -191,7 +195,7 @@ module Rao
         def resource_params
           if respond_to?(:permitted_params, true)
             # add permitted_params aliasing resource_params adding a deprecation warning
-            ActiveSupport::Deprecation.warn("The `permitted_params` method is deprecated and will be removed in the next major version. Please use `resource_params` instead.", caller)
+            ActiveSupport::Deprecation.new("1.0.0", "rao-resources_controller").warn("The `permitted_params` method is deprecated and will be removed in the next major version. Please use `resource_params` instead.", caller_locations)
             return permitted_params
           end
 

@@ -8,7 +8,7 @@ module Rao
       # Example usage:
       #
       # class PostsController < ApplicationController
-      #   include Rao::ResourcesController::RestResourcesUrlsConcern
+      #   include Rao::ResourcesController::RestUrlsConcern
       #
       #   private
       #
@@ -21,7 +21,7 @@ module Rao
       #   end
       # end
       #
-      # In the above example, the `PostsController` includes the `RestResourcesUrlsConcern` module,
+      # In the above example, the `PostsController` includes the `RestUrlsConcern` module,
       # which provides helper methods for generating paths and URLs for the `Post` resource.
       # The `resource_namespace` method is overridden to specify the namespace as `:admin`,
       # and the `resource_router` method is overridden to use the `main_app` router context.
@@ -40,12 +40,12 @@ module Rao
       # - resource_namespace: Override to define the namespace for resources, if needed (e.g., :admin).
       # - resource_router: Override to define the router context, defaulting to `self`.
       #
-      module RestResourcesUrlsConcern
+      module RestUrlsConcern
         extend ActiveSupport::Concern
 
         included do
-          helper_method :collection_path, :destroy_resource_path, :edit_resource_path, :new_resource_path, :resource_path
-          helper_method :collection_url, :destroy_resource_url, :edit_resource_url, :new_resource_url, :resource_url
+          helper_method :collection_path, :create_resource_path, :destroy_resource_path, :edit_resource_path, :new_resource_path, :resource_path, :update_resource_path
+          helper_method :collection_url, :create_resource_url, :destroy_resource_url, :edit_resource_url, :new_resource_url, :resource_url, :update_resource_url
         end
 
         private

@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "/posts", type: :feature do
   let(:factory_name) { :post }
   let(:collection) { create_list(factory_name, 3) }
   let(:resource) { create(factory_name) }
   let(:root_path) { "/posts" }
-  
+
   describe "List" do
     let(:index_path) { root_path }
 
@@ -13,7 +13,7 @@ RSpec.describe "/posts", type: :feature do
       collection
       visit(index_path)
     end
-    
+
     describe "UI" do
       it { expect(current_path).to eq(index_path) }
       it { expect(page.body).to have_text(collection.first.title) }
@@ -23,7 +23,7 @@ RSpec.describe "/posts", type: :feature do
   describe "Read" do
     let(:show_path) { "#{root_path}/#{resource.id}" }
     let(:resource) { create(factory_name) }
-    
+
     describe "UI" do
       before(:each) do
         visit(show_path)
@@ -37,7 +37,7 @@ RSpec.describe "/posts", type: :feature do
   describe "Create" do
     let(:new_path) { "#{root_path}/new" }
     let(:submit_button) { find('input[type="submit"]') }
-    
+
     before(:each) do
       visit(new_path)
 
@@ -87,7 +87,7 @@ RSpec.describe "/posts", type: :feature do
       resource
       visit(index_path)
     end
-    
+
     describe "UI" do
       let(:success_message) { "Post was successfully destroyed." }
 

@@ -1,13 +1,13 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "/user", type: :feature do
   let(:factory_name) { :user }
   let(:resource) { create(factory_name) }
   let(:root_path) { "/user" }
-  
+
   describe "Read" do
     let(:show_path) { root_path }
-    
+
     describe "UI" do
       before(:each) do
         resource
@@ -22,7 +22,7 @@ RSpec.describe "/user", type: :feature do
   describe "Create" do
     let(:new_path) { "#{root_path}/new" }
     let(:submit_button) { find('input[type="submit"]') }
-    
+
     before(:each) do
       visit(new_path)
 
@@ -73,7 +73,7 @@ RSpec.describe "/user", type: :feature do
       resource
       visit(show_path)
     end
-    
+
     describe "UI" do
       let(:success_message) { "User was successfully destroyed." }
 

@@ -34,7 +34,7 @@ module Rao
           def plural?
             true
           end
-    
+
           def singular?
             !plural?
           end

@@ -1,4 +1,4 @@
-require 'rao/version'
+require "rao/version"
 
 module Rao
   module ResourcesController

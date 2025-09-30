@@ -1,0 +1,5 @@
+%div{ id: dom_id(resource, :form) }
+  = simple_form_for(resource, url: resource.persisted? ? update_resource_path(resource) : create_resource_path) do |form|
+    = render 'form_errors',  form: form
+    = render 'form_fields',  form: form
+    = render 'form_actions', form: form

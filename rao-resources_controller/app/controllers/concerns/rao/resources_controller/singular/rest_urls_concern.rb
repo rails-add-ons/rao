@@ -8,7 +8,7 @@ module Rao
       # Example usage:
       #
       # class PostsController < ApplicationController
-      #   include Rao::ResourcesController::RestResourcesUrlsConcern
+      #   include Rao::ResourcesController::RestUrlsConcern
       #
       #   private
       #
@@ -21,7 +21,7 @@ module Rao
       #   end
       # end
       #
-      # In the above example, the `PostsController` includes the `RestResourcesUrlsConcern` module,
+      # In the above example, the `PostsController` includes the `RestUrlsConcern` module,
       # which provides helper methods for generating paths and URLs for the `Post` resource.
       # The `resource_namespace` method is overridden to specify the namespace as `:admin`,
       # and the `resource_router` method is overridden to use the `main_app` router context.
@@ -40,24 +40,19 @@ module Rao
       # - resource_namespace: Override to define the namespace for resources, if needed (e.g., :admin).
       # - resource_router: Override to define the router context, defaulting to `self`.
       #
-      module RestResourcesUrlsConcern
+      module RestUrlsConcern
         extend ActiveSupport::Concern
 
         included do
-          helper_method :collection_path, :destroy_resource_path, :edit_resource_path, :new_resource_path, :resource_path
-          helper_method :collection_url, :destroy_resource_url, :edit_resource_url, :new_resource_url, :resource_url
+          helper_method :create_resource_path, :destroy_resource_path, :edit_resource_path, :new_resource_path, :resource_path, :update_resource_path
+          helper_method :create_resource_url, :destroy_resource_url, :edit_resource_url, :new_resource_url, :resource_url, :update_resource_url
         end
 
         private
 
-        # Returns the path for the resource collection (e.g., /posts).
-        # def collection_path(options = {})
-        #  resource_router.polymorphic_path([resource_namespace, resource_class].flatten.compact, options)
-        # end
-
         # Returns the path for creating the resource (e.g., /profile).
         def create_resource_path(options = {})
-          collection_path(options)
+          resource_path(options)
         end
 
         # Returns the path for destroying the resource (e.g., /profile).
@@ -85,11 +80,6 @@ module Rao
           resource_path(resource, options)
         end
 
-        # Returns the URL for the resource collection (e.g., https://example.com/posts).
-        # def collection_url(options = {})
-        #   resource_router.polymorphic_url([resource_namespace, resource_class].flatten.compact, options)
-        # end
-
         def create_resource_url(options = {})
           create_resource_path(options.merge(only_path: false))
         end
@@ -113,7 +103,6 @@ module Rao
         def update_resource_url(resource, options = {})
           update_resource_path(resource, options.merge(only_path: false))
         end
-
 
         # Override to define the namespace for resources, if needed (e.g., :admin).
         def resource_namespace

@@ -13,6 +13,7 @@ module Rao
         lambda do |resource|
           [:human, :title, :name, :to_s].each do |method_name|
             next unless resource.respond_to?(method_name)
+
             return resource.send(method_name)
           end
         end

@@ -3,7 +3,7 @@ module Rao
     class Base < Rao::ResourcesController::Configuration.resources_controller_base_class_name.constantize
       include RestActionsConcern
       include ResourcesConcern
-      include RestResourcesUrlsConcern
+      include RestUrlsConcern
       include ResourceInflectionsConcern
       include ReferrerHistoryConcern
     end
