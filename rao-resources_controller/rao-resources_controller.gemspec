@@ -1,14 +1,14 @@
 require_relative "../lib/rao/version"
 
 Gem::Specification.new do |spec|
-  spec.name        = "rao-resources_controller"
-  spec.version     = Rao::VERSION
-  spec.authors     = [ "Roberto Vasquez Angel" ]
-  spec.email       = [ "rva@beegoodit.de" ]
-  spec.homepage    = "https://github.com/rails-add-ons/rao-resources_controller"
-  spec.summary     = "A toolkit to build resourceful controllers for Rails applications."
+  spec.name = "rao-resources_controller"
+  spec.version = Rao::VERSION
+  spec.authors = ["BeeGood IT"]
+  spec.email = ["info@beegoodit.de"]
+  spec.homepage = "https://github.com/rails-add-ons/rao-resources_controller"
+  spec.summary = "A toolkit to build resourceful controllers for Rails applications."
   spec.description = "Provides a base class and a set of modules to build resourceful controllers for Rails applications."
-  spec.license     = "MIT"
+  spec.license = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
   # to allow pushing to a single host or delete this section to allow pushing to any host.
