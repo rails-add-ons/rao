@@ -1,3 +1,8 @@
+require "rao-component"
+require "rao-service"
+require "responders"
+require "simple_form"
+
 require "rao"
 require "rao/service_controller/version"
 require "rao/service_controller/configuration"

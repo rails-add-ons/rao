@@ -24,6 +24,10 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", ">= 8.0"
   spec.add_dependency "rao"
+  spec.add_dependency "rao-component"
+  spec.add_dependency "rao-service"
+  spec.add_dependency "responders"
+  spec.add_dependency "simple_form"
 
   spec.add_development_dependency "rails-dummy"
   spec.add_development_dependency "bootsnap"
