@@ -69,7 +69,7 @@ module Rao
               false
             end
           rescue Capybara::NotSupportedByDriverError => e
-            puts "[Warning] Skipping status code check as it is not supported by your driver [#{@spec.driver.instance_variable_get(:@name)}]."
+            puts "[Warning] Skipping status code check as it is not supported by your driver [#{Capybara.current_driver}]."
             return true
           end
         end
@@ -107,7 +107,7 @@ module Rao
         end
 
         def delete_link_matcher
-          'a[data-method="delete"]'
+          'a[data-turbo-method="delete"]'
         end
       end
     end

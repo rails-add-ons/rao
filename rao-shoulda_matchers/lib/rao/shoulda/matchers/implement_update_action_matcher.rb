@@ -57,6 +57,11 @@ module Rao
           self
         end
 
+        def submit(&block)
+          @submit_block = block if block_given?
+          self
+        end
+
         def to(value)
           @to = value
           self
@@ -91,8 +96,12 @@ module Rao
           return unless has_correct_attributes_before if @expected_before_attributes.present?
 
           @spec.within(@form_id) do
-            @form_block.call
-            submit_button.click
+            @form_block.call(self)
+            if @submit_block.present?
+              @submit_block.call(self)
+            else
+              submit_button.click
+            end
           end
                       
           @resource.reload
@@ -109,7 +118,7 @@ module Rao
               false
             end
           rescue Capybara::NotSupportedByDriverError => e
-            puts "[Warning] Skipping status code check as it is not supported by your driver [#{@spec.driver.instance_variable_get(:@name)}]."
+            puts "[Warning] Skipping status code check as it is not supported by your driver [#{Capybara.current_driver}]."
             return true
           end
         end
@@ -184,7 +193,7 @@ module Rao
         end
 
         def submit_button
-          @spec.find('input[name="commit"]')
+          @spec.find('[name="commit"]')
         end
       end
     end

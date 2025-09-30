@@ -73,6 +73,11 @@ module Rao
           self
         end
 
+        def submit(&block)
+          @submit_block = block if block_given?
+          self
+        end
+
         # Specifies the form css id to fill to create the resource.
         def within_form(id, &block)
           @form_id = id
@@ -93,8 +98,12 @@ module Rao
 
           @before_count = @block.call(@resource_class)
           @spec.within(@form_id) do
-            @form_block.call
-            submit_button.click
+            @form_block.call(self)
+            if @submit_block.present?
+              @submit_block.call(self)
+            else
+              submit_button.click
+            end
           end
           @after_count = @block.call(@resource_class)
 
@@ -118,7 +127,7 @@ module Rao
               false
             end
           rescue Capybara::NotSupportedByDriverError => e
-            puts "[Warning] Skipping status code check as it is not supported by your driver [#{@spec.driver.instance_variable_get(:@name)}]."
+            puts "[Warning] Skipping status code check as it is not supported by your driver [#{Capybara.current_driver}]."
             return true
           end
         end
@@ -156,7 +165,7 @@ module Rao
         end
 
         def submit_button
-          @spec.find('input[name="commit"]')
+          @spec.find('[name="commit"]')
         end
       end
     end
