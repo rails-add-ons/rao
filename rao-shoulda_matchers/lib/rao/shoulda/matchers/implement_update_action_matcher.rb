@@ -52,8 +52,12 @@ module Rao
           self
         end
 
-        def from(value)
-          @from = value
+        def from(value = nil, &block)
+          if block_given?
+            @from_block = block
+          else
+            @from = value
+          end
           self
         end
 
@@ -62,8 +66,12 @@ module Rao
           self
         end
 
-        def to(value)
-          @to = value
+        def to(value = nil, &block)
+          if block_given?
+            @to_block = block
+          else
+            @to = value
+          end
           self
         end
 
@@ -133,7 +141,7 @@ module Rao
         end
 
         def has_correct_attributes_before
-          expected = @from
+          expected = @from_block.present? ? @from_block.call : @from
           if @updating_block.present?
             given = @updating_block.call(@resource)
 
@@ -156,7 +164,7 @@ module Rao
         end
 
         def has_correct_attributes_after
-          expected = @to
+          expected = @to_block.present? ? @to_block.call : @to
           if @updating_block.present?
             given = @updating_block.call(@resource)
 
