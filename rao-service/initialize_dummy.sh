@@ -29,28 +29,17 @@ cd spec/dummy
 # Remove .ruby-version
 rm .ruby-version
 
+# In boot.rb use the Gemfile from the root directory
+sed -i 's|../Gemfile|../../../Gemfile|' config/boot.rb
+
+# Remove Gemfile*
+rm Gemfile*
+
 # install importmaps
 bin/rails importmap:install
 
 # install turbo-rails
 bin/rails turbo:install
-
-# Add rao from local path by appending to Gemfile
-cat >> Gemfile << 'EOF'
-
-gem "rao", path: "../../../"
-gem "rao-service", path: "../../../rao-service/"
-
-EOF
-
-# Add rspec
-sed -i '/group :development, :test do/a\\n  gem "rspec-rails"' Gemfile
-
-# Add factory_bot_rails
-sed -i '/group :development, :test do/a\\n  gem "factory_bot_rails"' Gemfile
-
-# Install dependencies
-bundle install
 
 # Install
 bin/rails generate rao:service:install
