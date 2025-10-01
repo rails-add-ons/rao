@@ -29,40 +29,27 @@ cd spec/dummy
 # Remove .ruby-version
 rm .ruby-version
 
+# In boot.rb use the Gemfile from the root directory
+sed -i 's|../Gemfile|../../../Gemfile|' config/boot.rb
+
+# Remove Gemfile*
+rm Gemfile*
+
 # install importmaps
 bin/rails importmap:install
 
 # install turbo-rails
 bin/rails turbo:install
 
-# Add rao from local path by appending to Gemfile
-cat >> Gemfile << 'EOF'
-
-gem "rao", path: "../../../"
-gem "rao-component", path: "../../../rao-component/"
-gem "rao-service", path: "../../../rao-service/"
-gem "rao-service_controller", path: "../../../rao-service_controller/"
-
-EOF
-
-# Add rspec
-sed -i '/group :development, :test do/a\\n  gem "rspec-rails"' Gemfile
-
-# Add factory_bot_rails
-sed -i '/group :development, :test do/a\\n  gem "factory_bot_rails"' Gemfile
-
-# Install dependencies
-bundle install
-
 # Install rao-component
 bin/rails g rao:component:install
 bin/rails g rao:component:flash
 
 # Install
-rails generate rao:service_controller:install
+bin/rails generate rao:service_controller:install
 
 # Setup dummy app services
-rails g rao:service_controller:scaffold TestService name:string
+bin/rails g rao:service_controller:scaffold TestService name:string
 
 # Setup database
-rails db:migrate db:test:prepare
+bin/rails db:migrate db:test:prepare

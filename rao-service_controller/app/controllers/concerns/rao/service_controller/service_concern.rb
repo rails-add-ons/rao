@@ -1,27 +1,30 @@
 module Rao
   module ServiceController
-    # This module provides a concern for controllers to define and use a `resource_class` method.
-    # It ensures that the `resource_class` method is implemented in the including controller and
-    # provides a helper method for accessing it.
+    # This module provides a concern for controllers to define and use service classes.
+    # It ensures that the `service_class` method is implemented in the including controller and
+    # provides helper methods for accessing the service class and its result class.
     #
     # Example:
     #   class MyController < ApplicationController
-    #     include Rao::ResourcesController::ResourcesConcern
+    #     include Rao::ServiceController::ServiceConcern
     #
-    #     def self.resource_class
-    #       MyResource
+    #     def self.service_class
+    #       MyService
     #     end
     #   end
     #
-    # The `resource_class` method must be implemented in the including controller.
+    # The `service_class` method must be implemented in the including controller.
     # If not implemented, an exception will be raised.
     #
     # Methods:
-    # - resource_class: Class method that must be implemented in the including controller.
-    # - resource_class: Instance method that returns the class defined by the class method.
+    # - service_class: Class method that must be implemented in the including controller.
+    # - result_class: Class method that returns the result class (service_class::Result).
+    # - service_class: Instance method that returns the class defined by the class method.
+    # - result_class: Instance method that returns the result class.
     #
     # Helper Methods:
-    # - resource_class: Makes the `resource_class` method available as a helper method in views.
+    # - service_class: Makes the `service_class` method available as a helper method in views.
+    # - result_class: Makes the `result_class` method available as a helper method in views.
     module ServiceConcern
       extend ActiveSupport::Concern
 

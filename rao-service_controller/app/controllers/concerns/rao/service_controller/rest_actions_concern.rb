@@ -6,8 +6,8 @@ module Rao
     # Example usage:
     #
     # class PostsController < ApplicationController
-    #   include Rao::ResourcesController::ResourcesConcern
-    #   include Rao::ResourcesController::RestActionsConcern
+    #   include Rao::ResourcesController::Plural::ResourcesConcern
+    #   include Rao::ResourcesController::Plural::RestActionsConcern
 
     #   def self.resource_class
     #     Post
