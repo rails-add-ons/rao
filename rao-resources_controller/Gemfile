@@ -19,6 +19,7 @@ gem "rubocop-rails-omakase", require: false
 
 gem "rao", path: "../"
 gem "rao-component", path: "../rao-component"
+gem "rao-view_helper", path: "../rao-view_helper"
 gem "rao-resources_controller", path: "./"
 
 group :development, :test do

@@ -17,7 +17,7 @@ Rao::ResourcesController.configure do |config|
   #          end
   #
   config.label_for_resource_proc = lambda do |resource|
-    [:human, :title, :name, :to_s].each do |method_name|
+    [:administrador_title, :human, :name, :identifier, :email, :to_s].each do |method_name|
       next unless resource.respond_to?(method_name)
 
       return resource.send(method_name)

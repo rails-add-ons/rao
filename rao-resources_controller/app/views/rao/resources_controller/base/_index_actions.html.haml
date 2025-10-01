@@ -2,6 +2,7 @@
   = link_to(controller.send(:index_back_link_location), class: "btn btn-light") do
     %i.fas.fa-chevron-left
     %span.btn-text= t(".back")
-  = link_to(new_resource_path, class: "btn btn-primary") do
-    %i.fas.fa-plus
-    %span.btn-text= t(".new", **inflections)
+  - if available_rest_actions.include?(:new)
+    = link_to(new_resource_path, class: "btn btn-primary") do
+      %i.fas.fa-plus
+      %span.btn-text= t(".new", **inflections)

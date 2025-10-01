@@ -7,6 +7,13 @@ PATH
       rao
 
 PATH
+  remote: ../rao-view_helper
+  specs:
+    rao-view_helper (0.0.52.pre)
+      rails (>= 8.0)
+      rao
+
+PATH
   remote: ..
   specs:
     rao (0.0.52.pre)
@@ -439,6 +446,7 @@ DEPENDENCIES
   rao!
   rao-component!
   rao-resources_controller!
+  rao-view_helper!
   rspec-rails
   rubocop-rails-omakase
   selenium-webdriver

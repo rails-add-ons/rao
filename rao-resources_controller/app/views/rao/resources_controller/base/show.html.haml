@@ -1,9 +1,13 @@
 .content-header
   .row
     .col
-      %h1= @resource.to_s
+    %h1= resource_helper(self).label_for(@resource)
 
 .content-body.overflow-y-auto.mb-2
+  .row
+    .col-12
+      .before-show-table= render "before_show_table", resource: @resource
+
   .row
     .col
       .resource-table
@@ -13,7 +17,7 @@
 
   .row
     .col
-      = render "after_show_table", resource: @resource
+      .after-show-table= render "after_show_table", resource: @resource
 
 .content-footer
   .row

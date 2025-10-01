@@ -29,6 +29,12 @@ cd spec/dummy
 # Remove .ruby-version
 rm .ruby-version
 
+# In boot.rb use the Gemfile from the root directory
+sed -i 's|../Gemfile|../../../Gemfile|' config/boot.rb
+
+# Remove Gemfile*
+rm Gemfile*
+
 # install importmaps
 bin/rails importmap:install
 
@@ -54,15 +60,15 @@ sed -i '/group :development, :test do/a\\n  gem "factory_bot_rails"' Gemfile
 bundle install
 
 # Install
-rails generate rao:resources_controller:install
+bin/rails generate rao:resources_controller:install
 
 # Generate home index page and route root to it
-rails g controller home index
+bin/rails g controller home index
 sed -i '2i\  root to: "home#index"' config/routes.rb
 
 # Generate models
-rails g model post title body:text published_at:timestamp
-rails g model user name email bio
+bin/rails g model post title body:text published_at:timestamp
+bin/rails g model user name email bio
 rm -rf spec/helpers
 rm -rf spec/models
 rm -rf spec/views
@@ -80,4 +86,4 @@ sed -i '/<%= yield %>/i\    <%= flash_messages.render %>' app/views/layouts/appl
 cp -r $CURRENT_DIR/spec/setup/. .
 
 # Setup database
-rails db:migrate db:test:prepare
+bin/rails db:migrate db:test:prepare

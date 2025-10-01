@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   include Rao::ResourcesController::Singular::RestUrlsConcern
   include Rao::ResourcesController::Singular::ResourcesConcern
   include Rao::ResourcesController::Singular::RestActionsConcern
+  include Rao::ResourcesController::Singular::AvailableRestActionsConcern
 
   def self.resource_class
     User
