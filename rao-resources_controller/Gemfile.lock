@@ -27,6 +27,7 @@ PATH
       rails (>= 8.0)
       rao
       rao-component
+      rao-view_helper
       responders
       simple_form
 
@@ -38,6 +39,7 @@ PATH
       rails (>= 8.0)
       rao
       rao-component
+      rao-view_helper
       responders
       simple_form
 

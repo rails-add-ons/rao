@@ -23,9 +23,10 @@ Gem::Specification.new do |spec|
   end
 
   spec.add_dependency "rails", ">= 8.0"
-  spec.add_dependency "rao"
-  spec.add_dependency "responders"
   spec.add_dependency "haml-rails"
   spec.add_dependency "rao-component"
+  spec.add_dependency "rao-view_helper"
+  spec.add_dependency "rao"
+  spec.add_dependency "responders"
   spec.add_dependency "simple_form"
 end
