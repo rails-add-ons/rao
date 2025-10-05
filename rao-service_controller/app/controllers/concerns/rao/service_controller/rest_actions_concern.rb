@@ -66,9 +66,17 @@ module Rao
         @result = @service.perform!
 
         if @result.ok?
-          redirect_to after_success_location, notice: success_message
+          respond_to do |format|
+            format.html { redirect_to after_success_location, notice: success_message }
+            format.json { serialize_result }
+            format.turbo_stream { redirect_to after_success_location, notice: success_message }
+          end
         else
-          render :new, status: :unprocessable_entity
+          respond_to do |format|
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: serialize_errors, status: :unprocessable_entity }
+            format.turbo_stream { render :new, status: :unprocessable_entity }
+          end
         end
       end
     
@@ -115,6 +123,14 @@ module Rao
 #      end
     
       private
+
+      def serialize_result
+        respond_with(@result, status: :ok)
+      end
+
+      def serialize_errors
+        respond_with@result.errors
+      end
 
       def success_message
         t('flash.actions.perform.success', service_name: @service.class.model_name.human)
