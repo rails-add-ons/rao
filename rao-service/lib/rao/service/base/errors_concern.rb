@@ -76,17 +76,15 @@ module Rao
       # models or other objects to the service's error collection.
       #
       # @param obj [Object] The object to copy errors from (must respond to #errors)
-      # @param key_prefix [Symbol] The prefix to add to error keys
+      # @param key [Symbol] The key to add to error keys
       #
       # @example
       #   user = User.new(email: "")
       #   user.valid? # => false
       #   copy_errors_from_to(user, :user)
       #   # Now @errors contains user.email errors under the :user key
-      def copy_errors_from_to(obj, key_prefix)
-        obj.errors.each do |key, message|
-          @errors.add(key_prefix, message)
-        end
+      def copy_errors_from_to(obj, key)
+        @errors.add(key, obj.errors.full_messages.to_sentence)
       end
 
       # Adds an error and simultaneously outputs it as a message.
