@@ -68,7 +68,7 @@ module Rao
         if @result.ok?
           respond_to do |format|
             format.html { redirect_to after_success_location, notice: success_message }
-            format.json { serialize_result }
+            format.json { render json: serialize_result, status: :ok }
             format.turbo_stream { redirect_to after_success_location, notice: success_message }
           end
         else
@@ -125,11 +125,11 @@ module Rao
       private
 
       def serialize_result
-        respond_with(@result, status: :ok)
+        @result.to_json
       end
 
       def serialize_errors
-        respond_with@result.errors
+        @result.errors.to_json
       end
 
       def success_message
@@ -164,7 +164,7 @@ module Rao
   
       # Override this method in your controller to initialize a new service for create in a custom way.
       def initialize_service_for_create
-        @service = service_class.new(service_params)
+        @service = service_class.new(service_params, service_options)
       end
   
       # Only allow a list of trusted parameters through.
@@ -177,6 +177,10 @@ module Rao
 
         # params.require(service_class.model_name.singular).permit(*service_class.permitted_params)
         raise "Please implement the `service_params` method in your controller."
+      end
+
+      def service_options
+        request.format.json? ? { autosave: true } : {}
       end
     end
   end
